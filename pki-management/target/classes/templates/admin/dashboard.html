@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"
+	th:with="title='PKI manager'"></head>
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+	<div id="wrapper" class="toggled">
+
+		<div th:replace="layout :: sidebar">(sidebar)</div>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="container">
+
+							<div
+								th:replace="layout :: alert (type=${type}, message=${message})"></div>
+
+
+							<div th:if="${not #lists.isEmpty(cas)}">
+								<h2> PKI Data</h2>
+								<table class="table table-striped" id="dashtable">
+									<tr>
+										<th>CA</th>
+										<th>Encryption Key</th>
+										<th>Signature Key</th>
+										<th>Certificate ID</th>	
+										<th>Issuer CA</th>	
+									</tr>
+									<tr th:each="ca : ${cas}">
+										<td th:text="${ca.caName}">CA Name</td>
+										<td th:text="${ca.getEncryptionKey()} ?  ${ca.getEncryptionKey().alias} : 'none' ">Encryption Key</td> 
+										<td th:text="${ca.getSignatureKey()} ?  ${ca.getSignatureKey().alias} : 'none' "> Signature Key</td> 		
+										<td th:text="${ca.certificate} ? ${ca.certificate.certId} : 'none'">Certificate</td> 
+										<td th:text="${ca.certificate} ?  ${ca.certificate.issuer.caName} : 'none'">Issuer</td>
+															
+									</tr>
+								
+								</table>
+									
+							</div>
+	
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+
+	</div>
+	
+</body>
+</html>

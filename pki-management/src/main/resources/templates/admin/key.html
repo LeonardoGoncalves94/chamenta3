@@ -1,0 +1,204 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"
+	th:with="title='PKI manager'"></head>
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+	<div id="wrapper" class="toggled">
+
+		<div th:replace="layout :: sidebar">(sidebar)</div>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="container">
+
+							<div
+								th:replace="layout :: alert (type=${type}, message=${message})"></div>
+
+
+							<div th:if="${not #lists.isEmpty(keys)}">
+								<h2> Key Data</h2>
+								<table class="table table-striped" id="credtblGrid">
+									<tr>
+										<th>ID</th>
+										<th>Alias</th>	
+										<th>Type</th>
+										<th>CA</th>	
+										<th>Edit</th>
+									</tr>
+									<tr th:each="key : ${keys}">
+										<td th:text="${key.keyId}">ID</td>						
+										<td th:text="${key.alias}">Alias</td>
+										<td th:text="${key.algorithm}">Type</td>
+										<td th:text="${key.ca.caName}">CA</td>
+										<td>
+											<button type="button" class="btn btn-default btn-sm"
+												data-toggle="modal" data-target="#editKeyDataModel"
+												th:onClick = "|javascript:fillModal('${key.keyId}', '${key.alias}', '${key.algorithm}', '${key.ca.caName}');|">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button> <!-- Modal -->
+											<div class="modal fade" id="editKeyDataModel"
+												role="dialog">
+												<div class="modal-dialog">
+
+													<!-- Modal content-->
+									
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Edit Key Data</h4>
+														</div>
+														<div class="modal-body">
+SSSS
+															<form action="#" th:action="@{/admin/editkey}"
+																method="post" role="form">													
+																<div class="form-group">
+																	<label for="keyId">Key ID</label> <input
+																		type="text" class="form-control" id="keyId"
+																		name="keyId" readonly/>
+																</div>																																																																																					
+																
+																<div class="form-group">
+																	<label for="algorithm">Key Algorithm</label> <input
+																		type="text" class="form-control" id="algorithm"
+																		name="algorithm" readonly/>
+																</div>
+																
+																<div class="form-group">
+																	<label for="ca">Belongs to CA </label> <input
+																		type="text" class="form-control" id="ca"
+																		name="ca" readonly/>
+																</div>
+																
+																<div class="form-group">
+																	<label for="alias">Key Alias</label> <input
+																		type="text" class="form-control" id="alias"
+																		name="alias" required/>
+																</div>		
+																
+																<button type="submit" class="btn btn-default">Submit</button>
+															</form>
+
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+													</div>
+
+												</div>
+											</div>
+
+										</td>
+									</tr>
+								</table>
+									
+							</div>
+							
+							
+							<div>
+										<!-- Modal -->
+										<div class="modal fade" id="addCaDataModel"
+											role="dialog">
+											<div class="modal-dialog">
+
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Add Key Data</h4>
+													</div>
+													<div class="modal-body">
+
+														<form action="#" th:action="@{/admin/addkey}"
+															method="post" role="form" th:object="${keyObj}">														
+																																																																											
+															<div class="form-group">
+																<label for="alias">Key Alias</label> <input
+																	type="text" class="form-control" id="alias"
+																	th:field="*{alias}" required/>
+															</div>	
+															
+															<div class="form-group">
+															<label for="alg_list">Key Algorithm</label>														
+																<select id = "alg_list" th:field="*{algorithm}" required>
+ 																	 <option th:each="alg : ${allAlgorithms}" 
+          																	 th:value="${alg}" 
+          																	 th:text="${alg}"></option>
+																</select>
+															</div>
+															
+															<div class="form-group">
+																<input
+																	type="hidden" class="form-control" id="keyType"
+																	th:field="*{keyType}"/>
+															</div>	
+															
+															<div class="form-group">
+															<label for="algorithm">Belongs to CA</label>	
+																<select id = "ca_list" th:field="*{ca}" required>
+ 																	 <option th:each="ca : ${cas}" 
+          																	 th:value="${ca.caId}" 
+          																	 th:text="${ca.caName}"></option>
+																</select>
+															</div>
+																									
+															<button type="submit" class="btn btn-default"
+															th:onClick = "|javascript:getKeyType();|">Submit</button>
+														</form>
+
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<a href="#" data-toggle="modal"
+											data-target="#addCaDataModel" class="btn btn-default"
+											id="addCa">Add Key Data</a>
+
+
+									</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+
+
+	</div>
+	<div th:include="layout :: footer" id="footer">(footer)</div>
+<script th:inline="javascript">
+function fillModal(keyId, alias, algorithm, caName, caId){
+	$("#editKeyDataModel").find("#keyId").val(keyId);
+	$("#editKeyDataModel").find("#alias").val(alias);
+	$("#editKeyDataModel").find("#algorithm").val(algorithm);	
+	$("#editKeyDataModel").find("#ca").val(caName);
+}
+</script>
+
+<script th:inline="javascript">
+function getKeyType(){
+	
+	if($("#alg_list").val() == "ECDSA-Nist" || $("#alg_list").val() == "ECDSA-Brainpool"){
+		$("#addCaDataModel").find("#keyType").val("Signature");
+	} else {
+		$("#addCaDataModel").find("#keyType").val("Encryption");
+	}
+
+}
+</script>
+</body>
+</html>

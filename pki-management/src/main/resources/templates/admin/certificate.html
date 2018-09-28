@@ -1,0 +1,256 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"
+	th:with="title='PKI manager'"></head>
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+	<div id="wrapper" class="toggled">
+
+		<div th:replace="layout :: sidebar">(sidebar)</div>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="container">
+
+							<div
+								th:replace="layout :: alert (type=${type}, message=${message})"></div>
+
+
+							<div th:if="${not #lists.isEmpty(certs)}">
+								<h2> Certificate Data</h2>
+								<table class="table table-striped" id="credtblGrid">
+									<tr>
+										<th>ID</th>
+										<th>Issuer</th>
+										<th>Subject</th>	
+										<th>Validity</th>	
+										<th>Confidence</th>	
+										<th>Assurance</th>	
+									</tr>
+									<tr th:each="cert : ${certs}">
+										<td th:text="${cert.certId}">ID</td>
+										<td th:text="${cert.issuer.caName}">Issuer</td>							
+										<td th:text="${cert.subject.caName}">Subject</td>
+										<td th:text="${cert.validity}">Validity</td>
+										<td th:text="${cert.confidence}">Confidence</td>
+										<td th:text="${cert.assurance}">Assurance</td>												
+									</tr>
+								</table>
+									
+							</div>
+							
+							
+							<div>
+										<!-- Modal -->
+										<div class="modal fade" id="addRootCaCert"
+											role="dialog">
+											<div class="modal-dialog">
+
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Add Certificate for Root CA</h4>
+													</div>
+													<div class="modal-body">													
+																
+														<form action="#" th:action="@{/admin/addrootcert}" 
+															method="post" role="form" th:object="${certificateObj}"> <!-- Will try to populate this Certificate object -->
+																														
+														<div class="form-group">
+														<label for="subject">Subject/Issuer</label>
+																<select id = "subject" th:field="*{subject}" required> <!-- the "subject" certificate field will be populated by the selected option. The value passes through a <String CA> converter to get the CA from the database -->
+ 																	 <option th:each="ca : ${rootSubjects}" 
+          																	 th:value="${ca.caId}"  
+          																	 th:text="${ca.caName}"></option>
+																</select>
+															</div>
+															
+															<div class="form-group">
+																 <input
+																	type="hidden" class="form-control" id="issuer"
+																	th:field="*{issuer}" required/>
+															</div>					
+															
+															<div class="form-group">
+																<label for="validity">Validity</label> <input
+																	type="number" class="form-control" id="validity"
+																	th:field="*{validity}" required/>
+															</div>	
+																																																												
+																																																																																				
+															<div class = "form-group">
+															<label for="countrylistId">Region</label> 
+																<ul id = "countrylistId">
+  																	<li th:each="country : ${countries}">
+    																	<input type="checkbox" 
+    																			th:value="${country.regionId}"
+    																			th:text="${country.regionName}"
+    																			th:field="*{regions}" />												
+  																	</li>
+																</ul>
+															</div>	
+															
+															<div class="form-group">
+																<label for="confidence">Confidence (between 0 and 3)</label> <input
+																	type="number" min = "0" max = "3" class="form-control" id="confidence"
+																	th:field = "*{confidence}" required/>
+															</div>	
+															<div class="form-group">
+																<label for="assurance">Assurance (between 0 and 7)</label> <input
+																	type="number" min = "0" max = "7" class="form-control" id="assurance"
+																	th:field="*{assurance}" required/>
+															</div>	
+															
+																	<div class="form-group">
+																<label for="chainlength">Min. Chain Length</label> <input
+																	type="number" class="form-control" id="minchain"
+																	th:field="*{minChain}" required/>
+															</div>
+															<div class="form-group">
+																<label for="chainrange">Chain Range</label> <input
+																	type="number" class="form-control" id="chainrange"
+																	th:field="*{chainRange}" required/>
+															</div>
+																																																			
+															<button type="submit" class="btn btn-default" 
+																	th:onClick = "|javascript:getIssuer();|">Submit</button>
+														</form>
+														
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<a href="#" data-toggle="modal"
+											data-target="#addRootCaCert" class="btn btn-default"
+											id="addCa">Add Root CA Certificate</a>
+									
+										<!-- Modal -->
+										<div class="modal fade" id="addSubCaCert"
+											role="dialog">
+											<div class="modal-dialog">
+
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Add Certificate for Sub CA</h4>
+													</div>
+													<div class="modal-body">													
+																
+														<form action="#" th:action="@{/admin/addsubcert}"
+															method="post" role="form" th:object="${certificateObj}">
+															
+														<div class="form-group">
+																<label for="subject">Subject</label>
+																<select th:field="*{subject}" required>
+ 																	 <option th:each="ca : ${subSubjects}" 
+          																	 th:value="${ca.caId}" 
+          																	 th:text="${ca.caName}"></option>
+																</select>
+														</div>		
+																												
+														<div class="form-group">
+														<label for="issuer">Issuer</label>
+																<select th:field="*{issuer}" required>
+ 																	 <option th:each="ca : ${issuers}" 
+          																	 th:value="${ca.caId}" 
+          																	 th:text="${ca.caName}"></option>
+																</select>
+															</div>															
+															
+															<div class="form-group">
+																<label for="validity">Validity (years)</label> <input
+																	type="number" class="form-control" id="validity"
+																	th:field="*{validity}" required/>
+															</div>	
+															
+																	<div class = "form-group">
+															<label for="countrylistId">Region</label> 
+																<ul id = "countrylistId">
+  																	<li th:each="country : ${countries}">
+    																	<input type="checkbox" 
+    																			th:value="${country.regionId}"
+    																			th:text="${country.regionName}"
+    																			th:field="*{regions}" />												
+  																	</li>
+																</ul>
+															</div>																																																																																																				
+															
+															<div class="form-group">
+																<label for="permissions">Permissions</label> <input
+																	type="number" class="form-control" id="permissions"
+																	th:field="*{psId}" />
+															</div>	
+															
+															<div class="form-group">
+																<label for="confidence">Confidence (between 0 and 3)</label> <input
+																	type="number" min = "0" max = "3" class="form-control" id="confidence"
+																	th:field="*{confidence}" required/>
+															</div>	
+															
+															<div class="form-group">
+																<label for="assurance">Assurance (between 0 and 7)</label> <input
+																	type="number" min = "0" max = "7" class="form-control" id="assurance"
+																	th:field="*{assurance}" required/>
+															</div>	
+																								
+															
+															<div class="form-group">
+																<label for="chainlength">Min. Chain Length</label> <input
+																	type="number" class="form-control" id="chainlength"
+																	th:field="*{minChain}" required/>
+															</div>
+															<div class="form-group">
+																<label for="chainrange">Chain Range</label> <input
+																	type="number" class="form-control" id="chainrange"
+																	th:field="*{chainRange}" required/>
+															</div>
+																																																			
+															<button type="submit" class="btn btn-default">Submit</button>
+														</form>
+
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<a href="#" data-toggle="modal"
+											data-target="#addSubCaCert" class="btn btn-default"
+											id="addCa">Add Sub CA Certificate</a>
+									</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<div th:include="layout :: footer" id="footer">(footer)</div>
+	<script th:inline="javascript">
+	<!-- Method that copies the subject field into the hidden isser field, used for root CA certificates where issuer = subject -->
+	function getIssuer(){
+	
+		$("#addRootCaCert").find("#issuer").val($("#addRootCaCert").find("#subject").val());
+		
+	}
+	</script>	
+</body>
+</html>

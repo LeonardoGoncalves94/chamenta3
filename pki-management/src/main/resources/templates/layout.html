@@ -1,0 +1,118 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta name="description" content="Creditor Demo portal "></meta>
+<meta name="author" content="ccardoso - MULTICERT"></meta>
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}"></link>
+
+<title th:text="${title}">(title)</title>
+
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.css}"
+	rel="stylesheet"></link>
+<link th:href="@{/css/starter.css}" rel="stylesheet"></link>
+<link th:href="@{/css/style.css}" rel="stylesheet"></link>
+<link th:href="@{/css/simple-sidebar.css}" rel="stylesheet"></link>
+</head>
+
+<body>
+
+	<div th:fragment="alert (type, message)"
+		class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">&times;</button>
+		<span th:text="${message}">Test</span>
+	</div>
+
+
+	<div id="wrap" class="toggled">
+		<div th:fragment="navbar"
+			class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">PKI Manager</a>
+			</div>
+
+
+			<ul class="nav mynavbar-nav">
+				<li class="active"><b></b><a href="#">Welcome <span
+						th:utext="${userName}"></span></a></a></</li>
+				<li><a href="javascript: document.logoutForm.submit()">
+						Logout</a></li>
+			</ul>
+			<form name="logoutForm" th:action="@{/logout}" method="post"
+				th:hidden="true">
+				<input type="submit" value="Sign Out" />
+			</form>
+		</div>
+
+	</div>
+
+	<!-- Sidebar -->
+	<div th:fragment="sidebar" id="sidebar-wrapper">
+
+		<ul class="sidebar-nav">
+
+		<!-- <li th:switch="${userRole}"><a th:case="ADMIN"
+				th:href="@{/admin/creditor}">Home</a> <a th:case="USER"
+				th:href="@{/user/home}">Home</a></li> -->
+				
+			<li><a href="/admin/home">Home</a></li>						
+			<li><a href="/admin/dashboard">Dashboard</a></li>			
+			<li><a href="/admin/ca">CA Management</a></li>
+			<li><a href="/admin/key">Key Management</a></li>
+			<li><a href="/admin/certificate">Certificate Management</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Services</a></li>
+
+		</ul>
+
+
+	</div>
+	<!-- /#sidebar-wrapper -->
+
+	<!-- Page Content -->
+	<!-- <div id="page-content-wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Simple Sidebar</h1>
+					<p>This template has a responsive menu toggling system. The
+						menu will appear collapsed on smaller screens, and will appear
+						non-collapsed on larger screens. When toggled using the button
+						below, the menu will appear/disappear. On small screens, the page
+						content will be pushed off canvas.</p>
+					<p>
+						Make sure to keep all page content within the
+						<code>#page-content-wrapper</code>
+						.
+					</p>
+					<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle
+						Menu</a>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- /#page-content-wrapper -->
+
+	<!-- </div> -->
+
+
+
+
+	<div th:fragment="footer" id="footer">
+		<div class="container">
+			<p class="muted credit">PKI Manager</p>
+		</div>
+		<script th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/index.js}"></script>
+		<script th:src="@{/js/bootstrap-confirmation.min.js}"></script>
+	</div>
+
+
+
+
+</body>
+</html>

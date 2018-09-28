@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+body {
+	background-color: #ffffff;
+	margin-top: 0px;
+}
+
+.mainTable {
+	width: 100%;
+	height: 473;
+	border-collapse: collapse;
+}
+
+.td1 {
+	height: 1;
+}
+
+.tdColorTop {
+	vertical-align:top;
+	background-color: #206181; 
+}
+
+.imgSpacer{
+	width: 1;
+	height: 1;
+	
+}
+
+.tableFrame{
+	border-collapse: collapse; 
+	border-width: 0;
+	border-color: #111111;
+	width: 100%; 
+}
+.tableDados{
+	border-color:#111111;
+	width:100%;
+}
+.tdHeader{
+	width:100%;
+	background-color: #1B536D;
+	text-align: center;
+}
+.tdHeaderNoWidth{
+	background-color: #1B536D;
+	text-align: center;
+}
+.tdDadosMenor{
+	width: 30%;	
+	text-align: right;
+}
+.tdDadosMaior{
+	width: 70%;	
+}
+.tdDadosMenorRet{
+	width: 15%;	
+	text-align: right;
+}
+.tdDadosMaiorRet{
+	width: 85%;	
+}
+
+tr.d0 td {
+	background-color: #eee9e9; 
+}
+tr.d1 td {
+	background-color: #FFFFFF; 
+}
+
+
