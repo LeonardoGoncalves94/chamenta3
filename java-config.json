@@ -1,0 +1,10 @@
+{
+  "modelPackage" : "com.multicert.project.v2x.client.model",
+  "apiPackage"   : "com.multicert.project.v2x.client.api",
+  "invokerPackage" : "com.multicert.project.v2x.client.invoker",
+  "groupId" : "com.multicert.project.v2x",
+  "artifactId"  : "v2xclient",
+  "fullJavaUtil" : true,
+  "dateLibrary" : "java8",
+  "library" :  "resttemplate"
+}   
