@@ -73,7 +73,7 @@ public class RAServiceImpl implements RAService {
 		
 		String destination = request.getRequestDestination();
 		if(!caService.isReady(destination))
-		{
+		{	
 			throw new IncorrectRecipientException ("Error validating EcRequest: Recipient CA does not exist");
 		}
 		
@@ -82,6 +82,7 @@ public class RAServiceImpl implements RAService {
 		
 		if(type) //if it is and enrollment request
 		{
+			System.out.println(profileName +";"+ destination);
 			return caService.validateEcRequest(encodedRequest, profileName, canonicalKey, destination); // send profile info here
 			
 		}

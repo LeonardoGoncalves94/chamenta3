@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.crypto.SecretKey;
 
+import org.bouncycastle.util.encoders.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -224,6 +225,9 @@ public class V2XServiceImpl implements V2XService{
 	public EtsiTs103097Data decryptRequest(SecuredDataGenerator securedDataGenerator, byte[] encodedEncryptedRequest, Certificate destinationCertificate, Key decriptionPair) throws Exception
 	{
 		EtsiTs103097Certificate destCert = new EtsiTs103097Certificate(destinationCertificate.getEncoded());
+		
+		System.out.println("SERVER_SIDE EA = "+Hex.toHexString(genCertificateHashedId(destCert)));
+		
 		PrivateKey decryptionKey = JavaKeyStore.getKeyPair(decriptionPair.getAlias()).getPrivate();
 		
 		byte[] decyptedBytes;

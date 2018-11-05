@@ -27,7 +27,7 @@ import java.util.Date;
 
 /**
  * This class generates an Enrollment Certificate request as specified in ETSI 102-941, Section 6.2.3.2.1 standard
- * The request shall be sent by an ITS station to a enrollment authority to request an enrollment certificate
+ * The request is to be sent by an ITS station to a enrollment authority to request an enrollment certificate
  * It should be encrypted using the public key provided by the enrollment authority (in the certificate)
  * For each request, the ITS station should generate a new verification keypair
  * The requested subject attributes (innerEcRequest) of the EcRequest will appear on the enrollment certificate, the validity period and

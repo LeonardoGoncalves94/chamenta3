@@ -734,7 +734,7 @@ public class SecuredDataGenerator
             }
 
             HashedId8 reference = getRecipientId(recipientInfo); // get the recipient Id present in the encrypted data
-
+            System.out.println("Expecting: " + receiverId + " Inside Request: "+ reference);
             if(receiverId.toString().equals(reference.toString())) //if they match, the encrypted data was sent to this specific receiverCert
             {
                 try
@@ -748,6 +748,7 @@ public class SecuredDataGenerator
                     return cryptoHelper.symmetricDecrypt(symmetricCiphertext.getType(), getEncryptedData(symmetricCiphertext), decryptionKey, getNounce(symmetricCiphertext));
                 }catch(Exception e)
                 {
+                    e.printStackTrace();
                     throw new DecryptionException("Error decrypting data");
                 }
 

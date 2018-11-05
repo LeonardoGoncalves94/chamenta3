@@ -126,15 +126,15 @@ public class CaServiceImpl implements CaService {
 	
 	
 	@Override
-	public EtsiTs103097Data validateEcRequest(byte[] encryptedEcRequest, String profile, PublicKey canonicalKey, String caName)throws Exception{
+	public synchronized EtsiTs103097Data validateEcRequest(byte[] encryptedEcRequest, String profile, PublicKey canonicalKey, String caName)throws Exception{
 			
 		CA destCa = getCaByName(caName);
 		Certificate destinationCertificate = destCa.getCertificate();
 		Key encKeyPair = destCa.getEncryptionKey();
 		Key sigKeyPair = destCa.getSignatureKey();
 		
-		SecuredDataGenerator dataGenerator = v2xService.initDataGenerator();
-		
+		SecuredDataGenerator dataGenerator = v2xService.initDataGenerator(); //new data generator object
+
 		EtsiTs103097Data signedRequest = v2xService.decryptRequest(dataGenerator, encryptedEcRequest, destinationCertificate, encKeyPair);	
 		
 		EnrollmentResonseCode responseCode = v2xService.verifyEcRequest(dataGenerator, signedRequest, canonicalKey);
@@ -143,7 +143,7 @@ public class CaServiceImpl implements CaService {
 	}
 	
 	@Override
-	public EtsiTs103097Data validateAtRequest(byte[] encodedAtRequest, String profile, String caName,
+	public synchronized EtsiTs103097Data validateAtRequest(byte[] encodedAtRequest, String profile, String caName,
 			boolean requestVerification) throws Exception {
 		
 		CA destCa = getCaByName(caName);

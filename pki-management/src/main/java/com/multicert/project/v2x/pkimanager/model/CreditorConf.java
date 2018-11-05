@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * @author ccardoso
- *
- */
 @Entity
 @Table(name = "creditor_conf")
 public class CreditorConf {

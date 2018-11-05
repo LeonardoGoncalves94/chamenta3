@@ -10,10 +10,15 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.crypto.SecretKey;
 
@@ -38,8 +43,8 @@ import com.multicert.v2x.datastructures.certificaterequests.Enrollment.Enrollmen
 import com.multicert.v2x.datastructures.certificaterequests.Enrollment.InnerEcResponse;
 import com.multicert.v2x.datastructures.message.secureddata.EtsiTs103097Data;
 import com.multicert.v2x.datastructures.message.secureddata.SignerIdentifier;
-
-public class Vehicle {
+//devo meter threads aqui dentro para o v2x?
+public class Vehicle implements Runnable {
 	
 	private String itsId; //name of this vehicle
 	private KeyPair canonicalPair = null; //keypair provided at manufacture to id this vehicle
@@ -53,11 +58,17 @@ public class Vehicle {
 	
 	private KeyPair enrollVerificationKey = null; //new verification keys to be certified by the enrollment credential
 	private SecretKey secretKeyEA = null;//a secret key to encrypt the EcRequest and share with the EA
+	
 	private EtsiTs103097Certificate enrollmentCredential = null;
 	
-	Map<byte[], AuthorizationData> AtPool = new HashMap<byte[], AuthorizationData>(); //sub batch of ATs for a week of usage, where key = hashedId8 of the AT; value = AT + sig keypair 
+	private List<AuthorizationData> aTPool = new ArrayList<AuthorizationData>(); //a pool of authentication tickets to use, where AuthorizationData = AT + sig keypair 
 	
-	private static final int numberOfATs = 4;
+	private static final int numberOfATs = 4; //number of ATs on this vehicle's pool
+	private int indexOfAT = numberOfATs -1; //the index of the current AT to be used to sign a message
+	
+	private static final int maxUsageOfATs = 1; //maximum number of message signed by the same AT
+	private int counterOfATs = maxUsageOfATs; // current number of messages that will be signed by the same AT
+
 	
 	private List <Vehicle> nextVehicles = new ArrayList<Vehicle>();// A list of the nearby vehicles to send v2x messages to
 	Map<byte[], EtsiTs103097Certificate> nextAts = new HashMap<byte[], EtsiTs103097Certificate>(); //Store of the nearby vehicle's valid authorization tickets
@@ -65,17 +76,51 @@ public class Vehicle {
 	
 	private AlgorithmType vehicleAlg = null; //Public key algorithm that will be used for this vehicle's cryptographic operations (signature and encryption)
 	
-	private V2X v2x = null;
-	private RaControllerApi raApi = null;
+	private V2X v2x = null; // instance of the interface with the v2x lib
+	private RaControllerApi raApi = null; //instance to the RA API
 	
-	public Vehicle(String itsId, KeyPair canonicalPair, AlgorithmType vehicleAlg, V2X v2x)
+    String newLine = System.getProperty("line.separator");//This will retrieve line separator dependent on OS.
+    
+    Timer CAMtimer = new Timer();
+    TimerTask task = new TimerTask(){
+    
+    	 
+    	public void run() 
+    	{
+    		try {
+				sendCAM(getAT(), getIncludeAT());
+			} catch (SignatureException | NoSuchAlgorithmException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    };
+    		
+	public Vehicle(String itsId, KeyPair canonicalPair, AlgorithmType vehicleAlg) throws Exception
 	{
 		this.itsId = itsId;
 		this.canonicalPair = canonicalPair;
 		this.vehicleAlg = vehicleAlg;
-		this.v2x = v2x;
-		raApi = new RaControllerApi();
+		this.v2x = new V2XImpl();
+		this.raApi = new RaControllerApi();
 	}
+	
+	 public void run() 
+	 {
+		 try 
+		 {
+			 configureVehicle();
+			 enrollVehicle();
+			 authorizeVehicle();
+			 CAMtimer.scheduleAtFixedRate(task, 0, 500);
+		 }
+		 catch (Exception e)
+		 {
+			
+		 }
+		 
+	 }
+	
 	/**
 	 * This method creates a request for vehicle configuration to the RAService
 	 * @throws IllegalArgumentException
@@ -85,6 +130,7 @@ public class Vehicle {
 	 */
 	public void configureVehicle() throws IllegalArgumentException, InvalidKeySpecException, IOException, NoSuchAlgorithmException
 	{
+	
 		PublicVerificationKey PubVerKey = v2x.buildVerificationKey(canonicalPair.getPublic(),vehicleAlg);
 		
 		VehiclePojo vehicle = new VehiclePojo();
@@ -95,6 +141,7 @@ public class Vehicle {
 		
 		if(configured)
 		{
+			
 			trustAnchor = new EtsiTs103097Certificate(decodeHex(response.getTrustAnchor()));
 			eaCert = new EtsiTs103097Certificate(decodeHex(response.getEaCert()));
 			aaCert = new EtsiTs103097Certificate(decodeHex(response.getAaCert()));
@@ -102,174 +149,217 @@ public class Vehicle {
 			SequenceOfCertificate certSequence = new SequenceOfCertificate(decodeHex(response.getTrustedAA())); // get the sequence of trusted AA certificates
 			EtsiTs103097Certificate[] certArray = certSequence.getCerts();
 			trustStore = v2x.genTrustStore(certArray); // store the AA certificates in a trustStore
-			
-			System.out.println("---------- Vehicle configuration result ----------");
 			System.out.println();
-			System.out.println("Vehicle with id ["+ itsId +"] configured with success!" );
+			System.out.println("["+ itsId +"] Vehicle configured with success!"
+			+ newLine + "EA name: " +eaCert.getName()+ " with certificate: " +encodeHex(v2x.genCertificateHashedId(eaCert))+"" 
+			+ newLine + "AA name: " +aaCert.getName() + " with certificate: " +encodeHex(v2x.genCertificateHashedId(aaCert)));
 			System.out.println();
-			System.out.println("Trust Anchor "+ trustAnchor.toString());
-			System.out.println();
-			System.out.println("Enrollment Authority "+ eaCert.toString());
-			System.out.println();
-			System.out.println("Authorization Authoriy "+ aaCert.toString());
-			System.out.println();
-			System.out.println();
-		
-		}	
+		}
+		else
+		{
+			System.out.println("["+ itsId +"] Could not configure vehicle" );
+		}
 		
 	}
 
 	
 	public void enrollVehicle() throws GeneralSecurityException, Exception
 	{
-		if(configured) 
+		if(!configured) 
 		{
-			enrollVerificationKey = v2x.genKeyPair(vehicleAlg); //generate a new verification key pair
-			secretKeyEA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); //generate a new symmetric key to share with the EA
-			EtsiTs103097Data etsiRequest = v2x.genEcRequest(itsId, canonicalPair, enrollVerificationKey,vehicleAlg, eaCert, secretKeyEA); 
-			Request request = new Request();
-			request.setRequestDestination(eaCert.getName()); 
-			request.setRequestOrigin(itsId);
-			request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
-			//request.setRequestEncoded(encodeHex(new byte[] {123})); BADLY FORMED EC REQUEST
-	
-			Response response = raApi.requestEnrollmentCertUsingPOST(request); //send the request and receive the response
+			System.out.println("vehicle enrollment request denied, only enrolled vehicles can start the enrollment process");
+			return;
+		}
+		System.out.println("["+ itsId +"] enrolling to: "+ eaCert.getName());
+		enrollVerificationKey = v2x.genKeyPair(vehicleAlg); //generate a new verification key pair
+		secretKeyEA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); //generate a new symmetric key to share with the EA
+		EtsiTs103097Data etsiRequest = v2x.genEcRequest(itsId, canonicalPair, enrollVerificationKey,vehicleAlg, eaCert, secretKeyEA); 
+		Request request = new Request();
+		request.setRequestDestination(eaCert.getName()); 
 			
+		request.setRequestOrigin(itsId);
+		request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
+
+		Response response = raApi.requestEnrollmentCertUsingPOST(request); //send the request and receive the response
+
 			
-			if(!response.getIsSuccess()) //If the EA could not build an Enrollment response for this vehicle
-			{
-				System.out.println("Could not enroll vehicle, " + response.getResponseMessage());
-				return;
-			}
+		if(!response.getIsSuccess()) //If the EA could not build an Enrollment response for this vehicle
+		{
+			System.out.println("Could not enroll vehicle, EA " + response.getResponseMessage());
+			return;
+		}
 		
-			InnerEcResponse innerResponse = v2x.processEcResponse(decodeHex(response.getRequestEncoded()), eaCert, secretKeyEA);
+		InnerEcResponse innerResponse = v2x.processEcResponse(decodeHex(response.getRequestEncoded()), eaCert, secretKeyEA);
 		
-			if(innerResponse == null)
-			{
-				System.out.println("Enrollment response discarded"); //response could have been tampered, discard the response
-				return;
-			}
+		if(innerResponse == null)
+		{
+			System.out.println("Enrollment response discarded"); //response could have been tampered, discard the response
+			return;
+		}
 		
-			//If the EA denied the enrollment of this vehicle
-			if(innerResponse.getResponseCode() != EnrollmentResonseCode.OK)
+		//If the EA denied the enrollment of this vehicle
+		if(innerResponse.getResponseCode() != EnrollmentResonseCode.OK)
 			{
 				System.out.println("Enrollment request denied, response code: " + innerResponse.getResponseCode());
 				return;
 			}
 			enrollmentCredential = innerResponse.getCertificate();
 			this.enrolled = true;
-			System.out.println("---------- Vehicle enrollment result ["+ itsId +"]----------");
 			System.out.println();
-			System.out.println("Enrolled with success!" );
-			System.out.println();
-			System.out.println(enrollmentCredential);
+			System.out.println("["+ itsId +"] Vehicle enrolled with success!"+ newLine+ ""+enrollmentCredential);
 			System.out.println();
 			System.out.println();
-		}
+		
 	}
 	
 	public void authorizeVehicle() throws Exception
 	{
 		if(!enrolled)
 		{
-			System.out.println("Authorization request denied, only enrolled vehicles can start an authorizationr equest");
+			System.out.println("Authorization request denied, only enrolled vehicles can start an authorizationr request");
 			return;
 		}
 		
 		Boolean verification = true; //flag this AT request to be verified by the EA
 	
-			for(int x = 0; x < numberOfATs; x++)
-			{
-			
-				KeyPair verificationKeys = v2x.genKeyPair(vehicleAlg); //generate a new verification key pair
-				SecretKey secretKeyAA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); //generate a new symmetric key to share with the AA
-				SecretKey secretKeyEA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); //generate a new symmetric key to share with the EA
+		for(int x = 0; x < numberOfATs; x++)
+		{
 				
-				EtsiTs103097Data etsiRequest = v2x.genAtRequest(enrollmentCredential, enrollVerificationKey.getPrivate(), vehicleAlg, 
-							verificationKeys, aaCert, eaCert, secretKeyAA, secretKeyEA);
+			KeyPair verificationKeys = v2x.genKeyPair(vehicleAlg); //generate a new verification key pair
+			SecretKey secretKeyAA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); //generate a new symmetric key to share with the AA
+			SecretKey secretKeyEA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); //generate a new symmetric key to share with the EA
 				
-				Request request = new Request();
-				request.setRequestDestination(aaCert.getName()); 
-				request.setRequestOrigin(itsId);
-				request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
+			EtsiTs103097Data etsiRequest = v2x.genAtRequest(enrollmentCredential, enrollVerificationKey.getPrivate(), vehicleAlg, 
+					verificationKeys, aaCert, eaCert, secretKeyAA, secretKeyEA);
+				
+			Request request = new Request();
+			request.setRequestDestination(aaCert.getName()); 
+			request.setRequestOrigin(itsId);
+			request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
 		
-				Response response = raApi.requestAuthorizationTicketUsingPOST(request, verification);		
+			Response response = raApi.requestAuthorizationTicketUsingPOST(request, verification);		
 					
-				if(!response.getIsSuccess()) //If the AA could not build an Authorization response for this request
-				{
-					System.out.println("Authorization request failed, " + response.getResponseMessage());
-					continue;
-				}
+			if(!response.getIsSuccess()) //If the AA could not build an Authorization response for this request
+			{
+				System.out.println("Authorization request failed, " + response.getResponseMessage());
+				continue;
+			}
 				
-				InnerAtResponse innerResponse = v2x.processAtResponse(decodeHex(response.getRequestEncoded()), aaCert, secretKeyAA);
+			InnerAtResponse innerResponse = v2x.processAtResponse(decodeHex(response.getRequestEncoded()), aaCert, secretKeyAA);
 					
-				if(innerResponse == null)
-				{
-					System.out.println("authorization response discarded"); //response could have been tampered, discard the response
-					continue;
-				}
+			if(innerResponse == null)
+			{
+				System.out.println("authorization response discarded"); //response could have been tampered, discard the response
+				continue;
+			}
 					
-				AuthorizationResponseCode responseCode = innerResponse.getResponseCode();
-				if(responseCode != AuthorizationResponseCode.OK) //If the AA denied the enrollment of this vehicle
+			AuthorizationResponseCode responseCode = innerResponse.getResponseCode();
+			if(responseCode != AuthorizationResponseCode.OK) //If the AA denied the enrollment of this vehicle
+			{
+				if(responseCode == AuthorizationResponseCode.ENROLLMENT_VERIFICATION_FAILED) //If the provided enrollment credential is not valid
 				{
-					if(responseCode == AuthorizationResponseCode.ENROLLMENT_VERIFICATION_FAILED) //If the provided enrollment credential is not valid
-					{
-						System.out.println("Authorization request denied, response code: " + innerResponse.getResponseCode());
-						break;
-					}
-						
 					System.out.println("Authorization request denied, response code: " + innerResponse.getResponseCode());
-					continue;
+					break;
 				}
+						
+				System.out.println("Authorization request denied, response code: " + innerResponse.getResponseCode());
+				continue;
+			}
 					
 				EtsiTs103097Certificate authTicket = innerResponse.getCertificate();
 				byte[] authTicketHash = v2x.genCertificateHashedId(authTicket);
 				
 				AuthorizationData authData = new AuthorizationData(authTicket,verificationKeys);
 					
-				AtPool.put(authTicketHash, authData);
-				
-							
-				System.out.println("---------- Vehicle Authorization result ["+ itsId +"]----------");
+				aTPool.add(authData);
+						
 				System.out.println();
-				System.out.println("Vehicle authorized with success!" );
-				System.out.println();
-				System.out.println("Authorization Ticket ["+ encodeHex(authTicketHash)+"]");
+				System.out.println("["+ itsId +"] Vehicle authorized with success! "+ newLine +"Authorization Ticket: "+ encodeHex(authTicketHash) );
 				System.out.println();
 				System.out.println();
 				verification = false;
 			}	
-			
-					
+							
 	}
 	
-	public void sendCAM() throws SignatureException, NoSuchAlgorithmException, IOException
+	/**
+	 * Help method that shuffles the authorization tickets order inside this vehicle's local pool 
+	 * @return the authorization ticket data
+	 */
+	private void shuffleATs()
+	{
+		Collections.shuffle(aTPool);
+	}
+	
+	
+	/**
+	 * This method returns the AT that is going to be used next
+	 * @return QUERO USAR O MESMO INDEX 6 VEZES DEPOIS FAZER INDEX -- REPETIR 6 VEZES
+	 * @throws IOException 
+	 * @throws NoSuchAlgorithmException 
+	 */
+	public AuthorizationData getAT()
+	{
+		if(counterOfATs <= 0)
+		{
+			counterOfATs = maxUsageOfATs;
+			indexOfAT --;
+			if(indexOfAT < 0)
+			{
+				indexOfAT = numberOfATs -1;
+				shuffleATs();
+				
+			}
+		}
+		counterOfATs --;
+		return aTPool.get(indexOfAT);
+	}
+	
+	/**~
+	 * help method that returns true each second
+	 * @return
+	 */
+	public boolean getIncludeAT()
+	{
+		if(counterOfATs % 2 == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+
+	/**
+	 * This method broadcasts a CAM signed with the authorizationData to all nearby vehicles
+	 * @param authorizationData, an authorization ticket and the corresponding signature key pair
+	 * @param includeAt, if this CAM will include the full authorization ticket or just the certificate hash
+	 */
+	private void sendCAM(AuthorizationData authorizationData, boolean includeAT) throws SignatureException, NoSuchAlgorithmException, IOException
 	{
 		System.out.println();
 		System.out.println();
 		System.out.println("---------- V2X Messages ["+ itsId +"] ----------");
 		System.out.println();
-	
-			for(Entry<byte[], AuthorizationData> entry : AtPool.entrySet())//for each authorization ticket in that week
-			{
+				
 				String from = this.itsId; // just to print on receiver vehicle
-				KeyPair signatureKeys = entry.getValue().getSignatureKeys();
-				EtsiTs103097Certificate authTicket = entry.getValue().getAuthorizationTicket();
+					
+				KeyPair signatureKeys = authorizationData.getSignatureKeys();
+				EtsiTs103097Certificate authTicket = authorizationData.getAuthorizationTicket();
+				byte[] authorizationTicketHash =  v2x.genCertificateHashedId(authTicket);
 				
 				String payload = "Dymmy payload";
 				HashedId3[] requestCerts = new HashedId3[] {};
 				
-				EtsiTs103097Data cam = v2x.genCAM(authTicket, signatureKeys, vehicleAlg, payload, requestCerts , null, true);
+				EtsiTs103097Data cam = v2x.genCAM(authTicket, signatureKeys, vehicleAlg, payload, requestCerts , null, includeAT);
 				
 				for(Vehicle v : nextVehicles)
 				{
-					System.out.println("Sending CAM signed with ["+ encodeHex(entry.getKey())+"] to Vehicle ["+ v.getIstId()+"]");
+					System.out.println("["+ itsId +"] Sending CAM signed with: "+ encodeHex(authorizationTicketHash)+" to Vehicle ["+ v.getIstId()+"]");
 					System.out.println();
 					
 					v.receiveCAM(cam, from);
 				}
 				
-			}
 	}
 	
 	public void receiveCAM(EtsiTs103097Data cam, String from) 
@@ -284,7 +374,7 @@ public class Vehicle {
 					SequenceOfCertificate cert = (SequenceOfCertificate)sigId.getValue();
 					EtsiTs103097Certificate[] authTicket = cert.getCerts();
 					EtsiTs103097Certificate ticket = authTicket[0];
-					if(v2x.verifyCertificate(ticket, aaCert)) 
+					if(v2x.verifyCertificate(ticket, aaCert)) //TODO CHANGE TO  ALL TRUSTED AA
 					{
 						if(v2x.processCAM(cam, ticket))
 						{
