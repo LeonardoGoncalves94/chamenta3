@@ -58,7 +58,7 @@ public class EnrollmentRequestGenerator extends SecuredDataGenerator
      *
      * Method that generates an enrollment certificate request of a given ITS-S according to Etsi102 0941 standard
      * @param itsID The identifier of the requesting ITS-S, more details in InnerEcRequest. Required //TODO RE-ENROLLMENT !!!!!!!!!!
-     * @param canonicalKeys the canonical keypair generated at vehicle manufactured, from which the public key is shared with the RA. Required
+     * @param canonicalKeys the canonical keypair generated at vehicle manufacture, from which the public key is shared with the RA. Required
      * @param canonicalAlgorithm the algorithm of the canonical Keypair. Required
      * @param verificationKeys The newly generated verification key pair to be certified in the enrollment certificate. Required.
      * @param verificationAlgorithm The algorithm used for signing and verification by the ITS-S. Required.

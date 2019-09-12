@@ -96,7 +96,7 @@ public class CryptoHelper {
         }
         catch (InvalidAlgorithmParameterException e)
         {
-            throw new NoSuchAlgorithmException("Error initializing CryptoHeler: Invalid algorithm parameter" + e.getMessage(),e);
+            throw new NoSuchAlgorithmException("Error initializing CryptoHelper: Invalid algorithm parameter" + e.getMessage(),e);
         }
 
     }

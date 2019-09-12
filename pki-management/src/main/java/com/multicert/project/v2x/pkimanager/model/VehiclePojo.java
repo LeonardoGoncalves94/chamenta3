@@ -16,6 +16,16 @@ public class VehiclePojo {
 	
 	private String vehicleId;
 	
+	public int getaTCount() {
+		return aTCount;
+	}
+
+	public void setaTCount(int aTCount) {
+		this.aTCount = aTCount;
+	}
+
+	private int aTCount;
+	
 	private String canonicalPublicKey;
 	
 	private int vehicleType;

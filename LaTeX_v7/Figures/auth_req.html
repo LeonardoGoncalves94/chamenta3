@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)http://localhost:8081/swagger-ui.html#!/ra-controller/requestAuthorizationTicketUsingPOST -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Swagger UI</title>
+  <link rel="icon" type="image/png" href="http://localhost:8081/webjars/springfox-swagger-ui/images/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="http://localhost:8081/webjars/springfox-swagger-ui/images/favicon-16x16.png" sizes="16x16">
+  <link href="./auth_req_files/typography.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./auth_req_files/reset.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./auth_req_files/screen.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./auth_req_files/reset.css" media="print" rel="stylesheet" type="text/css">
+  <link href="./auth_req_files/print.css" media="print" rel="stylesheet" type="text/css">
+  <script src="./auth_req_files/jquery-1.8.0.min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/jquery.slideto.min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/jquery.wiggle.min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/jquery.ba-bbq.min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/handlebars-2.0.0.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/underscore-min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/backbone-min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/swagger-ui.min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/highlight.7.3.pack.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/jsoneditor.min.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/marked.js.download" type="text/javascript"></script>
+  <script src="./auth_req_files/swagger-oauth.js.download" type="text/javascript"></script>
+
+  <script src="./auth_req_files/springfox.js.download" type="text/javascript"></script>
+</head>
+
+<body class="swagger-section">
+<div id="header">
+  <div class="swagger-ui-wrap">
+    <a id="logo" href="http://swagger.io/">swagger</a>
+
+    <form id="api_selector">
+      <div class="input">
+        <select id="select_baseUrl" name="select_baseUrl"><option value="http://localhost:8081/v2/api-docs">default (/v2/api-docs)</option></select><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text" style="display: none;">
+      </div>
+      <div class="input"><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"></div>
+      <div class="input"><a id="explore" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Explore</a></div>
+    </form>
+  </div>
+</div>
+
+<div id="message-bar" class="swagger-ui-wrap message-success" data-sw-translate=""></div>
+<div id="swagger-ui-container" class="swagger-ui-wrap"><div class="info" id="api_info">
+  <div class="info_title">RA Service</div>
+  <div class="info_description markdown"><p>The RAservice is responsible for handling the request for enrollment and authorization certificates </p>
+</div>
+  
+  
+  
+  
+  <div class="info_license"><a href="http://localhost:8081/swagger-ui.html"></a></div>
+</div>
+<div class="container" id="resources_container">
+  <ul id="resources"><li id="resource_ra-controller" class="resource active"><div class="heading">
+  <h2>
+    <a href="http://localhost:8081/swagger-ui.html#!/ra-controller" class="toggleEndpointList" data-id="ra-controller">ra-controller</a>  : RA Controller
+  </h2>
+  <ul class="options">
+    <li>
+      <a href="http://localhost:8081/swagger-ui.html#!/ra-controller" id="endpointListTogger_ra-controller" class="toggleEndpointList" data-id="ra-controller" data-sw-translate="">Show/Hide</a>
+    </li>
+    <li>
+      <a href="http://localhost:8081/swagger-ui.html#" class="collapseResource" data-id="ra-controller" data-sw-translate="">
+        List Operations
+      </a>
+    </li>
+    <li>
+      <a href="http://localhost:8081/swagger-ui.html#" class="expandResource" data-id="ra-controller" data-sw-translate="">
+        Expand Operations
+      </a>
+    </li>
+  </ul>
+</div>
+<ul class="endpoints" id="ra-controller_endpoint_list" style="">
+
+<li class="endpoint">
+  <ul class="operations">
+    <li class="post operation" id="ra-controller_requestAuthorizationTicketUsingPOST">
+      <div class="heading">
+        <h3>
+          <span class="http_method">
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/requestAuthorizationTicketUsingPOST" class="toggleOperation">post</a>
+          </span>
+          <span class="path">
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/requestAuthorizationTicketUsingPOST" class="toggleOperation ">/api/authorization</a>
+          </span>
+        </h3>
+        <ul class="options">
+          <li>
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/requestAuthorizationTicketUsingPOST" class="toggleOperation">Request an authorization ticket.</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content" id="ra-controller_requestAuthorizationTicketUsingPOST_content" style="">
+        <h4><span data-sw-translate="">Implementation Notes</span></h4>
+        <div class="markdown"><p> The request should contain an encoded authorizationRequest as defined in EtsiTs 102 041.</p>
+</div>
+
+        
+          <h4><span data-sw-translate="">Response Class</span> (<span data-sw-translate="">Status</span> 201)</h4>
+            <div class="markdown"><p>Created</p>
+</div>
+          <p><span class="model-signature"><div><div>
+<ul class="signature-nav">
+  <li><a class="description-link" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model</a></li>
+  <li><a class="snippet-link selected" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model Schema</a></li>
+</ul>
+<div>
+
+<div class="signature-container">
+  <div class="description" style="display: none;">
+    <span class="strong">Response {</span><div><span class="propName ">isSuccess</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestEncoded</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseEncoded</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseMessage</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>)</div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: block;">
+    <pre><code class="json">{
+  "<span class="attribute">isSuccess</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">requestDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestEncoded</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">requestOrigin</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseEncoded</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">responseMessage</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseOrigin</span>": <span class="value"><span class="string">"string"</span>
+}</span></code></pre>
+    <small class="notice" data-sw-translate=""></small>
+  </div>
+</div>
+
+</div></div></div></span></p>
+          <br>
+          <div class="response-content-type"><div><label data-sw-translate="" for="rct0.5586357714730992">Response Content Type</label>
+<select name="responseContentType" id="rct0.5586357714730992">
+  <option value="application/json">application/json</option>
+</select>
+</div></div>
+
+
+
+        <form accept-charset="UTF-8" class="sandbox">
+          <div style="margin:0;padding:0;display:inline"></div>
+          <h4 data-sw-translate="">Parameters</h4>
+          <table class="fullwidth">
+          <thead>
+            <tr>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter</th>
+            <th style="width: 310px; max-width: 310px" data-sw-translate="">Value</th>
+            <th style="width: 200px; max-width: 200px" data-sw-translate="">Description</th>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter Type</th>
+            <th style="width: 220px; max-width: 230px" data-sw-translate="">Data Type</th>
+            </tr>
+          </thead>
+          <tbody class="operation-params">
+
+          <tr><td class="code required"><label for="matRequest0.38749232595136696">atRequest</label></td>
+<td>
+				<textarea class="body-textarea required" placeholder="(required)" name="atRequest" id="matRequest0.38749232595136696"></textarea>
+				<div class="editor_holder"></div>
+				<br>
+				<div class="parameter-content-type"><div><label for="pct0.8665211433041198" data-sw-translate="">Parameter content type:</label>
+<select name="parameterContentType" id="pct0.8665211433041198">
+  <option value="application/json">application/json</option>
+</select>
+</div></div>
+</td>
+<td>
+	<strong><span class="markdown"><p>atRequest</p>
+</span></strong>
+</td>
+<td>body</td>
+<td><span class="model-signature"><div><div>
+<ul class="signature-nav">
+  <li><a class="description-link" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model</a></li>
+  <li><a class="snippet-link selected" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model Schema</a></li>
+</ul>
+<div>
+
+<div class="signature-container">
+  <div class="description" style="display: none;">
+    <span class="strong">Request {</span><div><span class="propName ">requestDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestEncoded</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>)</div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: block;">
+    <pre><code class="json">{
+  "<span class="attribute">requestDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestEncoded</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">requestOrigin</span>": <span class="value"><span class="string">"string"</span>
+}</span></code></pre>
+    <small class="notice" data-sw-translate="">Click to set as parameter value</small>
+  </div>
+</div>
+
+</div></div></div></span></td>
+</tr><tr><td class="code required"><label for="mrequestVerification0.9537282338154807">requestVerification</label></td>
+<td>
+  <select class="parameter  required " name="requestVerification" id="mrequestVerification0.9537282338154807">
+
+
+
+      <option value="true"> true  </option>
+
+
+      <option value="false"> false  </option>
+
+
+  </select>
+</td>
+<td class="markdown"><p><strong>requestVerification</strong></p>
+</td>
+<td>query</td>
+<td><span class="model-signature">boolean</span></td>
+</tr></tbody>
+          </table>
+          <div style="margin:0;padding:0;display:inline"></div>
+          <h4 data-sw-translate="">Response Messages</h4>
+          <table class="fullwidth">
+            <thead>
+            <tr>
+              <th data-sw-translate="">HTTP Status Code</th>
+              <th data-sw-translate="">Reason</th>
+              <th data-sw-translate="">Response Model</th>
+              <th data-sw-translate="">Headers</th>
+            </tr>
+            </thead>
+            <tbody class="operation-status">
+            <tr><td width="15%" class="code">401</td>
+<td class="markdown"><p>Unauthorized</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr><tr><td width="15%" class="code">403</td>
+<td class="markdown"><p>Forbidden</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr><tr><td width="15%" class="code">404</td>
+<td class="markdown"><p>Not Found</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr></tbody>
+          </table>
+          <div class="sandbox_header">
+            <input class="submit" type="submit" value="Try it out!" data-sw-translate="">
+            <a href="http://localhost:8081/swagger-ui.html#" class="response_hider" style="display:none" data-sw-translate="">Hide Response</a>
+            <span class="response_throbber" style="display:none"></span>
+          </div>
+        </form>
+        <div class="response" style="display:none">
+          <h4 class="curl">Curl</h4>
+          <div class="block curl"></div>
+          <h4 data-sw-translate="">Request URL</h4>
+          <div class="block request_url"></div>
+          <h4 data-sw-translate="">Request Headers</h4>
+          <div class="block request_headers"></div>
+          <h4 data-sw-translate="">Response Body</h4>
+          <div class="block response_body"></div>
+          <h4 data-sw-translate="">Response Code</h4>
+          <div class="block response_code"></div>
+          <h4 data-sw-translate="">Response Headers</h4>
+          <div class="block response_headers"></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</li><li class="endpoint">
+  <ul class="operations">
+    <li class="post operation" id="ra-controller_configureVehicleUsingPOST">
+      <div class="heading">
+        <h3>
+          <span class="http_method">
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/configureVehicleUsingPOST" class="toggleOperation">post</a>
+          </span>
+          <span class="path">
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/configureVehicleUsingPOST" class="toggleOperation ">/api/conf</a>
+          </span>
+        </h3>
+        <ul class="options">
+          <li>
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/configureVehicleUsingPOST" class="toggleOperation">Configure a vehicle within the RASerice.</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content" id="ra-controller_configureVehicleUsingPOST_content" style="display:none">
+        <h4><span data-sw-translate="">Implementation Notes</span></h4>
+        <div class="markdown"><p>The request should be composed of the vehicle's unique name (9 char long), its canonical public key (encoded PublicVerificationKey structure as defined in EtsiTs 103 097), and its type. TODO: falar da resposta colocar em bullets....</p>
+</div>
+
+        
+          <h4><span data-sw-translate="">Response Class</span> (<span data-sw-translate="">Status</span> 201)</h4>
+            <div class="markdown"><p>Created</p>
+</div>
+          <p><span class="model-signature"><div><div>
+<ul class="signature-nav">
+  <li><a class="description-link" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model</a></li>
+  <li><a class="snippet-link selected" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model Schema</a></li>
+</ul>
+<div>
+
+<div class="signature-container">
+  <div class="description" style="display: none;">
+    <span class="strong">ConfigResponse {</span><div><span class="propName ">aaCert</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">eaCert</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">isSuccess</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseMessage</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">trustAnchor</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">trustedAA</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>)</div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: block;">
+    <pre><code class="json">{
+  "<span class="attribute">aaCert</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">eaCert</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">isSuccess</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">responseDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">responseMessage</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseOrigin</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">trustAnchor</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">trustedAA</span>": <span class="value"><span class="string">"string"</span>
+}</span></code></pre>
+    <small class="notice" data-sw-translate=""></small>
+  </div>
+</div>
+
+</div></div></div></span></p>
+          <br>
+          <div class="response-content-type"><div><label data-sw-translate="" for="rct0.10466890557462549">Response Content Type</label>
+<select name="responseContentType" id="rct0.10466890557462549">
+  <option value="application/json">application/json</option>
+</select>
+</div></div>
+
+
+
+        <form accept-charset="UTF-8" class="sandbox">
+          <div style="margin:0;padding:0;display:inline"></div>
+          <h4 data-sw-translate="">Parameters</h4>
+          <table class="fullwidth">
+          <thead>
+            <tr>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter</th>
+            <th style="width: 310px; max-width: 310px" data-sw-translate="">Value</th>
+            <th style="width: 200px; max-width: 200px" data-sw-translate="">Description</th>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter Type</th>
+            <th style="width: 220px; max-width: 230px" data-sw-translate="">Data Type</th>
+            </tr>
+          </thead>
+          <tbody class="operation-params">
+
+          <tr><td class="code required"><label for="mvehicle0.14239236501610342">vehicle</label></td>
+<td>
+				<textarea class="body-textarea required" placeholder="(required)" name="vehicle" id="mvehicle0.14239236501610342"></textarea>
+				<div class="editor_holder"></div>
+				<br>
+				<div class="parameter-content-type"><div><label for="pct0.5986892767176337" data-sw-translate="">Parameter content type:</label>
+<select name="parameterContentType" id="pct0.5986892767176337">
+  <option value="application/json">application/json</option>
+</select>
+</div></div>
+</td>
+<td>
+	<strong><span class="markdown"><p>vehicle</p>
+</span></strong>
+</td>
+<td>body</td>
+<td><span class="model-signature"><div><div>
+<ul class="signature-nav">
+  <li><a class="description-link" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model</a></li>
+  <li><a class="snippet-link selected" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model Schema</a></li>
+</ul>
+<div>
+
+<div class="signature-container">
+  <div class="description" style="display: none;">
+    <span class="strong">VehiclePojo {</span><div><span class="propName ">canonicalPublicKey</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">publicKey</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">vehicleId</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">vehicleType</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>)</div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: block;">
+    <pre><code class="json">{
+  "<span class="attribute">canonicalPublicKey</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">publicKey</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">vehicleId</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">vehicleType</span>": <span class="value"><span class="number">0</span>
+}</span></code></pre>
+    <small class="notice" data-sw-translate="">Click to set as parameter value</small>
+  </div>
+</div>
+
+</div></div></div></span></td>
+</tr></tbody>
+          </table>
+          <div style="margin:0;padding:0;display:inline"></div>
+          <h4 data-sw-translate="">Response Messages</h4>
+          <table class="fullwidth">
+            <thead>
+            <tr>
+              <th data-sw-translate="">HTTP Status Code</th>
+              <th data-sw-translate="">Reason</th>
+              <th data-sw-translate="">Response Model</th>
+              <th data-sw-translate="">Headers</th>
+            </tr>
+            </thead>
+            <tbody class="operation-status">
+            <tr><td width="15%" class="code">401</td>
+<td class="markdown"><p>Unauthorized</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr><tr><td width="15%" class="code">403</td>
+<td class="markdown"><p>Forbidden</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr><tr><td width="15%" class="code">404</td>
+<td class="markdown"><p>Not Found</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr></tbody>
+          </table>
+          <div class="sandbox_header">
+            <input class="submit" type="submit" value="Try it out!" data-sw-translate="">
+            <a href="http://localhost:8081/swagger-ui.html#" class="response_hider" style="display:none" data-sw-translate="">Hide Response</a>
+            <span class="response_throbber" style="display:none"></span>
+          </div>
+        </form>
+        <div class="response" style="display:none">
+          <h4 class="curl">Curl</h4>
+          <div class="block curl"></div>
+          <h4 data-sw-translate="">Request URL</h4>
+          <div class="block request_url"></div>
+          <h4 data-sw-translate="">Request Headers</h4>
+          <div class="block request_headers"></div>
+          <h4 data-sw-translate="">Response Body</h4>
+          <div class="block response_body"></div>
+          <h4 data-sw-translate="">Response Code</h4>
+          <div class="block response_code"></div>
+          <h4 data-sw-translate="">Response Headers</h4>
+          <div class="block response_headers"></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</li><li class="endpoint">
+  <ul class="operations">
+    <li class="post operation" id="ra-controller_requestEnrollmentCertUsingPOST">
+      <div class="heading">
+        <h3>
+          <span class="http_method">
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/requestEnrollmentCertUsingPOST" class="toggleOperation">post</a>
+          </span>
+          <span class="path">
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/requestEnrollmentCertUsingPOST" class="toggleOperation ">/api/enrollment</a>
+          </span>
+        </h3>
+        <ul class="options">
+          <li>
+          <a href="http://localhost:8081/swagger-ui.html#!/ra-controller/requestEnrollmentCertUsingPOST" class="toggleOperation">Request an enrollment credential.</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content" id="ra-controller_requestEnrollmentCertUsingPOST_content" style="display:none">
+        <h4><span data-sw-translate="">Implementation Notes</span></h4>
+        <div class="markdown"><p> The request should contain an encoded enrollmentRequest as defined in EtsiTs 102 041.</p>
+</div>
+
+        
+          <h4><span data-sw-translate="">Response Class</span> (<span data-sw-translate="">Status</span> 201)</h4>
+            <div class="markdown"><p>Created</p>
+</div>
+          <p><span class="model-signature"><div><div>
+<ul class="signature-nav">
+  <li><a class="description-link" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model</a></li>
+  <li><a class="snippet-link selected" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model Schema</a></li>
+</ul>
+<div>
+
+<div class="signature-container">
+  <div class="description" style="display: none;">
+    <span class="strong">Response {</span><div><span class="propName ">isSuccess</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestEncoded</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseEncoded</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseMessage</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">responseOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>)</div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: block;">
+    <pre><code class="json">{
+  "<span class="attribute">isSuccess</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">requestDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestEncoded</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">requestOrigin</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseEncoded</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">responseMessage</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">responseOrigin</span>": <span class="value"><span class="string">"string"</span>
+}</span></code></pre>
+    <small class="notice" data-sw-translate=""></small>
+  </div>
+</div>
+
+</div></div></div></span></p>
+          <br>
+          <div class="response-content-type"><div><label data-sw-translate="" for="rct0.2640628808469605">Response Content Type</label>
+<select name="responseContentType" id="rct0.2640628808469605">
+  <option value="application/json">application/json</option>
+</select>
+</div></div>
+
+
+
+        <form accept-charset="UTF-8" class="sandbox">
+          <div style="margin:0;padding:0;display:inline"></div>
+          <h4 data-sw-translate="">Parameters</h4>
+          <table class="fullwidth">
+          <thead>
+            <tr>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter</th>
+            <th style="width: 310px; max-width: 310px" data-sw-translate="">Value</th>
+            <th style="width: 200px; max-width: 200px" data-sw-translate="">Description</th>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter Type</th>
+            <th style="width: 220px; max-width: 230px" data-sw-translate="">Data Type</th>
+            </tr>
+          </thead>
+          <tbody class="operation-params">
+
+          <tr><td class="code required"><label for="mecRequest0.307709405250157">ecRequest</label></td>
+<td>
+				<textarea class="body-textarea required" placeholder="(required)" name="ecRequest" id="mecRequest0.307709405250157"></textarea>
+				<div class="editor_holder"></div>
+				<br>
+				<div class="parameter-content-type"><div><label for="pct0.40468805039961864" data-sw-translate="">Parameter content type:</label>
+<select name="parameterContentType" id="pct0.40468805039961864">
+  <option value="application/json">application/json</option>
+</select>
+</div></div>
+</td>
+<td>
+	<strong><span class="markdown"><p>ecRequest</p>
+</span></strong>
+</td>
+<td>body</td>
+<td><span class="model-signature"><div><div>
+<ul class="signature-nav">
+  <li><a class="description-link" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model</a></li>
+  <li><a class="snippet-link selected" href="http://localhost:8081/swagger-ui.html#" data-sw-translate="">Model Schema</a></li>
+</ul>
+<div>
+
+<div class="signature-container">
+  <div class="description" style="display: none;">
+    <span class="strong">Request {</span><div><span class="propName ">requestDestination</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestEncoded</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestId</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName ">requestOrigin</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>)</div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: block;">
+    <pre><code class="json">{
+  "<span class="attribute">requestDestination</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestEncoded</span>": <span class="value"><span class="string">"string"</span></span>,
+  "<span class="attribute">requestId</span>": <span class="value"><span class="number">0</span></span>,
+  "<span class="attribute">requestOrigin</span>": <span class="value"><span class="string">"string"</span>
+}</span></code></pre>
+    <small class="notice" data-sw-translate="">Click to set as parameter value</small>
+  </div>
+</div>
+
+</div></div></div></span></td>
+</tr></tbody>
+          </table>
+          <div style="margin:0;padding:0;display:inline"></div>
+          <h4 data-sw-translate="">Response Messages</h4>
+          <table class="fullwidth">
+            <thead>
+            <tr>
+              <th data-sw-translate="">HTTP Status Code</th>
+              <th data-sw-translate="">Reason</th>
+              <th data-sw-translate="">Response Model</th>
+              <th data-sw-translate="">Headers</th>
+            </tr>
+            </thead>
+            <tbody class="operation-status">
+            <tr><td width="15%" class="code">401</td>
+<td class="markdown"><p>Unauthorized</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr><tr><td width="15%" class="code">403</td>
+<td class="markdown"><p>Forbidden</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr><tr><td width="15%" class="code">404</td>
+<td class="markdown"><p>Not Found</p>
+</td>
+<td width="50%"><span class="model-signature"></span></td>
+<td class="headers">
+  <table>
+    <tbody>
+    </tbody>
+  </table>
+</td></tr></tbody>
+          </table>
+          <div class="sandbox_header">
+            <input class="submit" type="submit" value="Try it out!" data-sw-translate="">
+            <a href="http://localhost:8081/swagger-ui.html#" class="response_hider" style="display:none" data-sw-translate="">Hide Response</a>
+            <span class="response_throbber" style="display:none"></span>
+          </div>
+        </form>
+        <div class="response" style="display:none">
+          <h4 class="curl">Curl</h4>
+          <div class="block curl"></div>
+          <h4 data-sw-translate="">Request URL</h4>
+          <div class="block request_url"></div>
+          <h4 data-sw-translate="">Request Headers</h4>
+          <div class="block request_headers"></div>
+          <h4 data-sw-translate="">Response Body</h4>
+          <div class="block response_body"></div>
+          <h4 data-sw-translate="">Response Code</h4>
+          <div class="block response_code"></div>
+          <h4 data-sw-translate="">Response Headers</h4>
+          <div class="block response_headers"></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</li></ul>
+</li></ul>
+
+  <div class="footer">
+    <h4 style="color: #999">[ <span style="font-variant: small-caps">base url</span>: /
+  , <span style="font-variant: small-caps" data-sw-translate="">api version</span>: 1.0
+    ]
+    </h4>
+    </div>
+</div>
+</div>
+
+
+</body></html>

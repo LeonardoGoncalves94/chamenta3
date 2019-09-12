@@ -1,0 +1,67 @@
+\BOOKMARK [1][-]{section*.1}{Acknowledgments}{}% 1
+\BOOKMARK [1][-]{section*.2}{Resumo}{}% 2
+\BOOKMARK [1][-]{section*.3}{Abstract}{}% 3
+\BOOKMARK [1][-]{section*.5}{List of Tables}{}% 4
+\BOOKMARK [1][-]{section*.7}{List of Figures}{}% 5
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 6
+\BOOKMARK [1][-]{section.1.1}{1.1 Motivation}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.2}{1.2 Topic Overview}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.3}{1.3 Objectives}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.4}{1.4 Thesis Outline}{chapter.1}% 10
+\BOOKMARK [0][-]{chapter.2}{2 State of the Art}{}% 11
+\BOOKMARK [1][-]{section.2.1}{2.1 Overview of the European Vehicular PKI Solution}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 European Vehicular PKI Architecture}{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 ITS-S Security Life Cycle}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.3}{2.1.3 Enrollment Process}{section.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.1.4}{2.1.4 Authorization Ticket Provisioning}{section.2.1}% 16
+\BOOKMARK [2][-]{subsection.2.1.5}{2.1.5 Authorization Ticket Request Process}{section.2.1}% 17
+\BOOKMARK [2][-]{subsection.2.1.6}{2.1.6 Message Signing and Verification}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.7}{2.1.7 Certificate Revocation}{section.2.1}% 19
+\BOOKMARK [1][-]{section.2.2}{2.2 Overview of the American Vehicular PKI Solution}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 American Vehicular PKI Architecture}{section.2.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Pseudonym Certificate Provisioning Model}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.3}{2.2.3 Pseudonym Certificate Request Process}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.4}{2.2.4 Misbehavior Reporting}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.5}{2.2.5 Global Misbehavior Detecting and Revocation}{section.2.2}% 25
+\BOOKMARK [1][-]{section.2.3}{2.3 Secured Message and Certificate Formats Standard}{chapter.2}% 26
+\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Secured Messages Formats}{section.2.3}% 27
+\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Secure Messages Profiles}{section.2.3}% 28
+\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Certificate Formats}{section.2.3}% 29
+\BOOKMARK [2][-]{subsection.2.3.4}{2.3.4 Signed Message Validity Checks}{section.2.3}% 30
+\BOOKMARK [1][-]{section.2.4}{2.4 Overview of the ITS Simulators}{chapter.2}% 31
+\BOOKMARK [2][-]{subsection.2.4.1}{2.4.1 Vehicle Mobility and Networking Simulators}{section.2.4}% 32
+\BOOKMARK [2][-]{subsection.2.4.2}{2.4.2 Integrated ITS Simulators}{section.2.4}% 33
+\BOOKMARK [1][-]{section.2.5}{2.5 Discussion}{chapter.2}% 34
+\BOOKMARK [0][-]{chapter.3}{3 Proposed Solution}{}% 35
+\BOOKMARK [1][-]{section.3.1}{3.1 Overview of the System Architecture}{chapter.3}% 36
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 System Components}{section.3.1}% 37
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Communication}{section.3.1}% 38
+\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 Protocol}{section.3.1}% 39
+\BOOKMARK [1][-]{section.3.2}{3.2 V2X Library}{chapter.3}% 40
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Detailed Architecture}{section.3.2}% 41
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 The Data Structures}{section.3.2}% 42
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 The Cryptographic Tools}{section.3.2}% 43
+\BOOKMARK [1][-]{section.3.3}{3.3 PKI Manager}{chapter.3}% 44
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 The Technology}{section.3.3}% 45
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 The Database}{section.3.3}% 46
+\BOOKMARK [2][-]{subsection.3.3.3}{3.3.3 The Back Office}{section.3.3}% 47
+\BOOKMARK [1][-]{section.3.4}{3.4 RA Service}{chapter.3}% 48
+\BOOKMARK [1][-]{section.3.5}{3.5 Vehicle Configuration}{chapter.3}% 49
+\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Vehicle Enrollment}{section.3.5}% 50
+\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 Vehicle Authorization}{section.3.5}% 51
+\BOOKMARK [1][-]{section.3.6}{3.6 Vehicle Manager}{chapter.3}% 52
+\BOOKMARK [0][-]{chapter.4}{4 Experimental Evaluation}{}% 53
+\BOOKMARK [1][-]{section.4.1}{4.1 Performance and Resource Usage}{chapter.4}% 54
+\BOOKMARK [2][-]{subsection.4.1.1}{4.1.1 PKI Manager}{section.4.1}% 55
+\BOOKMARK [2][-]{subsection.4.1.2}{4.1.2 Vehicle Manager}{section.4.1}% 56
+\BOOKMARK [1][-]{section.4.2}{4.2 Security and privacy}{chapter.4}% 57
+\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Confidentiality}{section.4.2}% 58
+\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Data Authenticity}{section.4.2}% 59
+\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Authorization}{section.4.2}% 60
+\BOOKMARK [2][-]{subsection.4.2.4}{4.2.4 Database breaches}{section.4.2}% 61
+\BOOKMARK [2][-]{subsection.4.2.5}{4.2.5 Privacy}{section.4.2}% 62
+\BOOKMARK [2][-]{subsection.4.2.6}{4.2.6 Summary}{section.4.2}% 63
+\BOOKMARK [0][-]{chapter.5}{5 Conclusions}{}% 64
+\BOOKMARK [1][-]{section.5.1}{5.1 Achievements}{chapter.5}% 65
+\BOOKMARK [1][-]{section.5.2}{5.2 Future Work}{chapter.5}% 66
+\BOOKMARK [0][-]{section*.40}{Bibliography}{}% 67

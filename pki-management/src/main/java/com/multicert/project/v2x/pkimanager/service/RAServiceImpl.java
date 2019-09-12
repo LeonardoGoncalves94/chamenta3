@@ -8,15 +8,19 @@ import java.util.List;
 import java.util.Random;
 import org.bouncycastle.util.encoders.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.multicert.project.v2x.pkimanager.model.CA;
+import com.multicert.project.v2x.pkimanager.model.CAresponse;
 import com.multicert.project.v2x.pkimanager.model.ConfigResponse;
+import com.multicert.project.v2x.pkimanager.model.Profile;
 import com.multicert.project.v2x.pkimanager.model.Request;
 import com.multicert.project.v2x.pkimanager.model.Response;
 import com.multicert.project.v2x.pkimanager.model.Vehicle;
 import com.multicert.project.v2x.pkimanager.model.VehiclePojo;
 import com.multicert.project.v2x.pkimanager.repository.RequestRepository;
 import com.multicert.project.v2x.pkimanager.repository.ResponseRepository;
+import com.multicert.project.v2x.pkimanager.repository.VehicleProfileRepository;
 import com.multicert.project.v2x.pkimanager.repository.VehicleRepository;
 import com.multicert.project.v2x.pkimanager.repository.ConfigResponseRepository;
 import com.multicert.v2x.cryptography.BadContentTypeException;
@@ -39,12 +43,19 @@ public class RAServiceImpl implements RAService {
 	@Autowired
 	private ConfigResponseRepository configResponseRepository;
 	@Autowired
+	private VehicleProfileRepository vehicleProfileRepository;
+	@Autowired
 	private CaService caService;
 	@Autowired
 	private V2XService v2xService;
 	
-
-
+	@Value("${authorization.test.on}")
+	private Boolean testMode;
+	
+	@Value("${verify.vehicle.enrollment.on.auth.request}")
+	 private Boolean verifyEnrollment;
+	 
+	
 	@Override
 	public void saveRequest(Request ecRequest) {
 		requestRepository.save(ecRequest);	
@@ -58,8 +69,9 @@ public class RAServiceImpl implements RAService {
 	}
 
 	@Override
-	public EtsiTs103097Data verifySource(Request request, boolean type, boolean requestVerification) throws Exception{
+	public CAresponse verifySource(Request request, boolean type) throws Exception{
 		
+
 		String originName = request.getRequestOrigin();
 		Vehicle origin = getVehicle(originName);
 		if(origin == null) 
@@ -68,8 +80,8 @@ public class RAServiceImpl implements RAService {
 		}		
 		PublicKey canonicalKey = origin.getPublicKey(); //get the origin vehicle's public key
 		
-		//get the reference the the vhielce's profile
-		String profileName = origin.getProfileName();
+		//get the reference the the vehicle's profile
+		String profileName = origin.getProfile().getProfileName();
 		
 		String destination = request.getRequestDestination();
 		if(!caService.isReady(destination))
@@ -82,19 +94,44 @@ public class RAServiceImpl implements RAService {
 		
 		if(type) //if it is and enrollment request
 		{
-			System.out.println(profileName +";"+ destination);
 			return caService.validateEcRequest(encodedRequest, profileName, canonicalKey, destination); // send profile info here
 			
 		}
 		else // if it is authorization request
 		{
-			return caService.validateAtRequest(encodedRequest, profileName, destination, requestVerification); // send profile info here
+			
+			return caService.validateAtRequest(encodedRequest, profileName, destination, validateAuthorizationRequestNumber(request)); // send profile info here
 		}
 		
 		
 	}
-	
+	/**
+	 * Method that validates if the AT request is the first for the vehicle's AT process
+	 * @return true if the vehicles Enrollment cert needs to be verifies by an EA, otherwise false 
 
+	 */
+	public Boolean validateAuthorizationRequestNumber(Request request) {
+		if(testMode) {
+			if(verifyEnrollment) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		Vehicle vehice = getVehicle(request.getRequestOrigin());
+		Profile vehicleProfile = vehice.getProfile();
+		int allowedRequests = vehicleProfile.getNumberOfATs();
+		int doneRequests = vehice.getaTCount();
+		
+		if(doneRequests == 0) {
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+	}
 	
 	@Override
 	public Vehicle getVehicle(String vehicleName) {
@@ -105,10 +142,10 @@ public class RAServiceImpl implements RAService {
 	@Override
 	public Vehicle saveVehicle(VehiclePojo vehicleP) throws BadContentTypeException {
 		Vehicle storedVehicle = this.getVehicle(vehicleP.getVehicleId());
-		if(storedVehicle != null)
-		{
-			return storedVehicle;
-		}
+		//if(storedVehicle != null)
+		//{
+			//return storedVehicle;
+		//}
 		
 		Vehicle vehicle = pojoToVehicle(vehicleP);
 		
@@ -118,7 +155,7 @@ public class RAServiceImpl implements RAService {
 	
 	/**
 	 * Help method that transforms a VehiclePojo into the database object Vehicle
-	 * @throws BadContentTypeException 
+	 * @throws BadContentTypeException z
 	 */
 	private Vehicle pojoToVehicle(VehiclePojo vehicleP) throws BadContentTypeException
 	{
@@ -132,9 +169,14 @@ public class RAServiceImpl implements RAService {
 			PublicKey canonicalKey = v2xService.extractPublicKey(decodedVerificationKey);
 			String vehicleId = vehicleP.getVehicleId();
 			
-			String profileName = toProfileName(vehicleP.getVehicleType()); //get a reference to the vehicle's profile 
+			//get a reference to the vehicle's profile
+			Profile vehicleProfile = vehicleProfileRepository.findByVehicleType(vehicleP.getVehicleType());
 			
-			return new Vehicle(vehicleId,canonicalKey, profileName);
+			if(vehicleProfile == null) {
+				vehicleProfile = vehicleProfileRepository.findByProfileName("profile1");
+			}
+			
+			return new Vehicle(vehicleId,canonicalKey, vehicleProfile);
 					
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,20 +184,7 @@ public class RAServiceImpl implements RAService {
 		}	
 		
 	}
-	
-	/**
-	 * Help method that converts a known vehicle type into a reference to the corresponding profile
-	 * @return
-	 */
-	private String toProfileName(int vehicleType) 
-	{
-		switch(vehicleType)
-		{		
-			default:
-				return "profile1";
-		}
-	}
-	//TODO SAVE IT
+
 	/**
 	 * Help method that encodes bytes into string
 	 * @param bytes
@@ -167,7 +196,7 @@ public class RAServiceImpl implements RAService {
 	}
 	
 	/**
-	 * Help method that encodes bytes into string
+	 * Help method that decodes a string into bytes
 	 * @param bytes
 	 * @return
 	 */
@@ -177,14 +206,16 @@ public class RAServiceImpl implements RAService {
 	}
 	
 	@Override
-	public Response genResponse(Request ecRequest, byte[] encodedResponse, String resposneMessage, Boolean isSuccess)
+	public Response genEnrollResponseDTO(Request ecRequest, byte[] encodedResponse, String resposneMessage, Boolean isSuccess)
 	{	
 		Response ecResponse = null;
+		Vehicle vehicle = vehicleRepository.findByvehicleId(ecRequest.getRequestOrigin());
+		int numberOfAuthorizationRequests = vehicle.getProfile().getNumberOfATs();
 		
 		if(isSuccess) //if the EA was able to build an enrollment response
 		{
 			String stringResponse = encodeHex(encodedResponse);
-			ecResponse =  new Response(ecRequest.getRequestDestination(), ecRequest.getRequestOrigin(), resposneMessage, stringResponse, isSuccess);
+			ecResponse =  new Response(numberOfAuthorizationRequests,ecRequest.getRequestDestination(), ecRequest.getRequestOrigin(), resposneMessage, stringResponse, isSuccess);
 		}
 		else
 		{
@@ -196,6 +227,29 @@ public class RAServiceImpl implements RAService {
 		return ecResponse;
 	}
 	
+	@Override
+	public Response genAuthResponseDTO(Request ecRequest, byte[] encodedResponse, String resposneMessage, Boolean isSuccess)
+	{	
+		Response ecResponse = null;
+		Vehicle vehicle = vehicleRepository.findByvehicleId(ecRequest.getRequestOrigin());
+		int numberOfAuthorizationRequests = vehicle.getProfile().getNumberOfATs();
+		
+		if(isSuccess) //if the authorization request is successfull (the response contains a valid AT)
+		{
+			String stringResponse = encodeHex(encodedResponse);
+			ecResponse =  new Response(numberOfAuthorizationRequests,ecRequest.getRequestDestination(), ecRequest.getRequestOrigin(), resposneMessage, stringResponse, isSuccess);
+			vehicle.setaTCount(vehicle.getaTCount() + 1);
+			vehicleRepository.save(vehicle);
+		}
+		else
+		{
+			ecResponse =  new Response(ecRequest.getRequestDestination(), ecRequest.getRequestOrigin(), resposneMessage, "", isSuccess);
+
+		}
+		
+		//saveResponse(ecResponse); 
+		return ecResponse;
+	}
 	
 	@Override
 	public ConfigResponse genConfigResponse(String RAname, VehiclePojo vehicleP, boolean isSuccess, String resposneMessage) throws IOException

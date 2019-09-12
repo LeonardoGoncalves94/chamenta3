@@ -6,10 +6,14 @@ com\multicert\v2x\datastructures\certificate\VerificationKeyIndicatorTest.class
 com\multicert\v2x\datastructures\base\UncompressedEccPointTest.class
 Main.class
 com\multicert\v2x\asn1\coer\COEROctetStringTest.class
+com\multicert\v2x\generators\certificaterequest\EnrollmentRequestGeneratorTest.class
 com\multicert\v2x\datastructures\base\SignatureTest.class
 com\multicert\v2x\datastructures\base\ValidityPeriodTest.class
 com\multicert\v2x\datastructures\certificate\ToBeSignedCertificateTest.class
+com\multicert\v2x\datastructures\certificate\EtsiTs103097CertificateTest.class
+com\multicert\v2x\PkiGenerator.class
 com\multicert\v2x\datastructures\base\SequenceOfPsidSspTest.class
+com\multicert\v2x\datastructures\certificaterequests\Enrollment\CertificateSubjectAttributesTest.class
 com\multicert\v2x\asn1\coer\COERTagTest.class
 com\multicert\v2x\asn1\coer\COERBitStringTest.class
 com\multicert\v2x\asn1\coer\COERIntegerTest.class

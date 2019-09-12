@@ -37,4 +37,8 @@ public class HashedId8 extends HashedId
     public String toString() {
         return "HashedId8 [" + new String(Hex.encode(data)) + "]";
     }
+
+    public String getString() {
+        return  new String(Hex.encode(data));
+    }
 }

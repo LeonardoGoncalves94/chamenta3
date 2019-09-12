@@ -1,0 +1,238 @@
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/conf"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/conf"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/conf"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/conf"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/conf"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class VehiclePojo {
+    canonicalPublicKey: null
+    publicKey: 80846274857875c60249e62c1805d551660a1063b4b3696873ad29d78badb02354c8fbb6f46ab33e36d20b9184bca577208d84bf8d62148d1fb36c8b9b3b1423e9cf
+    vehicleId: 1VdFoJljJ
+    vehicleType: null
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@1f23f9b6]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class VehiclePojo {
+    canonicalPublicKey: null
+    publicKey: 8084dc19ae2fb539d0ab5487aab0cc0937609f5b023800013286619d4ef92dbb0ce356c5b31ce95d47e19b89817443bdb91860472bf0fce46220c8a6a8f5480bf889
+    vehicleId: M2B8WwmDV
+    vehicleType: null
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class VehiclePojo {
+    canonicalPublicKey: null
+    publicKey: 808443952d64ca578e0505fc0f7915667f52bbc2df260ec54ff3d9c990f9268f3e0eeffa3bdfecb52365dbcc4c22387f42beed636700ee30c093b6f4a08d39d53675
+    vehicleId: vr9mZAD83
+    vehicleType: null
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@2219c67d]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class VehiclePojo {
+    canonicalPublicKey: null
+    publicKey: 808409915d5033edb3ae50166afc34eeabfdae390683975c41a374758b7c7c293f792632d0d44b00979859dc5d58c2dc5ad4ac8ff10a1947ce21eea02b5c4839b8b3
+    vehicleId: iSS01bnxd
+    vehicleType: null
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@560fa652]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class VehiclePojo {
+    canonicalPublicKey: null
+    publicKey: 80841c4c3183614e7c1d4844cce5dd0b148aa4b97d5bc0a70f0f5c657f4f97395cb5e86e7bb99cba68b4d897711b90a9f8ce662503d59892809d5c6f199c3cf4563f
+    vehicleId: HmVVT7qpU
+    vehicleType: null
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/conf" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/conf" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/conf" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/conf" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/conf" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.ConfigResponse] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@1f23f9b6]
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.ConfigResponse] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.ConfigResponse] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.ConfigResponse] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@560fa652]
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.ConfigResponse] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@2219c67d]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/enrollment"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/enrollment"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/enrollment"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/enrollment"
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/enrollment"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: EnrollmentCa
+    requestEncoded: 03820101822634a5eef3d1dc5580825049299b8315993958afc3b6a96845a4096ca54a7d97dc62b43338ab5783e527732663012b9e5409cff2328fd630d11b31c43993278ccc8c2126d3dd1f94924a80d18b4d0a40ce6dbd967671dc820110a83e3858a77a9f7b20bd8330ec10e225e2bb78555bf84b266f7ed17dd0094fb7fda7275172ac46c37e12c48f754adfb14b7771dd14c3bb42bbcfdf27a20ea76f3f485927d24762104fea6481b5c1593edc3c00b84be9d29119aec01a02a6b3df1946a5396fea24b599a126fcb5deb4332db9afd5845ebb01dba3560217b689a10b662b0388895611075b6b251dfeefa16d1c9a2ff4f7ba30fb62453cffddce5818b4a398b0499788e07170876729837b49457a3b0359a2ea9f08837e956adb22cacc5676b423c6e9726322e6471683fa629c85903f0e3e176cb20ca38e971715a3906bccf29b7a77bd42ee2c3e208edf0181ed76908544845a0cbabb635d2b91d27fa5ebaea43d6a1c5ec459bf712e52
+    requestId: null
+    requestOrigin: M2B8WwmDV
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: EnrollmentCa
+    requestEncoded: 03820101822634a5eef3d1dc558083292eec6b48768ecda53d7420d5ae56b0e29519151e001d165e224fadb86a9e0c4041423f1901142df2619e6cf8defabb06f99b0e48185219ddad770a4f9713df803986ed941e3f233063448ffc8201104b1134583dcace988d713e7f37898704dea3287d9615554aeaffa50c598f88d4d2151f204f48abd7bc71a133afd8183d0663e8cfb11df8ad11b21be3219abc9dc794da9c53b9a050972258076dc2bd7027f1dcb370c004dfd53485613124fbe07d9f242993f2c33c76f9a51fb0ececb44f0425f02bae609a0e3b16d69b28ff11e7053051c6085534897f4411e4a48d06ddfd8a8ea736fe514868ccc6f32f5ffc694cfdd7934f347260eccd01abad086fe596a9efd935063bc6deb3237820bbf5b3ad01293dadfe2f10b3daf581d88d58098aa065ef566dd5e0047a865b457a568bb880420c30478f2be7d08dd5f59af4eeed31faf257d35579e5d89789c298233340646d508d2894651db3239c8824ef
+    requestId: null
+    requestOrigin: 1VdFoJljJ
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@1f23f9b6]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: EnrollmentCa
+    requestEncoded: 03820101822634a5eef3d1dc55808239ef8f5a0120a64f2f40f1e3d7ff1b6fe5a11a76c373f378a028896a3ce3114db39037a23ab5f0a25abf71d24d4ff4c8077857ddadfb0ad2c58f2716a29a221e80d05f1a9b51d04610fd05c12b82011075f1a863452b5bce75fc89bc9a6b46750d1056bb93d9f674594850b3fafe24b60e60af1b2d8a9ec318dd0e66161ac360e42fa1e3ab601880616fc8f2759fb5807298f380de4c18982707639ad89a97834ea5f710b86a709b318bf6e0341951a4affb398c63b2223013805a704e9f06a4850c1fc71dcea9ff93490a3bbbf865fdc12d5f126d2f918485eba207b4a9e13b43734ea73b32343edc697e08b0ad8bb4b80c37e211cbb11fb8aeae44cf01d8496af4f754a1f665f7e823fd03506a221ddacc8df19430a524bffce62e843736dde07a99e023dc15d555d013cfeebbeaf194175347e016c24679ae92e2b67ba6ec853d572fd644c7c55a12b0d6b7469a5217cee725ae0c213025eb5ec8eb3293d8
+    requestId: null
+    requestOrigin: iSS01bnxd
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@560fa652]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: EnrollmentCa
+    requestEncoded: 03820101822634a5eef3d1dc558082adacfda83a46355204f9e6e4e623457672b89ab22619eafbe2b90c68f2cebe4cde5c745db59395542922929b8ef7d92f58b9c3b73ecc3d250b0f5427b5a52c6280e1d48af78b41f45272cba40082011059ad77c5cee3a9f95f061ee8754d13dd651d7a8b94e845bd302927cc0f52c8ca3c473abb9f33aa0568ad015979738f19febe195c18f098615468568bac801ad96ad287fd7e6b258af937ff706b66be80d82db3e097b1cf782d342c4f482849a694192221a4de7b836496337fe357262a3b79baa8bffa7544ed83ea84fa95fbb721c47bbc4534ec5f684945269e6ad0cdc682bb4be5fdee961edae9290d82f555bb04df69bf6294842fe21ccc9050779127838a532d46ffe5ff516079e51403bf33740e9e9c2c57f42174fe63c85ab6f422b1ff5722ddc1d5b43bdc0958cc114d3f58778c28333c26f95101b8bdc7d14aa66d184629ce7eef26280eec3882abbb9916426e8b23193ec903a7a84de636df
+    requestId: null
+    requestOrigin: HmVVT7qpU
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: EnrollmentCa
+    requestEncoded: 03820101822634a5eef3d1dc55808326225736255f1379315472ea79ab4701faf7ebe2f7a00e3331c2519bf01dc983569e8ae482d8c05ea83c5256ffa5208075dea445c3f886074faf67d93d42e14e8005fa4be71b5ca32deb9104118201100eca4d77a59fe6e837c87a5fc113c41340f9459e29d52c627327efa1bc7ed2f0f617379e3783d7cd264c360507d158811466989741bad3e0e9f43246109d5eecc83f6d2b02a7788f92aaa44b4e7f5db79027d057677481112043bc8280a500bd183c90270d24e8b1b4cae4a15d923eae950cf6d7ccf2681d9856a91e31abdd3353979a7cd036da9ad2077ef10c28c6278d1f8de50644c946c52dc00c6feccf9f0813f2fd80c162f65076ef8dda99b03f91b719aaee92cacc33d8ae340afdfff78fc24c93f02c2f00926b85cf461542b961f16ab015a1b08953e997ff6c141d77cab1f22dbd8cf6bd51c25f1f96ffa04509dd7ed3c63b28d2de1342ba74673fa9f978e39c306b60e5b80292a464bd0fe1
+    requestId: null
+    requestOrigin: vr9mZAD83
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@2219c67d]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/enrollment" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@560fa652]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/enrollment" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=true"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c98656808260c8a9c5724d62b289047553b0e42dffb3cf0bf4b1c1ce17b6c51e1ee421dafe0c827dbf2ac7ca96d59a3a24e0946433c0d6362ea66d954efbe773cdc1312f1b800a27735f1fb945ccdedc388582013d594b7840f77478113da6d85782a6b54a4f0fc5689c4be684e5f3edb0c10e5ab855e6b5c187b4b73bc8e1bacbd6c184da2c9ec1f0f3219b6053abbcc1441b04d63a3e78b820ba3f59aaa7ddae4e8253b5425f3a13f07bad906d938206a6572a0b0de3a1d815d7c9b24fb6043ba7ebe73237426dcee5b2cb36d4cee27210409c4ca80146b5545742f70aa0b577c63085dcff97b24217ab209934f5bf4f453cf3c6a1d80912cc9ed5e498832f7ee1e7ff216d783fcfa49586c9242f8d661b08c8086a80e8fd84e0cb400ffa8e0a87b5a80db49723fdb779a861e7f0d3a3705ba80184639f9d55c1fe02e3a88878fd1e8c8b02e707926b8d3ea66f5919734673cd15dba96928481857362728ed806068cf35c4bd6382f290ed29d53f9167e6a344deb84c6b1c404b627cbd7669af9c5a454c6a1bd1e69c81537f5a5b859052
+    requestId: null
+    requestOrigin: iSS01bnxd
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@560fa652]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=true"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c9865680827a5d4a79619e0fc416eb9c12683bd069df7eca1e61ea6cf72587f7e15a17974d2f5501977beb3de4845e261f19aa0016bcca8764fcc33e68f337ab5525ff790d80e6281031f76aaaf3c4f4ffb082013d49e607ed86cd6522263075ef5fd981e0e613172749d46b067fc3bb62477b4bc4cd22c14db1b4e473dd4debee9ea555fc65481a61fad79393ff9ef8e86c83d3c6d7eeedbf86f2fcd75b237d5319df1f21f26db19f55e68c3ec43159969a7b342c0e2951dd9bd54dc67a62da865126623902617c7087b5ea7b780863026cb65bac73bc6ae1e0509765e8c70721ce392d5a1e8059fd37355f16bba267dcb06c5fb0ad582f2db1e95878cc36f83e583131d545cfc4359318260fd1c686a2a897b5b34b2bb2c547042d8c32d83682ab15049ef187fab4ad977281020b593f9bcde535b17cb5625e20118b14289f4f61ce2b58b8a4960a8e8979e17248329f098a2d7ea19516e4c11e51e7155b1919f5490748c7c1e369e2baab812ab6203a25370b417d4ff2083e9a3774f07f06330fea6f544806ffc843d57546824a63ffd4
+    requestId: null
+    requestOrigin: HmVVT7qpU
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/enrollment" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=true"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c98656808232ee16b393a2b0241f2533288ccc200b78902ca675a6828999a8d93e53d0282c0cdb1160590d50bf19c63c358b587fad9d90e29e284b879c4ec031f660a73dbc805c74ab7ac9c38dfad9e5214682013d3bfb1a7d6937abbf8a238f2a19acefc25c10aadc1104166b3883692b5f08fba7012bacb5ab888c2a11919ff26562bd6f579e5724c64a9d0b169a5ee8f51faf1a54b63d1b41dade7cb1321057da152058aea0c99bbaf3f274f02b3bc0967140dcedcf2080b3c4f971b2a36f5036561d6e8c06b77130156d384bc28e036bc196780b9cd8e60fdccb8635a7acdcc220dba4b6ca209b30c9162525aab4f010c1720ff3bdb6a61974d153bb8181daef0d05ad7dc6b4966c7f53e6a1c2a1ed1c51391cb201788a937fa92d5f6af25f254fae1a383c8baec8465b9338878d4de2a883f306e345db5118973b343cef1f213d787839f33758be3a070d735f9a058a09a061986e798bfbc0d908e090f8f51ff73689994e47583b01e549d936ba46550eda694a751d98e5c301dffb261c80b946b3891bd5fe73c56e6d1e5de03057bb
+    requestId: null
+    requestOrigin: M2B8WwmDV
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/enrollment" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@1f23f9b6]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=true"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c98656808205c542bcb92efc2192d9702002fd46682244962170fbb7079950fb28dd54a9f8f075118768d2db75a2630bcda9b115712f6650d4cf160f7626e6279d090a793a807f771d2c3f7e4a7265a304a282013dc01526ccb0db520a3a7450c4b8e3039b5a948c09814d495a26d00db361035d63a300dc8bb149a4614d80623a12951fd91a3f196842f5d293f21ffc75fa04e7d2893b82640b6f3311a133fdd9cd8f2bc16b9f924e75fb382d48af6ac2ae43ea30b052a2bd5e6663fa70f351e35624f9cb709790eb0516eac647c5b8feeffe0f9f075293259d7f59dc591b9af67b886fac2e395855a106748280bbaffa97f6e4cc5358d5bb3a99727dd219ac1cba783672b4c7e5600157b7f20f0ac804efbc9d1d2398a37f1aad562c55b3b72c3542ea99842a3d887663bc0d1e2dff957e64d1975d4bd13306fa8e27c635e563fbf322d9ab8974134e7cc250bd19ecc3f2f0419f693fe86b503d886639b270f496ec5273b246ad27b1ece9e8d9adf6dc89d6d2894fabde64375b199521d396089a4323e8da8d119975509434a38f73b1bc
+    requestId: null
+    requestOrigin: 1VdFoJljJ
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@1f23f9b6]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/enrollment" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@2219c67d]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=true"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c98656808334a3990008376720f68d596e8510248b7ed6cea70b605696eec4fce39f4aac99418c656f178c3d91d0f3b1643a20a30f8abbfc30895874bcd1167077e5b76dfa80ac905891ed65732a2a862e0e82013d17db784d178422aee0b0782116bf6bb530ef6e5d910f4bf2f2c56a24b9cc0f85e58c6ebd86f52a3814d34d3d7772852d1e06d1c1ea25210be22409fc1800fabb6f81449b080b6d295ad0ff7e2e7e4590fb420d57e27ef11dd18654c95072465ee0d9607e867e082ca80f2cbc1586e0d093d41dabba77bc9d19700e032acf6cd6d2116264bf88c338da0dfae3d7169872132a4a2ae143ab034951657476897988e6d950f6d9b2bb5333ab0ff195de593866e744f2e11d08fadd67d806501e1a6df136f75a31173841bbaa2195565c732af8346f0ca86c938ddd808d54ed167c6fb4e1f8282af99ec7e20005fed0151e88b924a9b97001525c447ba51a1558a02175aaa273ed9b331d29814f030964baa1f55b7d04d3bf6cf9f5897fed8d389728608b15ddf6fa324cf4c6f3d9490fbe5f3cbd3c496be2602ca32cbf334b
+    requestId: null
+    requestOrigin: vr9mZAD83
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@2219c67d]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/authorization?requestVerification=true" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=false"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c98656808261cf69033d59dd207f2cf4f67aeb1932e1e1787474affbe0fcc9feb803c48699fda3312bb7790c0bc4ed68b34805cc94cfec447016f33816bc4651f24db48fb480a65ad1ae420e42621406b9e382013d6a9331bd1c39c740e6843600de61a7761d9bacdb2ef54e3cd437e90d1d6635484d8e0bbd037c0bded0007e73b9e25b68f8422ab96bca74af3f9479242ec56983d614aa24b098e7aba8c4ace6c780ef80aaf76ae71ecb9659aecdb6664fc3b2a5740407cdd7180d482f11908bd995e484b1b65958b991a1f18164e4332b068bc30967675fd72caaf3fa3197157f521dd25b5b955155cfbe91c21335ab257160b27f2108f4c0595cbe8942f9369317201345e068bc9983de21436a7259fd43af1e7952da20ecbcf3df8e3aa95c6aa735541e0a7e02aaca26aaa47d9b94d77dd1726cb4940e00e73fd5aaf59c2b08275582894a97a00a82c9e4e3ab9e1f03899aa45ede70f2bf9f7fa9e5bca2333305ba48ee6eab2ee078a93f7ba329bd7894ecfd54717ac184e93767ade2a6f1bdf3737abaaaa1ed8a9e01562c4b7c63eb
+    requestId: null
+    requestOrigin: M2B8WwmDV
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@39eaacd3]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/authorization?requestVerification=true" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:87 - Created POST request for "http://localhost:8081/api/authorization?requestVerification=false"
+2019-09-08 16:54:14 DEBUG RestTemplate:779 - Setting request Accept header to [application/json, application/*+json]
+2019-09-08 16:54:14 DEBUG RestTemplate:855 - Writing [class Request {
+    requestDestination: AuthorizationCa
+    requestEncoded: 03820101826402341848c9865680820548d675dbda9c73fca7c3f494c5d7daf86517983cec4be2930dc2175894411d1f66b22e45d60c89c79e436759b0714f5034a76e6d046db8fcfa527f8365654b802250f36a080186a672162ca982013df07d721ce42c32c02cbe12b457e2a587483b30ce7ff2df33c81ce73f6fe6a11c68e8fd0f29a6b1685afa2be2159f56527ea64e134c2cb8006687f7ed6353cd184c03fdedf968b55c3e6fe6ff54edbb63639c1824af76176468167967093a5401c096276d3adc968d3019a9803a06d10f2ccdc6b11fc3d009bf8abc39c1c4f5578f3812ff7749319ecdbf800dde736849ba13c8255248705532704cc468a4bfa5cd3ae635d9823947411f9f920b7f88cb7d545897bae01d07a5b22da01c240cf46333d203339b4a5be69c52c0abbd0726e41b9c440c9962b440627428a2e1604268c726aa40907b8311817a363f2e354b9cdbd7ce7eca76f792e01de0313d2939b2dd6158bb08418b7a365c7e44324440b75ee4001663be030ee451bd7cedfa20d52c826c9f86a3e120bb79a76a3078a593fd379330a36e4e933b8931a2
+    requestId: null
+    requestOrigin: HmVVT7qpU
+}] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@415ee708]
+2019-09-08 16:54:14 DEBUG RestTemplate:691 - POST request for "http://localhost:8081/api/authorization?requestVerification=true" resulted in 201 (null)
+2019-09-08 16:54:14 DEBUG RestTemplate:93 - Reading [class com.multicert.project.v2x.client.model.Response] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@560fa652]
+2019-09-08 16:55:09 INFO  Vehicle:435 - This is info : 0a7SxNs4M
+2019-09-08 16:55:09 INFO  Vehicle:435 - This is info : wjRRP2miD
+2019-09-08 16:55:09 INFO  Vehicle:435 - This is info : ZaqrwRF8w
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : nMkzSdgAj
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : 3iChV22HO
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : 0a7SxNs4M
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : wjRRP2miD
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : ZaqrwRF8w
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : nMkzSdgAj
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : 3iChV22HO
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : 0a7SxNs4M
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : wjRRP2miD
+2019-09-08 16:55:10 INFO  Vehicle:435 - This is info : ZaqrwRF8w
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : nMkzSdgAj
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : 3iChV22HO
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : 0a7SxNs4M
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : wjRRP2miD
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : ZaqrwRF8w
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : nMkzSdgAj
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : 3iChV22HO
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : 0a7SxNs4M
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : wjRRP2miD
+2019-09-08 16:55:11 INFO  Vehicle:435 - This is info : ZaqrwRF8w
+2019-09-08 16:55:12 INFO  Vehicle:435 - This is info : nMkzSdgAj
+2019-09-08 16:55:12 INFO  Vehicle:435 - This is info : 3iChV22HO
+2019-09-08 16:56:10 INFO  Vehicle:435 - This is info : I76JPFsPE
+2019-09-08 16:56:10 INFO  Vehicle:435 - This is info : AomBmO5dW
+2019-09-08 16:56:10 INFO  Vehicle:435 - This is info : Qpsg6Z0Fk
+2019-09-08 16:56:10 INFO  Vehicle:435 - This is info : KvYRNmjIB
+2019-09-08 16:56:10 INFO  Vehicle:435 - This is info : U8EoOvXHp
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : I76JPFsPE
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : AomBmO5dW
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : Qpsg6Z0Fk
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : KvYRNmjIB
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : U8EoOvXHp
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : I76JPFsPE
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : AomBmO5dW
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : Qpsg6Z0Fk
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : KvYRNmjIB
+2019-09-08 16:56:11 INFO  Vehicle:435 - This is info : U8EoOvXHp
+2019-09-08 16:56:12 INFO  Vehicle:435 - This is info : I76JPFsPE
+2019-09-08 16:56:12 INFO  Vehicle:435 - This is info : AomBmO5dW
+2019-09-08 16:56:12 INFO  Vehicle:435 - This is info : Qpsg6Z0Fk
+2019-09-08 16:56:12 INFO  Vehicle:435 - This is info : KvYRNmjIB
+2019-09-08 16:56:12 INFO  Vehicle:435 - This is info : U8EoOvXHp
+2019-09-08 16:56:12 INFO  Vehicle:435 - This is info : I76JPFsPE
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : HY8wEVpgP
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : 8KxYBO8Do
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : 7JtnVvM7Q
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : OuZ40wcAP
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : IWquKW3EL
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : HY8wEVpgP
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : 8KxYBO8Do
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : 7JtnVvM7Q
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : OuZ40wcAP
+2019-09-08 16:58:19 INFO  Vehicle:435 - This is info : IWquKW3EL
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : HY8wEVpgP
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : 8KxYBO8Do
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : 7JtnVvM7Q
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : OuZ40wcAP
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : IWquKW3EL
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : HY8wEVpgP
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : 8KxYBO8Do
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : 7JtnVvM7Q
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : OuZ40wcAP
+2019-09-08 16:58:20 INFO  Vehicle:435 - This is info : IWquKW3EL
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : HY8wEVpgP
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : 8KxYBO8Do
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : 7JtnVvM7Q
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : OuZ40wcAP
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : IWquKW3EL
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : HY8wEVpgP
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : 8KxYBO8Do
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : 7JtnVvM7Q
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : OuZ40wcAP
+2019-09-08 16:58:21 INFO  Vehicle:435 - This is info : IWquKW3EL

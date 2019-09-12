@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.multicert.project.v2x.pkimanager.model.CA;
+import com.multicert.project.v2x.pkimanager.model.CAresponse;
 import com.multicert.project.v2x.pkimanager.model.Certificate;
 import com.multicert.project.v2x.pkimanager.model.EnrollmentCredential;
 import com.multicert.project.v2x.pkimanager.model.Key;
@@ -126,7 +127,7 @@ public class CaServiceImpl implements CaService {
 	
 	
 	@Override
-	public synchronized EtsiTs103097Data validateEcRequest(byte[] encryptedEcRequest, String profile, PublicKey canonicalKey, String caName)throws Exception{
+	public synchronized CAresponse validateEcRequest(byte[] encryptedEcRequest, String profile, PublicKey canonicalKey, String caName)throws Exception{
 			
 		CA destCa = getCaByName(caName);
 		Certificate destinationCertificate = destCa.getCertificate();
@@ -139,11 +140,17 @@ public class CaServiceImpl implements CaService {
 		
 		EnrollmentResonseCode responseCode = v2xService.verifyEcRequest(dataGenerator, signedRequest, canonicalKey);
 		
-		return v2xService.genEcResponse(dataGenerator, signedRequest, profile, responseCode, destinationCertificate, sigKeyPair, destCa);		
+		EtsiTs103097Data response = v2xService.genEcResponse(dataGenerator, signedRequest, profile, responseCode, destinationCertificate, sigKeyPair, destCa);
+		
+		if(responseCode == EnrollmentResonseCode.OK) {
+			return new CAresponse(true, response.getEncoded());
+		}else {
+			return new CAresponse(false, response.getEncoded()); 
+		}
 	}
 	
 	@Override
-	public synchronized EtsiTs103097Data validateAtRequest(byte[] encodedAtRequest, String profile, String caName,
+	public synchronized CAresponse validateAtRequest(byte[] encodedAtRequest, String profile, String caName,
 			boolean requestVerification) throws Exception {
 		
 		CA destCa = getCaByName(caName);
@@ -163,6 +170,7 @@ public class CaServiceImpl implements CaService {
 		
 			if(requestVerification) // if this AT requests need enrollment verification
 			{
+			
 				byte[] eaHashedId = dataGenerator.getSharedAtRequest().getEaId(); //get the hashed id of the EA that will validate vehicle enrollment from the AtRequest (sharedAtRequest)
 					
 				String EAname = CAcertService.getCertByhashedId(eaHashedId).getSubject().getCaName();	
@@ -177,7 +185,13 @@ public class CaServiceImpl implements CaService {
 			}	
 		}
 		
-		return v2xService.genAtResponse(dataGenerator, signedRequest, profile, responseCode, destinationCertificate, sigKeyPair, destCa);	
+		EtsiTs103097Data response = v2xService.genAtResponse(dataGenerator, signedRequest, profile, responseCode, destinationCertificate, sigKeyPair, destCa);
+		
+		if(responseCode == AuthorizationResponseCode.OK) {
+			return new CAresponse(true, response.getEncoded());
+		}else {
+			return new CAresponse(false, response.getEncoded());
+		}
 		
 	}
 	/**
@@ -194,7 +208,8 @@ public class CaServiceImpl implements CaService {
 		
 		try {
 			byte[] ecId = v2xService.getEnrollmentCertId(dataGenerator, authorizationValidation); //gets the signerID of the enrollment credential that signed the request
-			EnrollmentCredential enrollCredential = enrollCredentialService.getCertById(ecId);
+			//EnrollmentCredential enrollCredential = enrollCredentialService.getCertById(ecId);
+			EnrollmentCredential enrollCredential = enrollCredentialService.getAllCertificates().get(0);//TODO: MUDA ISTO
 			EtsiTs103097Certificate etsiCredential;
 			EtsiTs103097Certificate eaCertificate;
 			if(enrollCredential != null) //If the enrollment credential is in the database

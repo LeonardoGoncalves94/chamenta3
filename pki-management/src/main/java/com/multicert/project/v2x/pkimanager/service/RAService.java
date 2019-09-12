@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.multicert.project.v2x.pkimanager.model.CA;
+import com.multicert.project.v2x.pkimanager.model.CAresponse;
 import com.multicert.project.v2x.pkimanager.model.ConfigResponse;
 import com.multicert.project.v2x.pkimanager.model.Request;
 import com.multicert.project.v2x.pkimanager.model.Response;
@@ -24,10 +25,9 @@ public interface RAService {
 	 * If the both conditions are met, the request if forwarded to the enrollment CA
 	 * @param request, the vehicle's request for enrollment or authorization
 	 * @param type, the type of request: true for enrollment, false for authorizationS
-	 * @param requestVerification, applicable to authorization requests: true if the vehicles Enrollment cert needs to be verifies by an EA, otherwise false 
 	 * @return 
 	 */
-	public EtsiTs103097Data verifySource(Request request, boolean type, boolean requestVerification) throws Exception;
+	public CAresponse verifySource(Request request, boolean type) throws Exception;
 
 	public Vehicle getVehicle(String vehicleName);
 	
@@ -42,7 +42,7 @@ public interface RAService {
 	 * @return the enrollment certificate or an error code
 	 * @throws Exception 
 	 */
-	Response genResponse(Request ecRequest, byte[] encodedResponse, String responseMessage, Boolean isSuccess) throws Exception;
+	Response genEnrollResponseDTO(Request ecRequest, byte[] encodedResponse, String responseMessage, Boolean isSuccess) throws Exception;
 	
 	Response getResponse(long responseId);
 	/**
@@ -57,5 +57,7 @@ public interface RAService {
 	 */
 	ConfigResponse genConfigResponse(String RAname, VehiclePojo vehicleP, boolean isSuccess, String resposneMessage)
 			throws IOException, Exception;
+
+	Response genAuthResponseDTO(Request ecRequest, byte[] encodedResponse, String resposneMessage, Boolean isSuccess);
 	
 }

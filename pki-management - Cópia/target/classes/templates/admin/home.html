@@ -1,0 +1,120 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"
+	th:with="title='Creditor Web Site'"></head>
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+	<div id="wrapper" class="toggled">
+
+		<div th:replace="layout :: sidebar">(sidebar)</div>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="container">
+
+							<div
+								th:replace="layout :: alert (type=${type}, message=${message})"></div>
+						</div>
+
+						<div class="container">
+							<div class="panel-group" style="margin-top: 50px">
+								<div class="panel panel-primary">
+
+
+
+									<div class="panel-group">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" href="#collapse1">Change
+														Admin User data</a>
+												</h4>
+											</div>
+											<div id="collapse1" class="panel-collapse collapse">
+												<div class="panel-body">
+
+													<div class="logincontainer">
+														<div class="row">
+															<div class="col-xd-6">
+																<form 
+																	th:action="@{/admin/updateuser}" method="post"
+																	class="form-horizontal" role="form">
+
+																	<div class="form-group">
+																		<div class="col-xm-9">
+																			<label for="name">Name</label> <input type="text"
+																				id="name" name="name" th:value="${userName}"
+																				class="form-control" />
+																		</div>
+																	</div>
+
+																	<div class="form-group">
+																		<div class="col-xm-9">
+																			<label for="lastName">Last Name</label> <input
+																				type="text" id="lastName" name="lastName"
+																				th:value="${userLastName}" placeholder="Last Name"
+																				class="form-control" />
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<div class="col-xm-9">
+																			<label for="email">Email/username</label> <input type="text"
+																				id="email" name="email" th:value="${email}"
+																				placeholder="Email" class="form-control" readonly />
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<div class="col-xm-9">
+																			<label for="adminPassword">Password</label> <input
+																			id="adminPassword" name="adminPassword"
+																				type="password" th:value="${adminPassword}" placeholder="Change Password"
+																				class="form-control" />
+																		</div>
+																	</div>
+																
+																	<div class="form-group">
+																		<div class="col-xm-9">
+																			<button type="submit"
+																				class="btn btn-primary btn-block">Update
+																				User</button>
+																		</div>
+																	</div>
+
+
+																</form>
+															</div>
+														</div>
+													</div>
+
+												</div>
+												<!-- 	<div class="panel-footer">Panel Footer</div> -->
+											</div>
+										</div>
+									</div>
+				
+								</div>
+								<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle
+									Menu</a>
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+
+
+
+	</div>
+	<div th:include="layout :: footer" id="footer">(footer)</div>
+
+</body>
+</html>

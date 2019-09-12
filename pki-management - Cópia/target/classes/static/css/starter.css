@@ -1,0 +1,20 @@
+body {
+  padding-top: 100px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.validation-message {
+	font-style: normal;
+	font-size: 12px;
+	color: #FF1C19;
+}
+
+.admin-message-text {
+	font-style: normal;
+	font-size: 22px;
+	color: #4d4d4d;
+}

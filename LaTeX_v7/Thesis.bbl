@@ -1,0 +1,186 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[dea(2016)]{death_road}
+European commission mobility and transport.
+\newblock
+  \url{https://ec.europa.eu/transport/road_safety/specialist/statistics_en},
+  2016.
+
+\bibitem[Lin et~al.(2017)Lin, Wang, and Ma]{its}
+Y.~Lin, P.~Wang, and M.~Ma.
+\newblock Intelligent transportation system (its): Concept, challenge and
+  opportunity.
+\newblock In \emph{Big Data Security on Cloud (BigDataSecurity), IEEE
+  International Conference on High Performance and Smart Computing (HPSC), and
+  IEEE International Conference on Intelligent Data and Security (IDS), 2017
+  IEEE 3rd International Conference on}, pages 167--172. IEEE, 2017.
+
+\bibitem[Rehman et~al.(2013)Rehman, Khan, Zia, and Zheng]{vanet_ETSI}
+S.~Rehman, M.~A. Khan, T.~Zia, and L.~Zheng.
+\newblock Vehicular ad-hoc networks (vanets)—an overview and challenges.
+\newblock 3:\penalty0 29--38, 01 2013.
+
+\bibitem[Eze et~al.(2014)Eze, Zhang, and Liu]{vanet_IEEE}
+E.~C. Eze, S.~Zhang, and E.~Liu.
+\newblock Vehicular ad hoc networks (vanets): Current state, challenges,
+  potentials and way forward.
+\newblock In \emph{Automation and Computing (ICAC), 2014 20th International
+  Conference on}, pages 176--181. IEEE, 2014.
+
+\bibitem[iee(2016)]{iee_formats}
+Ieee standard for wireless access in vehicular environments; security services
+  for applications and management messages.
+\newblock \url{https://standards.ieee.org/findstds/standard/1609.2-2016.html},
+  2016.
+
+\bibitem[ets(2015)]{etsi_formats}
+Intelligent transport systems (its); security; security header and certificate
+  formats.
+\newblock
+  \url{http://www.etsi.org/deliver/etsi_ts/103000_103099/103097/01.02.01_60/ts_103097v010201p.pdf},
+  2015.
+
+\bibitem[Bi{\ss}meyer et~al.(2011)Bi{\ss}meyer, St{\"u}bing, Schoch, G{\"o}tz,
+  Stotz, and Lonc]{generic_eu}
+N.~Bi{\ss}meyer, H.~St{\"u}bing, E.~Schoch, S.~G{\"o}tz, J.~P. Stotz, and
+  B.~Lonc.
+\newblock A generic public key infrastructure for securing car-to-x
+  communication.
+\newblock In \emph{18th ITS World Congress, Orlando, USA}, volume~14, 2011.
+
+\bibitem[Lonc and Cincilla(2016)]{wow}
+B.~Lonc and P.~Cincilla.
+\newblock Cooperative its security framework: Standards and implementations
+  progress in europe.
+\newblock In \emph{World of Wireless, Mobile and Multimedia Networks (WoWMoM),
+  2016 IEEE 17th International Symposium on A}, pages 1--6. IEEE, 2016.
+
+\bibitem[Whyte et~al.(2013)Whyte, Weimerskirch, Kumar, and Hehn]{scms}
+W.~Whyte, A.~Weimerskirch, V.~Kumar, and T.~Hehn.
+\newblock A security credential management system for v2v communications.
+\newblock In \emph{Vehicular Networking Conference (VNC), 2013 IEEE}, pages
+  1--8. IEEE, 2013.
+
+\bibitem[ets(2012)]{etsi_privacy}
+Intelligent transport systems (its); security; trust and privacy management.
+\newblock
+  \url{http://www.etsi.org/deliver/etsi_ts/102900_102999/102941/01.01.01_60/ts_102941v010101p.pdf},
+  2012.
+
+\bibitem[saf()]{safty_pilot}
+U.s. department of transportation. safety pilot model deployment.
+\newblock \url{http://safetypilot.umtri.umich.edu/}.
+
+\bibitem[scm()]{scms_doc}
+Scms cv pilots documentation.
+\newblock
+  \url{https://wiki.campllc.org/display/SCP/SCMS+CV+Pilots+Documentation}.
+
+\bibitem[ets(2017)]{etsi_workgroup}
+Etsi automotive intelligent transport systems.
+\newblock
+  \url{http://www.etsi.org/technologies-clusters/technologies/automotive-intelligent-transport},
+  2017.
+
+\bibitem[Bhoi and Khilar(2013)]{network_vehicle}
+S.~K. Bhoi and P.~M. Khilar.
+\newblock Vehicular communication: a survey.
+\newblock \emph{IET Networks}, 3\penalty0 (3):\penalty0 204--217, 2013.
+
+\bibitem[Siegel et~al.(2017)Siegel, Erb, and Sarma]{network_vehicle2}
+J.~E. Siegel, D.~C. Erb, and S.~E. Sarma.
+\newblock A survey of the connected vehicle landscape--architectures, enabling
+  technologies, applications, and development areas.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems}, 2017.
+
+\bibitem[Sommer et~al.(2015)Sommer, H{\"a}rri, Hrizi, Sch{\"u}nemann, and
+  Dressler]{sims}
+C.~Sommer, J.~H{\"a}rri, F.~Hrizi, B.~Sch{\"u}nemann, and F.~Dressler.
+\newblock Simulation tools and techniques for vehicular communications and
+  applications.
+\newblock In \emph{Vehicular ad hoc Networks}, pages 365--392. Springer, 2015.
+
+\bibitem[Behrisch et~al.(2011)Behrisch, Bieker, Erdmann, and Krajzewicz]{SUMO}
+M.~Behrisch, L.~Bieker, J.~Erdmann, and D.~Krajzewicz.
+\newblock Sumo--simulation of urban mobility: an overview.
+\newblock In \emph{Proceedings of SIMUL 2011, The Third International
+  Conference on Advances in System Simulation}. ThinkMind, 2011.
+
+\bibitem[Lownes and Machemehl(2006)]{vissim}
+N.~E. Lownes and R.~B. Machemehl.
+\newblock Vissim: a multi-parameter sensitivity analysis.
+\newblock In \emph{Proceedings of the 38th conference on Winter simulation},
+  pages 1406--1413. Winter Simulation Conference, 2006.
+
+\bibitem[Font et~al.(2010)Font, I{\~n}igo, Dom{\'\i}nguez, Sevillano, and
+  Amaya]{ns3}
+J.~L. Font, P.~I{\~n}igo, M.~Dom{\'\i}nguez, J.~L. Sevillano, and C.~Amaya.
+\newblock Architecture, design and source code comparison of ns-2 and ns-3
+  network simulators.
+\newblock In \emph{Proceedings of the 2010 Spring Simulation Multiconference},
+  page 109. Society for Computer Simulation International, 2010.
+
+\bibitem[Varga and Hornig(2008)]{omnet}
+A.~Varga and R.~Hornig.
+\newblock An overview of the omnet++ simulation environment.
+\newblock In \emph{Proceedings of the 1st international conference on
+  Simulation tools and techniques for communications, networks and systems \&
+  workshops}, page~60. ICST (Institute for Computer Sciences,
+  Social-Informatics and Telecommunications Engineering), 2008.
+
+\bibitem[Barr et~al.(2005)Barr, Haas, and van Renesse]{jist}
+R.~Barr, Z.~J. Haas, and R.~van Renesse.
+\newblock Jist: An efficient approach to simulation using virtual machines.
+\newblock \emph{Software: Practice and Experience}, 35\penalty0 (6):\penalty0
+  539--576, 2005.
+
+\bibitem[Sommer et~al.(2011)Sommer, German, and Dressler]{bidirectional}
+C.~Sommer, R.~German, and F.~Dressler.
+\newblock Bidirectionally coupled network and road traffic simulation for
+  improved ivc analysis.
+\newblock \emph{IEEE Transactions on Mobile Computing}, 10\penalty0
+  (1):\penalty0 3--15, 2011.
+
+\bibitem[iTe()]{iTetris}
+itetris homepage.
+\newblock \url{http://www.ict-itetris.eu/}.
+
+\bibitem[Sch{\"u}nemann(2011)]{vsimrti}
+B.~Sch{\"u}nemann.
+\newblock V2x simulation runtime infrastructure vsimrti: An assessment tool to
+  design smart traffic management systems.
+\newblock \emph{Computer Networks}, 55\penalty0 (14):\penalty0 3189--3198,
+  2011.
+
+\bibitem[c2c(2016)]{c2c-common}
+Java implementation of its intelligent transport systems (its) security header
+  and certificate formats.
+\newblock \url{https://github.com/pvendil/c2c-commonl}, 2016.
+
+\bibitem[Recommendation()]{coer_standard}
+I.~Recommendation.
+\newblock Itu-tx. 696.
+\newblock \emph{Interfaces}, 10\penalty0 (20-X):\penalty0 49.
+
+\bibitem[ets(2018)]{etsi_PSID}
+Intelligent transport systems (its); application object identifier (its-aid);
+  registration.
+\newblock
+  \url{https://www.etsi.org/deliver/etsi_ts/102900_102999/102965/01.04.01_60/ts_102965v010401p.pdf},
+  2018.
+
+\bibitem[jme()]{jmeter}
+Apache jmeter web page.
+\newblock \url{https://jmeter.apache.org/}.
+
+\bibitem[ins()]{instrumentation}
+Instrumentation java documentation.
+\newblock
+  \url{https://docs.oracle.com/javase/7/docs/api/java/lang/instrument/Instrumentation.html}.
+
+\end{thebibliography}

@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class COERSequence implements COEREncodable
 {
-    // TODO implement Extention fields
 
     List<Component> sequenceValues;
 
@@ -160,29 +159,6 @@ public class COERSequence implements COEREncodable
 
     }
 
-/**
-    public void decode(DataInputStream in) throws IOException
-    {
-        List<Component> optionalComponents = getOptionalComponents();
-        int optionalComponentsLength = optionalComponents.size();
-        long preamble = readPreamble(in, optionalComponentsLength);
-        for(int i = optionalComponentsLength - 1 ; i >= 0; i --) // For used for flagging the optional components as present or not
-        {
-            long mask = 1 << i;
-            long preambleAux = mask & preamble;
-            optionalComponents.get(i).present = (preambleAux > 0 ? true : false);
-        }
-            for(Component c : sequenceValues) // For loop used for decoding all mandatory components and the components which are optional but present
-            {
-                if(!c.optional || c.present)
-                {
-                    c.emptyValue.decode(in);
-                    c.value = c.emptyValue;
-                }
-            }
-
-    }
-/**
     /**
      * Method to decode the preamble, which indicates the presence of the optional fields in the COERSequence
      *

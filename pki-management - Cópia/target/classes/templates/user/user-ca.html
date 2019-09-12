@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"
+	th:with="title='PKI manager'"></head>
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+	<div id="wrapper" class="toggled">
+
+		<div th:replace="layout :: sidebar">(sidebar)</div>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="container">
+
+							<div
+								th:replace="layout :: alert (type=${type}, message=${message})"></div>
+
+
+							<div th:if="${not #lists.isEmpty(cas)}">
+								<h2> Certification Authority Data</h2>
+								<table class="table table-striped" id="credtblGrid">
+									<tr>
+										<th>ID</th>
+										<th>Name</th>	
+										<th>Type</th>									
+									</tr>
+									<tr th:each="ca : ${cas}">
+										<td th:text="${ca.caId}">ID</td>						
+										<td th:text="${ca.caCountry}">Country</td>
+										<td th:text="${ca.caType}">Type</td>									
+									</tr>
+								</table>
+									
+							</div>
+								
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+
+
+	</div>
+	<div th:include="layout :: footer" id="footer">(footer)</div>
+
+</body>
+</html>

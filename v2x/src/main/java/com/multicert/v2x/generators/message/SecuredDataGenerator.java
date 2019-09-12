@@ -565,6 +565,22 @@ public class SecuredDataGenerator
     }
 
     /**
+     * Method to extract the requested ATs from a signed message
+     * @param signedData
+     * @return
+     * @throws BadContentTypeException
+     */
+    public SequenceOfHashedId3 getRequestedAts(EtsiTs103097Data signedData) throws BadContentTypeException
+    {
+        if(signedData.getContent().getType() != EtsiTs103097Content.EtsiTs103097ContentChoices.SIGNED_DATA)
+        {
+            throw new BadContentTypeException("Error verifying EC response: Only signed EtsiTs103097Data can verified");
+        }
+        SignedData sd = (SignedData) signedData.getContent().getValue();
+        return sd.getTbsData().getHeaderInfo().getInlineP2pcdRequest();
+    }
+
+    /**
      * Method used to verify a Cooperative Awareness Message
      * @param signedData the CAM to verify
      * @param authorizationTicket The authorization ticket of the signing vehicle
@@ -583,7 +599,7 @@ public class SecuredDataGenerator
         }
 
         Boolean result = false;
-        //try to verify the EA's signature
+        //try to verify the AT signature
         try
         {
             result = cryptoHelper.verifySignature(sd.getTbsData().getEncoded(), sd.getSignature(), authorizationTicket);

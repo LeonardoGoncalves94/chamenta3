@@ -50,7 +50,7 @@ public class EtsiTs103097Certificate extends COERSequence
     }
 
     /**
-     * Main constructor for initializing the certificate with c default urrent version
+     * Main constructor for initializing the certificate with c default current version
      */
     public EtsiTs103097Certificate(IssuerIdentifier issuer, ToBeSignedCertificate toBeSigned, Signature signature) throws IllegalArgumentException, IOException
     {

@@ -26,6 +26,7 @@ import com.multicert.project.v2x.pkimanager.model.CA;
 import com.multicert.project.v2x.pkimanager.model.Certificate;
 import com.multicert.project.v2x.pkimanager.model.EnrollmentCredential;
 import com.multicert.project.v2x.pkimanager.model.Key;
+import com.multicert.project.v2x.pkimanager.model.Profile;
 import com.multicert.project.v2x.pkimanager.model.Region;
 import com.multicert.project.v2x.pkimanager.model.Role;
 import com.multicert.project.v2x.pkimanager.model.User;
@@ -33,7 +34,7 @@ import com.multicert.project.v2x.pkimanager.repository.CertRepository;
 import com.multicert.project.v2x.pkimanager.repository.RegionRepository;
 import com.multicert.project.v2x.pkimanager.repository.RoleRepository;
 import com.multicert.project.v2x.pkimanager.repository.UserRepository;
-import com.multicert.project.v2x.pkimanager.service.VehicleProfiles.Profile;
+import com.multicert.project.v2x.pkimanager.repository.VehicleProfileRepository;
 import com.multicert.v2x.IdentifiedRegions.Countries;
 import com.multicert.v2x.IdentifiedRegions.Countries.CountryTypes;
 import com.multicert.v2x.asn1.coer.COEROctetString;
@@ -89,7 +90,7 @@ public class V2XServiceImpl implements V2XService{
 	private AuthorizationTicketGenerator authorizationTicketGenerator; 
 
 	@Autowired
-	private VehicleProfiles vehicleProfiles;
+	private VehicleProfileRepository vehicleProfileRepository;
 	
 	@Autowired
 	private EnrollCredentialService enrollService;
@@ -341,10 +342,9 @@ public class V2XServiceImpl implements V2XService{
 	{
 		try {
 			String itsId = innerRequest.getItsId();
-			vehicleProfiles.init();
-			Profile vehicleProfile = vehicleProfiles.getProfile(profileName);
+			Profile vehicleProfile = vehicleProfileRepository.findByProfileName(profileName);
 			ValidityPeriod validityPeriod = new ValidityPeriod(new Date(),DurationTypes.YEARS, vehicleProfile.getEnrollmentPeriod());
-			GeographicRegion validityRegion = getGeographicRegion(vehicleProfile.getCountries());		
+			GeographicRegion validityRegion = getGeographicRegion(vehicleProfile.getRegions());		
 			SubjectAssurance assurance = innerRequest.getRequestedSubjectAttributes().getAssuranceLevel();
 			int assuranceLevel = assurance.getAssuranceLevel();
 			int confidenceLevel = assurance.getConfidenceLevel();
@@ -394,9 +394,8 @@ public class V2XServiceImpl implements V2XService{
 	{
 		try {
 		
-			vehicleProfiles.init();
-			Profile vehicleProfile = vehicleProfiles.getProfile(profileName);
-			GeographicRegion validityRegion = getGeographicRegion(vehicleProfile.getCountries());		
+			Profile vehicleProfile = vehicleProfileRepository.findByProfileName(profileName);
+			GeographicRegion validityRegion = getGeographicRegion(vehicleProfile.getRegions());		
 			SubjectAssurance assurance = sharedAtRequest.getSubjectAttributes().getAssuranceLevel();
 			int assuranceLevel = assurance.getAssuranceLevel();
 			int confidenceLevel = assurance.getConfidenceLevel();

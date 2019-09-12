@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                      %
+%     File: Thesis_Introduction.tex                                    %
+%     Tex Master: Thesis.tex                                           %
+%                                                                      %
+%     Author: Andre C. Marta                                           %
+%     Last modified :  2 Jul 2015                                      %
+%                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+\label{prob}
+
+According to the European commission statistics \cite{death_road} in the year 2016 over 25000 people died in road accidents in Europe, furthermore it is estimated that for every death on Europe's roads there is 4 permanently disabling injuries such as damage to the brain or spinal cord. Intelligent transportation that is capable of assisting the driver and connect vehicles can reduce accidents significantly. \textit{Intelligent Transportation Systems} (ITS) \cite{its} are applications that allow vehicles to connect and coordinate their actions. This cooperation of vehicles is expected to increase road safety and traffic efficiency by assisting the drivers to make better decisions and advising new routes based on the traffic conditions.  
+
+One fundamental aspect of ITS is the V2X communication. Vehicles equipped with this technology are able to share data in real time with other vehicles, road infrastructure (roadside units) and pedestrians. Such data may be related to sender's presence on the road, or related to road events so that other vehicles affected by that specific occurrence (e.g. road obstacle) are notified. While vehicles transmit these types of data, roadside units transmit regional data such as speed limits, timing of semaphore lights or information about traffic deviation. Vehicles communicating with other vehicles, pedestrians and infrastructure on the road create a decentralized network known as \textit{Vehicular Ad Hoc Network} (VANET) \cite{vanet_ETSI} \cite{vanet_IEEE}. This type of communication allows the developing of ITS applications that can signal various kinds of events, for example, cover forward collision warnings, emergency vehicle approaching, lane change warning\slash blind spot coverage, road works warning, and many more. Thus, V2X enhances the vehicle's perception of environment much beyond the driver's visual horizon and vehicle sensing capabilities.
+
+Security becomes fundamental in VANETs, which are threatened by a range of potential attacks, such as distribution of forged messages, tracking of user vehicles and denial of service. The consequences of such threats can be extremely serious, and may range from disruption of the transportation to serious damage to public safety on the road. Our work focuses on a PKI mechanism that aims to address some of previous cyberattacks. The IEEE 1609.2 \cite{iee_formats} and ETSI TS 103 097 standards \cite{etsi_formats} specify protocols for V2X communication security and recommend the usage of digital certificates to sign the messages, thus making the public key infrastructure essential. The basic idea is that all \textit{ITS Stations} (ITS-S) i.e. vehicles and \textit{Roadside Units} (RSU), which are equipped with a V2X communication unit have to be registered with the PKI. Only with valid certificates these stations are able to send authenticated messages that will be trusted by the receiving stations. The certificates provided by the V2X PKI have to be stored in the hardware security module known as \textit{On-Board Unit} (OBU) or \textit{On-Board Equipment} (OBE).
+
+Although this basic approach allows for message authentication, care must be taken in the design of the PKI as so to avoid privacy violations. Certificates used for V2X communications must not contain any information that links them to a particular vehicle or owner, e.g. a license plate number; such information would allow vehicle tracking by simply listening to the communications. However, removing all identifying information from certificates i.e. using pseudonym certificates is not sufficient. If a vehicle uses a single pseudonym during its lifetime, then this certificate can again be used to track the vehicle. To defeat this scheme, an attacker would only need to observe a vehicle using the same certificate at different locations to be able to link that certificate to the victim vehicle. The most common approach to assure privacy at this level is to store a pool of short-lived pseudonym certificates (also known as authorization tickets) in each vehicle's OBU. Vehicles periodically change pseudonym to authenticate V2X messages in order to avoid long-term tracking. This mechanism implies that vehicles need to communicate with the PKI to request new pseudonym certificates whenever their locally stored list is expiring. In addition to pseudonym certificates, stations also need a long-term enrollment certificate tied to their identity to authenticate within the PKI. The result is a vehicular PKI that is architecturally different from a traditional PKI. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+\label{section:motivation}
+
+Relevance of the subject...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Topic Overview}
+\label{contributions}
+The proposed solution consists of a vehicular PKI and a simulator to evaluate its correctness. Our solution will extend mPKI, a currently operating traditional PKI which is the product of Multicert. In order to extend mPKI, we will start by developing a Java package that implements the new certificate formats, V2X messages and certificate requests. The next step involves integrating such package in mPKI to allow it to issue the certificates for the end-entities (ITS-S) and CAs. The final step is to develop a simulator to test the correctness of the PKI. In this phase we will develop a Java simulator that will simulate the end-entities and the interaction between such end-entities (V2X) and the vehicular PKI. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objectives}
+\label{goals}
+
+This work addresses the problem of designing and implementing a vehicular PKI solution that allows for V2X message authentication while preserving the privacy of its users. This report will specify the system to produce, a vehicular PKI that supports the enrollment of new ITS-S, provisioning of valid certificates to its users and the removal of compromised stations or PKI entities. The goal of this work is to design a PKI solution based on the most recent European standards and follows the following requirements.
+
+\begin{itemize}
+	\item Privacy
+	\begin{itemize}
+		\item The drivers must remain anonymous on the road, meaning that unauthorized parties are not able to associate a V2X message to the vehicle/driver who sent it.
+		
+		\item Unauthorized parties must not be able to link a V2X message to that vehicle's previously sent messages.
+		
+		\item It should not be possible to deduce a given vehicle's location by analyzing previous communications to and from the vehicle.
+	\end{itemize}
+	
+	\item Confidentiality
+	\begin{itemize}
+		\item Information transmitted to or from a given ITS station must not be disclosed to unauthorized parties.
+		
+	\end{itemize}
+	
+	\item Integrity
+	\begin{itemize}
+		\item Information transmitted to or from a given ITS station must be protected against unauthorized modifications or tampering during transmission. 
+	\end{itemize}
+	
+	\item Authenticity
+	\begin{itemize}
+		\item It should not be possible for users to spoof another legitimate ITS station to communicate with other stations.
+		
+		\item It should not be possible for an ITS station to receive management and configuration information from unauthorized entities. For example spoofing of a \textit{Certification Authority} (CA).
+	\end{itemize}
+	\item Availability
+	\begin{itemize}
+		\item Access to ITS services and applications should not be prevented to legitimate users by malicious activity. 
+	\end{itemize}
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Thesis Outline}
+\label{section:outline}
+
+The remainder of this report is organized as follows:
+
+

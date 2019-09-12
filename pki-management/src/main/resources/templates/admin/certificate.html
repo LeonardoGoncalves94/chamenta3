@@ -29,16 +29,12 @@
 										<th>Issuer</th>
 										<th>Subject</th>	
 										<th>Validity</th>	
-										<th>Confidence</th>	
-										<th>Assurance</th>	
 									</tr>
 									<tr th:each="cert : ${certs}">
 										<td th:text="${cert.certId}">ID</td>
 										<td th:text="${cert.issuer.caName}">Issuer</td>							
 										<td th:text="${cert.subject.caName}">Subject</td>
-										<td th:text="${cert.validity}">Validity</td>
-										<td th:text="${cert.confidence}">Confidence</td>
-										<td th:text="${cert.assurance}">Assurance</td>												
+										<td th:text="${cert.validity}">Validity</td>																		
 									</tr>
 								</table>
 									
@@ -78,7 +74,7 @@
 															</div>					
 															
 															<div class="form-group">
-																<label for="validity">Validity</label> <input
+																<label for="validity">Validity (years)</label> <input
 																	type="number" class="form-control" id="validity"
 																	th:field="*{validity}" required/>
 															</div>	
@@ -97,25 +93,26 @@
 															</div>	
 															
 															<div class="form-group">
-																<label for="confidence">Confidence (between 0 and 3)</label> <input
-																	type="number" min = "0" max = "3" class="form-control" id="confidence"
-																	th:field = "*{confidence}" required/>
+															<input
+																	type="hidden" class="form-control" id="confidence"
+																	th:name="confidence"  value="3"required/>																
 															</div>	
-															<div class="form-group">
-																<label for="assurance">Assurance (between 0 and 7)</label> <input
-																	type="number" min = "0" max = "7" class="form-control" id="assurance"
-																	th:field="*{assurance}" required/>
-															</div>	
-															
-																	<div class="form-group">
-																<label for="chainlength">Min. Chain Length</label> <input
-																	type="number" class="form-control" id="minchain"
-																	th:field="*{minChain}" required/>
+															<div class="form-group"> 
+																<input
+																	type="hidden" class="form-control" id="assurance"
+																	th:name="assurance"  value="7"required/>
+																
+															</div>									
+																	<div class="form-group">		
+																	<input
+																	type="hidden" class="form-control" id="minchain"
+																	th:name="minChain"  value="7"required/>
 															</div>
 															<div class="form-group">
-																<label for="chainrange">Chain Range</label> <input
-																	type="number" class="form-control" id="chainrange"
-																	th:field="*{chainRange}" required/>
+															
+															<input
+																	type="hidden" class="form-control" id="chainrange"
+																	th:name="chainRange"  value="7"required/>				
 															</div>
 																																																			
 															<button type="submit" class="btn btn-default" 
@@ -187,34 +184,34 @@
 																</ul>
 															</div>																																																																																																				
 															
-															<div class="form-group">
-																<label for="permissions">Permissions</label> <input
-																	type="number" class="form-control" id="permissions"
-																	th:field="*{psId}" />
+																<div class="form-group">
+															<input
+																	type="hidden" class="form-control" id="permissions"
+																	th:name="psId" value="3"required/>																
 															</div>	
+																												
 															
 															<div class="form-group">
-																<label for="confidence">Confidence (between 0 and 3)</label> <input
-																	type="number" min = "0" max = "3" class="form-control" id="confidence"
-																	th:field="*{confidence}" required/>
+															<input
+																	type="hidden" class="form-control" id="confidence"
+																	th:name="confidence" value="3"required/>																
 															</div>	
-															
-															<div class="form-group">
-																<label for="assurance">Assurance (between 0 and 7)</label> <input
-																	type="number" min = "0" max = "7" class="form-control" id="assurance"
-																	th:field="*{assurance}" required/>
-															</div>	
-																								
-															
-															<div class="form-group">
-																<label for="chainlength">Min. Chain Length</label> <input
-																	type="number" class="form-control" id="chainlength"
-																	th:field="*{minChain}" required/>
+															<div class="form-group"> 
+																<input
+																	type="hidden" class="form-control" id="assurance"
+																	th:name="assurance"  value="7"required/>
+																
+															</div>									
+																	<div class="form-group">		
+																	<input
+																	type="hidden" class="form-control" id="minchain"
+																	th:name="minChain"  value="7"required/>
 															</div>
 															<div class="form-group">
-																<label for="chainrange">Chain Range</label> <input
-																	type="number" class="form-control" id="chainrange"
-																	th:field="*{chainRange}" required/>
+															
+															<input
+																	type="hidden" class="form-control" id="chainrange"
+																	th:name="chainRange"  value="7"required/>				
 															</div>
 																																																			
 															<button type="submit" class="btn btn-default">Submit</button>
@@ -251,6 +248,9 @@
 		$("#addRootCaCert").find("#issuer").val($("#addRootCaCert").find("#subject").val());
 		
 	}
+	
+	
+	
 	</script>	
 </body>
 </html>

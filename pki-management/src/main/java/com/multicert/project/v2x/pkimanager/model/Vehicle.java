@@ -5,24 +5,26 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
 	
-	public Vehicle(String vehicleId, PublicKey publicKey, String profileName) {
+	public Vehicle(String vehicleId, PublicKey publicKey, Profile profile) {
 		super();
 		this.vehicleId = vehicleId;
 		this.canonicalPublicKey = publicKey;
-		this.profileName = profileName;
+		this.profile = profile;
 		
 	}
 	
@@ -39,10 +41,20 @@ public class Vehicle {
 	@Column(name="pubKey")
 	private PublicKey canonicalPublicKey;
 	
+	@Column(name="at_count")
+	private int aTCount = 0;
 	
-	@Column(name="vehicle_profile")
-	@NotEmpty
-	private String profileName;
+	public int getaTCount() {
+		return aTCount;
+	}
+
+	public void setaTCount(int aTCount) {
+		this.aTCount = aTCount;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name="profile_name", nullable=false)
+	private Profile profile;
 	
 	public String getVehicleId() {
 		return vehicleId;
@@ -68,12 +80,12 @@ public class Vehicle {
 		this.canonicalPublicKey = canonicalPublicKey;
 	}
 
-	public String getProfileName() {
-		return profileName;
+	public Profile getProfile() {
+		return profile;
 	}
 
-	public void setProfileName(String profileName) {
-		this.profileName = profileName;
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 	
 	
