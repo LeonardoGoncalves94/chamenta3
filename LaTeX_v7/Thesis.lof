@@ -4,27 +4,32 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces European vehicular PKI architecture.}}{6}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Authorization Ticket provisioning model.}}{9}{figure.2.2}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces SCMS overall system architecture.}}{12}{figure.2.3}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces IEEE 1609.2 signed message format used by ETSI TS 103 097.}}{14}{figure.2.4}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces IEEE 1609.2 signed message format used by ETSI TS 103 097.}}{13}{figure.2.4}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Relation between a signed message and the signing certificate.}}{17}{figure.2.5}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Overall system architecture.}}{20}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Vehicle configuration and enrollment process flow.}}{23}{figure.3.2}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Vehicle configuration and enrollment process flow.}}{22}{figure.3.2}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Vehicle authorization process flow.}}{24}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Layered structure of the V2X Library.}}{26}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Class diagram of the V2X {COER} structures.}}{27}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Enrollment request message.}}{31}{figure.3.6}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Layered structure of the V2X Library.}}{27}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Class diagram of the V2X {COER} structures.}}{28}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Enrollment request message.}}{32}{figure.3.6}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Enrollment response message.}}{33}{figure.3.7}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Authorization request message.}}{34}{figure.3.8}
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Authorization response message.}}{35}{figure.3.9}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Database Entity Relation Diagram.}}{39}{figure.3.10}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Database entity relation diagram.}}{39}{figure.3.10}
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Data of the created PKI}}{40}{figure.3.11}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces From to add a new CA.}}{41}{figure.3.12}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces From to add a new CA.}}{40}{figure.3.12}
 \contentsline {figure}{\numberline {3.13}{\ignorespaces Certification authority table.}}{41}{figure.3.13}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Form to add a new keypair to an existing CA}}{42}{figure.3.14}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Form to add a certificate to an existing Root CA}}{43}{figure.3.15}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Form to add a certificate to an existing Sub CA}}{43}{figure.3.16}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Form to add a new keypair to an existing CA}}{41}{figure.3.14}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Form to add a certificate to an existing Root CA}}{42}{figure.3.15}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Form to add a certificate to an existing Sub CA}}{42}{figure.3.16}
 \contentsline {figure}{\numberline {3.17}{\ignorespaces Vehicle configuration request in JSON format.}}{44}{figure.3.17}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Vehicle enrollment request in JSON format.}}{46}{figure.3.18}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Vehicle enrollment request in JSON format.}}{45}{figure.3.18}
 \contentsline {figure}{\numberline {3.19}{\ignorespaces Vehicle enrollment request in JSON format.}}{48}{figure.3.19}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Latency measurements for the RA Service operations}}{56}{figure.4.1}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Vehicle Configuration}}}{56}{figure.4.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Vehicle Enrollment}}}{56}{figure.4.1}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Vehicle Authorization w/o enrollment validation}}}{56}{figure.4.1}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Vehicle Authorization}}}{56}{figure.4.1}
 \addvspace {10\p@ }

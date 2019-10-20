@@ -11,9 +11,9 @@
 \chapter{Introduction}
 \label{prob}
 
-According to the European commission statistics \cite{death_road} in the year 2016 over 25000 people died in road accidents in Europe, furthermore it is estimated that for every death on Europe's roads there is 4 permanently disabling injuries such as damage to the brain or spinal cord. Intelligent transportation that is capable of assisting the driver and connect vehicles can reduce accidents significantly. \textit{Intelligent Transportation Systems} (ITS) \cite{its} are applications that allow vehicles to connect and coordinate their actions. This cooperation of vehicles is expected to increase road safety and traffic efficiency by assisting the drivers to make better decisions and advising new routes based on the traffic conditions.  
+According to the European commission statistics \cite{death_road} in the year 2016 over 25000 people died in road accidents in Europe, furthermore it is estimated that for every death on Europe's roads there is 4 permanently disabling injuries such as damage to the brain or spinal cord. Intelligent transportation that is capable of assisting the driver and connect vehicles can reduce accidents significantly. \textit{Intelligent Transportation Systems} (ITS) \cite{its} are applications that allow vehicles to connect and coordinate their actions. This cooperation of vehicles is expected to increase road safety and traffic efficiency by assisting the drivers to make better decisions and advising new routes based on the traffic conditions.
 
-One fundamental aspect of ITS is the V2X communication. Vehicles equipped with this technology are able to share data in real time with other vehicles, road infrastructure (roadside units) and pedestrians. Such data may be related to sender's presence on the road, or related to road events so that other vehicles affected by that specific occurrence (e.g. road obstacle) are notified. While vehicles transmit these types of data, roadside units transmit regional data such as speed limits, timing of semaphore lights or information about traffic deviation. Vehicles communicating with other vehicles, pedestrians and infrastructure on the road create a decentralized network known as \textit{Vehicular Ad Hoc Network} (VANET) \cite{vanet_ETSI} \cite{vanet_IEEE}. This type of communication allows the developing of ITS applications that can signal various kinds of events, for example, cover forward collision warnings, emergency vehicle approaching, lane change warning\slash blind spot coverage, road works warning, and many more. Thus, V2X enhances the vehicle's perception of environment much beyond the driver's visual horizon and vehicle sensing capabilities.
+One fundamental aspect of ITS is the V2X communication. Vehicles equipped with this technology are able to share data in real time with other vehicles, road infrastructure (roadside units) and pedestrians utilizing short-ranged wireless signals. Such data may be related to sender's presence on the road, or related to road events so that other vehicles affected by that specific occurrence (e.g. road obstacle) are notified. While vehicles transmit these types of data, roadside units transmit regional data such as speed limits, timing of semaphore lights or information about traffic deviation. Vehicles communicating with other vehicles, pedestrians and infrastructure on the road create a decentralized network known as \textit{Vehicular Ad Hoc Network} (VANET) \cite{vanet_ETSI} \cite{vanet_IEEE}. This type of communication allows the developing of ITS applications that can signal various kinds of events, for example, cover forward collision warnings, emergency vehicle approaching, lane change warning\slash blind spot coverage, road works warning, and many more. Thus, V2X enhances the vehicle's perception of environment much beyond the driver's visual horizon and vehicle sensing capabilities.
 
 Security becomes fundamental in VANETs, which are threatened by a range of potential attacks, such as distribution of forged messages, tracking of user vehicles and denial of service. The consequences of such threats can be extremely serious, and may range from disruption of the transportation to serious damage to public safety on the road. Our work focuses on a PKI mechanism that aims to address some of previous cyberattacks. The IEEE 1609.2 \cite{iee_formats} and ETSI TS 103 097 standards \cite{etsi_formats} specify protocols for V2X communication security and recommend the usage of digital certificates to sign the messages, thus making the public key infrastructure essential. The basic idea is that all \textit{ITS Stations} (ITS-S) i.e. vehicles and \textit{Roadside Units} (RSU), which are equipped with a V2X communication unit have to be registered with the PKI. Only with valid certificates these stations are able to send authenticated messages that will be trusted by the receiving stations. The certificates provided by the V2X PKI have to be stored in the hardware security module known as \textit{On-Board Unit} (OBU) or \textit{On-Board Equipment} (OBE).
 
@@ -23,14 +23,20 @@ Although this basic approach allows for message authentication, care must be tak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivation}
 \label{section:motivation}
+V2X is rapiddly developing and has been recently gaining commercial acceptance with the networking tecnologies caputing the attention of vehicle manufacturers and regulators. There are two competing V2X networking tecnologies: The original WLAN-based IEEE 802.11p/DSRC (Dedicated Short Range Communications) standard, and the more recent 3GPP-defined cellular V2X (C-V2X) technology which will eventualy evolve to 5G.
 
-Relevance of the subject...
+Motivated by road safety and fuel efficiency, Toyota and General Motors have already equipped some of their vehicles with 802.11p V2X in Japan and North America. Futhermore, the Volkswagen group plans to deploy the 802.11p V2X in volume models from 2019 onwards, claiming that this standard has been comprehensivly tested for vehicle communications \cite{Volkswagen}. 
 
+On the other side of the spectrum, recent studies and analysis \cite{5gaa1} \cite{5gaa2} performed by the 5G Automotive Association (5GAA), the organization supporting and developing C-V2X tecnology, indicate that cellular-based C-V2X in direct communications is ahead of the 802.11p standard in terms of performance, range, reliability and others. In 2019 5GAA performed a live demo event in Berlin \cite{5gaa3} demonstrating some of the V2X use cases: traffic management solutions, real time emergency alerts, live data capture and transmission, combined network and direct solution and even remote-operated driving.
+
+There is an extensive amount of literature regarding the the WLAN versus C-V2X debate. However, we will not be going into detail on these works bcause they approach networking and other aspects of the V2X which are behond scope of this thesis.
+
+Regardless of the ongoing debate, regulation uncertanties, and other challenges, the spending in V2X communication technlogy is expeteced to increase more than 170\% between the years of 2019 and 2022. Furthermore, this technology is expected to reduce the number of road accidents by 80\%, easy traffic congestion by 20\% and reduce fuel consumption and emissions by 10\% to 40\%. These findings are part of the are part of SNS Telecom \& IT’s latest research report on V2X communications technology \cite{Report}, which is based on large scale pilos, projects and early commercial rollouts. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Topic Overview}
 \label{contributions}
-The proposed solution consists of a vehicular PKI and a simulator to evaluate its correctness. Our solution will extend mPKI, a currently operating traditional PKI which is the product of Multicert. In order to extend mPKI, we will start by developing a Java package that implements the new certificate formats, V2X messages and certificate requests. The next step involves integrating such package in mPKI to allow it to issue the certificates for the end-entities (ITS-S) and CAs. The final step is to develop a simulator to test the correctness of the PKI. In this phase we will develop a Java simulator that will simulate the end-entities and the interaction between such end-entities (V2X) and the vehicular PKI. 
+The proposed solution consists of a vehicular PKI and a demo simulator to evaluate its correctness. Our solution will extend mPKI, a currently operating traditional PKI which is the product of Multicert. In order to extend mPKI, we will start by developing a Java package that implements the new certificate formats, V2X messages and certificate requests. The next step involves integrating such package in mPKI to allow it to issue the certificates for the end-entities (ITS-S) and CAs. The final step is to develop a simulator to communicate with the PKI. In this phase we will develop a Java project that will simulate the end-entities and the interaction between such end-entities (V2X) and the vehicular PKI. 
 
 
 
@@ -38,38 +44,45 @@ The proposed solution consists of a vehicular PKI and a simulator to evaluate it
 \section{Objectives}
 \label{goals}
 
-This work addresses the problem of designing and implementing a vehicular PKI solution that allows for V2X message authentication while preserving the privacy of its users. This report will specify the system to produce, a vehicular PKI that supports the enrollment of new ITS-S, provisioning of valid certificates to its users and the removal of compromised stations or PKI entities. The goal of this work is to design a PKI solution based on the most recent European standards and follows the following requirements.
+This work addresses the problem of designing and implementing a vehicular PKI solution that allows for V2X message authentication while preserving the privacy of its users. This report will specify the system to produce, a vehicular PKI that supports the enrollment of new ITS-S, provisioning of valid certificates to its users and the removal of compromised stations or PKI entities. The goal of this work is to implement a PKI solution based on the most recent European standards and follows the following requirements.
 
 \begin{itemize}
 	\item Privacy
 	\begin{itemize}
 		\item The drivers must remain anonymous on the road, meaning that unauthorized parties are not able to associate a V2X message to the vehicle/driver who sent it.
 		
-		\item Unauthorized parties must not be able to link a V2X message to that vehicle's previously sent messages.
+		\item The messages transmitted during V2X communications must remain unlinkable to the vehicles which previously sent them.
 		
-		\item It should not be possible to deduce a given vehicle's location by analyzing previous communications to and from the vehicle.
+		\item The privacy of the vehicle's location should be protected by the usage of pseudonym certificates.
+		
+		\item Deducing the vehicle's location or tracking vehicles should not be aided by analysing the vehicle's previous V2X communications.
+		
+		
 	\end{itemize}
 	
 	\item Confidentiality
 	\begin{itemize}
-		\item Information transmitted to or from a given ITS station must not be disclosed to unauthorized parties.
+		\item Information transmitted to or from a given vehicle to the PKI, such as certificate requests and responses, should be protected against unauthorized access.
 		
 	\end{itemize}
 	
 	\item Integrity
 	\begin{itemize}
-		\item Information transmitted to or from a given ITS station must be protected against unauthorized modifications or tampering during transmission. 
+		\item Information transmitted to or from a given vehicle must be protected against unauthorized modifications or tampering during transmission. 
 	\end{itemize}
 	
 	\item Authenticity
 	\begin{itemize}
-		\item It should not be possible for users to spoof another legitimate ITS station to communicate with other stations.
+		\item When a vehicle receives a V2X message it should be able to trust that such message is relevant and was created by a legitimate ITS-station. 
 		
-		\item It should not be possible for an ITS station to receive management and configuration information from unauthorized entities. For example spoofing of a \textit{Certification Authority} (CA).
+		\item When a vehicle receives a message from the PKI, such as a certificate response, it should be able to trust such message was created by the intended CA as a response to the initial request.
+		
+		\item Configuration information originated from the PKI should arrive to the vehicles in a state that allows them to confirm the origin and integrity of the message.
+		
 	\end{itemize}
 	\item Availability
 	\begin{itemize}
-		\item Access to ITS services and applications should not be prevented to legitimate users by malicious activity. 
+		\item Access to the PKI services should not be prevented to legitimate vehicles by malicious activity. 
 	\end{itemize}
 \end{itemize}
 
@@ -78,6 +91,6 @@ This work addresses the problem of designing and implementing a vehicular PKI so
 \section{Thesis Outline}
 \label{section:outline}
 
-The remainder of this report is organized as follows:
+The remainder of this report is organized as follows: Chapter \ref{related_work} provides an overview of the state-of-the-art regarding the technologies and mechanisms used to manage the identity of vehicles during V2X communications. Chapter \ref{chapter:implementation} refers to the architecture and implementation of the solution to achieve the goals previously described. In this chapter we first invite the reader to understand from a high level what are the main system components, the goal of each individual component and how they work together to form the solution. Then we provide details about the implementation of such components, explaining the main technologies and mechanisms behind them. Chapter \ref{chapter:results} provided an experimental evaluation of the implemented system. Here we display the performance tests done to the solution and describe the security properties achieved. Finally, \ref{chapter:conclusions} concludes this document by summarizing the work, describing the achieved goals and suggesting future work to improve the solution.
 
 

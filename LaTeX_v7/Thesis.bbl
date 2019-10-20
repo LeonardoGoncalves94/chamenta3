@@ -1,4 +1,4 @@
-\begin{thebibliography}{29}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -44,6 +44,34 @@ Intelligent transport systems (its); security; security header and certificate
 \newblock
   \url{http://www.etsi.org/deliver/etsi_ts/103000_103099/103097/01.02.01_60/ts_103097v010201p.pdf},
   2015.
+
+\bibitem[Vol()]{Volkswagen}
+Volkswagen group assumes pioneering role in rapid road safety improvement.
+\newblock
+  \url{https://www.volkswagen-newsroom.com/en/press-releases/volkswagen-group-assumes-pioneering-role-in-rapid-road-safety-improvement-541}.
+
+\bibitem[5ga({\natexlab{a}})]{5gaa1}
+An assessment of lte-v2x (pc5) and 802.11p direct communications technologies
+  for improved road safety in the eu.
+\newblock
+  \url{https://5gaa.org/wp-content/uploads/2017/12/5GAA-Road-safety-FINAL2017-12-05.pdf},
+  {\natexlab{a}}.
+
+\bibitem[5ga({\natexlab{b}})]{5gaa2}
+White paper on its spectrum utilization in the asia pacific region.
+\newblock
+  \url{https://5gaa.org/wp-content/uploads/2018/07/5GAA_WhitePaper_ITS-spectrum-utilization-in-the-Asia-Pacific-Region_FINAL_160718docx.pdf},
+  {\natexlab{b}}.
+
+\bibitem[5ga({\natexlab{c}})]{5gaa3}
+White paper on its spectrum utilization in the asia pacific region.
+\newblock \url{C-V2X contributes to safer roads for everyone: 5GAA live demo
+  event in Berlin/}, {\natexlab{c}}.
+
+\bibitem[Rep()]{Report}
+The v2x (vehicle-to-everything) communications ecosystem: 2019 – 2030 –
+  opportunities, challenges, strategies & forecasts.
+\newblock \url{http://www.snstelecom.com/v2x/}.
 
 \bibitem[Bi{\ss}meyer et~al.(2011)Bi{\ss}meyer, St{\"u}bing, Schoch, G{\"o}tz,
   Stotz, and Lonc]{generic_eu}
@@ -176,6 +204,10 @@ Intelligent transport systems (its); application object identifier (its-aid);
 
 \bibitem[jme()]{jmeter}
 Apache jmeter web page.
+\newblock \url{https://jmeter.apache.org/}.
+
+\bibitem[thr()]{throughput}
+Apache jmeter documentation.
 \newblock \url{https://jmeter.apache.org/}.
 
 \bibitem[ins()]{instrumentation}

@@ -1,29 +1,37 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                      %
-%     File: Thesis_Conclusions.tex                                     %
-%     Tex Master: Thesis.tex                                           %
-%                                                                      %
-%     Author: Andre C. Marta                                           %
-%     Last modified :  2 Jul 2015                                      %
-%                                                                      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \chapter{Conclusions}
 \label{chapter:conclusions}
+In this thesis we presented a solution for a system that incorporates V2X communications, a vehicular PKI and a RA. Next, we summarize our main achievements and discuss some future work.
 
-Insert your chapter material here...
+\section{Achievements}
+\label{section:achievements}
+In the work, we developed a V2X ecosystem which is compatible with the most recent standardization efforts done by ETSI. Starting with the PKI Manager containing the vehicular PKI and the RA Service, which vehicles to interact with the PKI in conformance with the standardized certificate request formats. Going to the Vehicle Manager representing the role of a vehicle manufacturer, generating client vehicles an allowing V2X communication within its functionalities.
+
+The developed system achieves a first approach to identity management of the vehicles on the road while preserving their privacy. The PKI Manager provides a way of analyzing the necessary certificates and messages, allowing the measurement of the size of such data structures and the impact that they might have on the vehicles who store them. The Vehicle Manager provides a method of seeing the V2X communications in action, allowing us to analize the privacy of the communication by looking at the received and sent messages for each participant vehicle.
+
+Our contribution with the RA Service manages to improve the Vehicle to PKI interaction by serving as a proxy capable of configuring new vehicles and authorizing them for future communications. According to the results, the RA Service also manages to improve the performance of the vehicle authorization process as a whole.
+
+In the end the results from the performed tests are as expected. Regarding the security, the used technologies and protocols follow the commonly recommended security practices. However, the security of the vehicle configuration, which represents the first interaction between the Vehicle Manager and PKI Manager, could be further improved as of now it only depends on the SSL protocol. The privacy of V2X communications as an integral part of the system's security cannot be optimized by choosing a fixed strategy, care must be taken in order to understand the vehicle's routines and finding a compromise between the privacy its associated overheads.
+
+The performance of the PKI Manager is also something to take into consideration. Overall the results are acceptable considering the complexity of the operations. However, when increasing the work load on the server by increasing the number of concurrent users, the operations started to take considerable more time to be performed and in some cases errors where introduced. While this is problem for this particular proof of concept system, it can be easily corrected by introducing a distributed infrastructure with several machines to share the work load. In a real life scenario the scalability of the system assumes a much more impactful role considering the vast number of existing vehicles, and the number of certificate requests done by each vehicle in order to participate in V2X communications. We think that our contribution with the introduction of the RA Service is able to improve the interaction of the vehicles with the PKI in order to request such certificates and also increase the performance of the vehicle's authorization process by aggregating the requests and only validation the enrolment on the first authorization.
+
 
 
 % ----------------------------------------------------------------------
-\section{Achievements}
-\label{section:achievements}
 
-The major achievements of the present work...
 
 
 % ----------------------------------------------------------------------
 \section{Future Work}
 \label{section:future}
 
-A few ideas for future work...
+During the development of this thesis some of the initially panned features could not be implemented due to the lack of time. In this section we review the main improvements to our V2X system that can be considered for future work. We start by the PKI Manager then move to the Vehicle Manager.
+
+As explained in Chapter \ref{prob}, one of out first objectives with this work was to extend mPKI, Multicert's production PKI, to issue the vehicular and CA certificates needed for V2X. This feature would be achieved through the usage of our V2X Library. However, due to the lack of time we decided not to do so and instead develop a demo PKI, the PKI Manager. Integrating with mPKI would give our system a more realistic approach in the interaction between vehicles and the PKI, allowing us to better understand the vehicular certificate issuing through our RA Service in a real case scenario. 
+
+Additional to the PKI Manager derive from this main limitation. The PKI Manager was developed with the purpose of demonstration, as such it only supports the most basic PKI operations of issuing certificates for the CAs and vehicles. The future work considered for this component is to add support for the renovation of CA certificates and the revocation of CA certificates and vehicle enrollment credentials through a CRL or OCSP mechanism. Such features are essential in a system that depends on identity management. Therefore, their implementation would approximate our PKI Manager to a production PKI in terms of functionality. We can also consider adding support for deleting certificates, keys and CAs through the backoffice platform. This feature would improve the testability of the system since it would be possible to create and delete a PKI just using the backoffic application.
+
+The auditing of the RA service can be improved in the future by implementing application logs and introducing non-repudiation as a security feature by storing the vehicle's signed certificates requests in the database. Such features are of great importance in a real system because they allow the detection of security breaches, assessment of damages and aid in the recovery process. 
+
+Regarding the Vehicle Manager, the future improvements revolve around making the application more useful in terms of understanding the overheads of V2X in a more realistic way. To achieve this, the execution of the V2X communications within the Vehicle Manager would receive as input the output of the network and traffic simulators presented in Section \ref{simulators}. Such improvements would allow us to estimate the network latency associated to the communication as well as the effect of cooperative messages in traffic management and safety. 
+
 

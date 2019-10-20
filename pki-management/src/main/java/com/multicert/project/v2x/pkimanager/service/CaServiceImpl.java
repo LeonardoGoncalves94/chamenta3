@@ -9,6 +9,7 @@ import java.util.List;
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.multicert.project.v2x.pkimanager.model.CA;
@@ -45,6 +46,8 @@ public class CaServiceImpl implements CaService {
 	private EnrollCredentialService enrollCredentialService;
 	@Autowired
 	private CertManagementService CAcertService;
+	@Value("${authorization.test.on}")
+	private Boolean testMode;
 	
 	public void saveOrUpdateCaData(CA ca){
 
@@ -208,8 +211,12 @@ public class CaServiceImpl implements CaService {
 		
 		try {
 			byte[] ecId = v2xService.getEnrollmentCertId(dataGenerator, authorizationValidation); //gets the signerID of the enrollment credential that signed the request
-			//EnrollmentCredential enrollCredential = enrollCredentialService.getCertById(ecId);
-			EnrollmentCredential enrollCredential = enrollCredentialService.getAllCertificates().get(0);//TODO: MUDA ISTO
+			EnrollmentCredential enrollCredential = enrollCredentialService.getCertById(ecId);
+			
+			if(testMode) {
+				enrollCredential = enrollCredentialService.getAllCertificates().get(0);//just get one enrollment credential
+
+			}
 			EtsiTs103097Certificate etsiCredential;
 			EtsiTs103097Certificate eaCertificate;
 			if(enrollCredential != null) //If the enrollment credential is in the database
