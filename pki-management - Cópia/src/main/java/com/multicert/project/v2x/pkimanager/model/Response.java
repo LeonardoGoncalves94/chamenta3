@@ -20,6 +20,27 @@ public class Response {
 	
 	/**
 	 * Constructor for the response
+	 * @param responseId is the number of allowed AT requests for the vehicle (only used in the enrollment response)
+	 * @param responseOrigin the name of the EA 
+	 * @param responseDestination the name of the vehicle
+	 * @param responseMessage a message for the vehicle that summarizes why the EA was not able to build an encoded enrollment response
+	 * @param responseEncoded if present contains the enrollment response for the vehicle, encoded Etsi103097Data
+	 * @param isSuccess, true if the responseEcoded is present
+	 */
+	public Response(int responseId, String responseOrigin, String responseDestination, String responseMessage, String responseEncoded, Boolean isSuccess) {
+		super();
+		this.responseOrigin = responseOrigin;
+		this.responseDestination = responseDestination;
+		this.responseMessage = responseMessage;
+		this.responseEncoded = responseEncoded;
+		this.isSuccess = isSuccess;
+		this.responseId = responseId;
+
+	}
+	
+	
+	/**
+	 * Constructor for the response
 	 * @param responseOrigin the name of the EA 
 	 * @param responseDestination the name of the vehicle
 	 * @param responseMessage a message for the vehicle that summarizes why the EA was not able to build an encoded enrollment response
@@ -42,7 +63,11 @@ public class Response {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "res_id")
-	private Long responseId;
+	private int responseId;
+	
+	@Column(name = "number_Ats")
+	@NotEmpty(message = "*Please set a number of allowed AT requests")
+	private int allowedAts;
 	
 	@Column(name = "res_origin")
 	@NotEmpty(message = "*Please provide a valid origin")
@@ -62,11 +87,11 @@ public class Response {
 	@Column(name = "res_succsess")
 	private Boolean isSuccess;
 
-	public Long getRequestId() {
+	public int getRequestId() {
 		return responseId;
 	}
 
-	public void setRequestId(Long requestId) {
+	public void setRequestId(int requestId) {
 		this.responseId = requestId;
 	}
 
@@ -102,11 +127,11 @@ public class Response {
 		this.responseMessage = responseMessage;
 	}
 
-	public Long getResponseId() {
+	public int getResponseId() {
 		return responseId;
 	}
 
-	public void setResponseId(Long responseId) {
+	public void setResponseId(int responseId) {
 		this.responseId = responseId;
 	}
 

@@ -14,9 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
-	@Value("${http.port}")
-	private int httpPort;
-	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
@@ -29,23 +26,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		return bCryptPasswordEncoder;
 	}
 	
-	@Bean
-	public EmbeddedServletContainerCustomizer customizeTomcatConnector() {
-		return new EmbeddedServletContainerCustomizer() {
-
-			@Override
-			public void customize(ConfigurableEmbeddedServletContainer container) {
-
-				if (container instanceof TomcatEmbeddedServletContainerFactory) {
-					TomcatEmbeddedServletContainerFactory containerFactory =
-					(TomcatEmbeddedServletContainerFactory) container;
-					Connector connector = new Connector(TomcatEmbeddedServletContainerFactory.DEFAULT_PROTOCOL);
-					connector.setPort(httpPort);
-					containerFactory.addAdditionalTomcatConnectors(connector);
-				}
-			}
-		};
-	}
-
-
 }

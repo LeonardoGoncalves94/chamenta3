@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,6 +93,18 @@ public class CaManagementController {
 		ra.addFlashAttribute("message", "Certification authority successfully added");
 		ra.addFlashAttribute("type", "success");
 			
+		return "redirect:/admin/ca";
+	}
+	
+
+	
+	@RequestMapping(value = "/admin/deleteca", method = RequestMethod.GET)
+	public String handleDeleteUser() {
+		
+	    //System.out.println(caId);
+	    //System.out.println("test");
+	    
+	    //caManagementService.deleteCa(caId);
 		return "redirect:/admin/ca";
 	}
 	

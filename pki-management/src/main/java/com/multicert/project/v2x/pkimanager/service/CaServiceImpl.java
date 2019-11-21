@@ -11,6 +11,7 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.multicert.project.v2x.pkimanager.model.CA;
 import com.multicert.project.v2x.pkimanager.model.CAresponse;
@@ -21,6 +22,9 @@ import com.multicert.project.v2x.pkimanager.model.Region;
 import com.multicert.project.v2x.pkimanager.model.Request;
 import com.multicert.project.v2x.pkimanager.model.Response;
 import com.multicert.project.v2x.pkimanager.repository.CaRepository;
+import com.multicert.project.v2x.pkimanager.repository.CertRepository;
+import com.multicert.project.v2x.pkimanager.repository.KeyRepository;
+import com.multicert.v2x.IdentifiedRegions.Regions;
 import com.multicert.v2x.cryptography.BadContentTypeException;
 import com.multicert.v2x.cryptography.DecryptionException;
 import com.multicert.v2x.cryptography.ImcompleteRequestException;
@@ -78,11 +82,6 @@ public class CaServiceImpl implements CaService {
 		return caRepository.findAll();
 	}
 
-	@Override
-	public void deleteCa(Long caId) {
-		caRepository.delete(caId);	
-	}
-	
 	
 	@Override
 	public List<CA> getValidSubCas(String caType) 
@@ -287,6 +286,15 @@ public class CaServiceImpl implements CaService {
 	public List<CA> getValidIssuers() {
 		return caRepository.findIssuers();
 	}
-
+	
+	@Override
+	@Transactional
+	public void deletePKI() {
+		caRepository.deleteKeys();	
+		caRepository.deleteCert_region();
+		caRepository.deleteCerts();
+		caRepository.deleteEnrollCredential();
+		caRepository.deleteCas();
+	}
 	
 }

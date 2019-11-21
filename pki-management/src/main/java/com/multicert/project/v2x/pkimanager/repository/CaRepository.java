@@ -3,6 +3,7 @@ package com.multicert.project.v2x.pkimanager.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -34,5 +35,25 @@ public interface CaRepository extends JpaRepository<CA, Long>{
 	 */
 	@Query(value = "SELECT * FROM ca INNER JOIN keys ON (ca.ca_id = keys.ca_id ) WHERE (keys.type = 'Signature')", nativeQuery = true)
 	public List<CA> findIssuers();
+	
+	@Modifying
+	@Query(value = "DELETE FROM ca", nativeQuery = true)
+	public void deleteCas();
+	
+	@Modifying
+	@Query(value = "DELETE FROM certificate_regions", nativeQuery = true)
+	public void deleteCert_region();
+	
+	@Modifying
+	@Query(value = "DELETE FROM certificate", nativeQuery = true)
+	public void deleteCerts();
+	
+	@Modifying
+	@Query(value = "DELETE FROM keys", nativeQuery = true)
+	public void deleteKeys();
+	
+	@Modifying
+	@Query(value = "DELETE FROM enrollment_credential", nativeQuery = true)
+	public void deleteEnrollCredential();
 	
 }

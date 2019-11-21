@@ -85,10 +85,10 @@ public class Vehicle implements Runnable {
 	private boolean reuseAuthorizationTicket;
 	
 	// number of ATs on this vehicle's pool
-	private int authorizationTicketNumber; 
+	private Long authorizationTicketNumber; 
 	
 	 // the index of the current AT to be used to sign a message
-	private int authorizationTicketIndex;
+	private long authorizationTicketIndex;
 	
 	// maximum number of message signed by the same AT
 	private int maxAuthorizationTicketUsage; 
@@ -151,19 +151,16 @@ public class Vehicle implements Runnable {
 
 	public Vehicle(String itsId, 
 			KeyPair canonicalPair, 
-			AlgorithmType vehicleAlg, 
-			int authorizationTicketNumber, 
+			AlgorithmType vehicleAlg,  
 			int maxAuthorizationTicketUsage, 
 			boolean reuseAuthorizationTicket) throws Exception {
 		this.itsId = itsId;
 		this.canonicalPair = canonicalPair;
 		this.vehicleAlg = vehicleAlg;
 		this.raApi = new RaControllerApi();
-		this.authorizationTicketNumber = authorizationTicketNumber;
+
 		this.maxAuthorizationTicketUsage = maxAuthorizationTicketUsage;
 		this.reuseAuthorizationTicket = reuseAuthorizationTicket;
-		
-		this.authorizationTicketIndex = authorizationTicketNumber - 1;
 		this.authorizationTicketCounter = maxAuthorizationTicketUsage;
 		
 		this.v2x = new V2XImpl();
@@ -177,7 +174,7 @@ public class Vehicle implements Runnable {
 			CAMtimer.scheduleAtFixedRate(task, 0, 500);
 			includeCertTimer.scheduleAtFixedRate(includeCert, 0, 1000000);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 	}
@@ -198,6 +195,7 @@ public class Vehicle implements Runnable {
 		
 		VehiclePojo vehicle = new VehiclePojo();
 		vehicle.setPublicKey(encodeHex(PubVerKey.getEncoded())); // encoded public verification key to string
+		System.out.println(itsId+"-PK: "+encodeHex(PubVerKey.getEncoded()));
 		vehicle.setVehicleId(itsId);
 		ConfigResponse response = raApi.configureVehicleUsingPOST(vehicle);
 		this.configured = response.getIsSuccess();
@@ -223,7 +221,7 @@ public class Vehicle implements Runnable {
 					+ "AA name: " + aaCert.getName() + " with certificate: " + v2x.genCertificateHashedId3(aaCert));
 			System.out.println();
 		} else {
-			System.out.println("[" + itsId + "] Could not configure vehicle");
+			System.out.println("[" + itsId + "] Could not configure vehicle: Response from RA - " +response.getResponseMessage());
 		}
 
 	}
@@ -245,6 +243,8 @@ public class Vehicle implements Runnable {
 		request.setRequestOrigin(itsId);
 		request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
 		
+		System.out.println(itsId+"-ER: "+encodeHex(etsiRequest.getEncoded()));
+		
 		Response response = raApi.requestEnrollmentCertUsingPOST(request); // send the request and receive the response
 
 		if (!response.getIsSuccess()) // If the EA could not build an Enrollment response for this vehicle
@@ -252,6 +252,9 @@ public class Vehicle implements Runnable {
 			System.out.println("Could not enroll vehicle, EA " + response.getResponseMessage());
 			return;
 		}
+		//get the number of allowed AT requests from the enrollment request
+		authorizationTicketNumber = response.getRequestId();
+		this.authorizationTicketIndex = authorizationTicketNumber - 1;
 
 		InnerEcResponse innerResponse = v2x.processEcResponse(decodeHex(response.getRequestEncoded()), eaCert,
 				secretKeyEA);
@@ -300,6 +303,8 @@ public class Vehicle implements Runnable {
 			request.setRequestDestination(aaCert.getName());
 			request.setRequestOrigin(itsId);
 			request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
+			
+			System.out.println(itsId+"-AR: "+encodeHex(etsiRequest.getEncoded()));
 		
 			Response response = raApi.requestAuthorizationTicketUsingPOST(request, verification);
 
@@ -391,7 +396,7 @@ public class Vehicle implements Runnable {
 			}
 		}
 		authorizationTicketCounter--;
-		currentAuthorizationData = authorizationTicketPool.get(authorizationTicketIndex);
+		currentAuthorizationData = authorizationTicketPool.get((int) authorizationTicketIndex);
 	}
 
 	/**

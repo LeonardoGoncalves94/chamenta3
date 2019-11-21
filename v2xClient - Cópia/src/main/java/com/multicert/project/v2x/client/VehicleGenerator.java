@@ -88,12 +88,10 @@ public class VehicleGenerator {
 					Properties prop = new Properties();
 				
 					prop.load(input);
-					
-					String aTNumberStr = prop.getProperty("authorization.ticket.number");
+				
 					String aTUsageStr = prop.getProperty("max.authorization.ticket.usage");
 					String ReuseATStr = prop.getProperty("reuse.authorization.ticket");
 					
-					aTNumber = Integer.parseInt(aTNumberStr);
 					aTUsage = Integer.parseInt(aTUsageStr);			
 					reuseAt = Boolean.parseBoolean(ReuseATStr);
 
@@ -102,7 +100,7 @@ public class VehicleGenerator {
 			    }
 				
 			
-			Vehicle vehicle = new Vehicle(itsId,itscanonicalPair,vehicleAlg,aTNumber,aTUsage,reuseAt);
+			Vehicle vehicle = new Vehicle(itsId,itscanonicalPair,vehicleAlg,aTUsage,reuseAt);
 			if(i == 0) {
 				vehicle.setSpecial(true);
 			}

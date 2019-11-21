@@ -3,11 +3,14 @@ package com.multicert.project.v2x.client.invoker;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
@@ -85,7 +88,7 @@ public class ApiClient {
     
     private HttpHeaders defaultHeaders = new HttpHeaders();
     
-    private String basePath = "http://localhost:8081";
+    private String basePath = "https://localhost:8443";
 
     private RestTemplate restTemplate;
 
@@ -560,11 +563,47 @@ public class ApiClient {
     /**
      * Build the RestTemplate used to make HTTP requests.
      * @return RestTemplate
-     */
+     
     protected RestTemplate buildRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         // This allows us to read the response more than once - Necessary for debugging.
         restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(restTemplate.getRequestFactory()));
+        return restTemplate;
+    }
+    */
+    
+    protected RestTemplate buildRestTemplate() {
+    	
+    	RestTemplate restTemplate = new RestTemplate();
+    	
+    	KeyStore keyStore;
+    	HttpComponentsClientHttpRequestFactory requestFactory = null; 
+    	
+    	try {
+    		keyStore = KeyStore.getInstance("jks");
+    		ClassPathResource classPathResoure = new ClassPathResource("nt-gateway.jks");
+    		InputStream inputstream = classPathResoure.getInputStream();
+    		keyStore.load(inputstream, "changeit".toCharArray());
+    		
+    		SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(new SSLContextBuilder()
+    				.loadTrustMaterial(null, new TrustSelfSignedStrategy())
+    				.loadKeyMaterial(keyStore, "changeit".toCharArray())
+    				.build(), NoopHostnameVerifier.INSTANCE);
+    		
+    		HttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory)
+    				.setMaxConnTotal(Integer.valueOf(500))
+    				.setMaxConnPerRoute(Integer.valueOf(500))
+    				.build();
+    		
+    		requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+    		requestFactory.setReadTimeout(Integer.valueOf(10000));
+    		requestFactory.setConnectTimeout(Integer.valueOf(10000));
+    		
+    		restTemplate.setRequestFactory(requestFactory);
+
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
         return restTemplate;
     }
     

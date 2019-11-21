@@ -30,8 +30,9 @@
 										<th>Country</th>	
 										<th>Type</th>
 										<th>Edit</th>	
+									
 									</tr>
-									<tr th:each="ca : ${cas}">
+									<tr th:each="ca,itemStat  : ${cas}">
 										<td th:text="${ca.caId}">ID</td>
 										<td th:text="${ca.caName}">Name</td>							
 										<td th:text="${ca.caCountry}">Country</td>
@@ -41,10 +42,9 @@
 												data-toggle="modal" data-target="#editCaDataModel" 
 												th:onClick = "|javascript:fillModal('${ca.caId}', '${ca.caName}', '${ca.caCountry}', '${ca.caType}');|">
 												<span class="glyphicon glyphicon-pencil"></span>
-											</button> <!-- Modal -->
-											
-
-										</td>							
+											</button> <!-- Modal -->							
+										</td>		
+														
 									</tr>
 								</table>
 									
@@ -100,9 +100,20 @@
 
 											</div>
 										</div>
+										
+										<div> 
+										
 										<a href="#" data-toggle="modal"
 											data-target="#addCaDataModel" class="btn btn-default"
 											id="addCa">Add CA Data</a>
+										
+										 <a class="btn btn-danger" style="margin-left: 60px;" th:href="@{/admin/deleteca}">
+        									<span>Delete PKI</span>
+   										 </a>
+															
+											
+										</div>
+										
 									</div>
 						</div>
 

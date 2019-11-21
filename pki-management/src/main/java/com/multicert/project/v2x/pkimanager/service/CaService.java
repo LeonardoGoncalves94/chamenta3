@@ -21,9 +21,6 @@ public interface CaService {
 		
 	public List<CA> getAllCas();
 	
-	public void deleteCa(Long caId);
-	
-	
 	/**
 	 * Method that gets the  valid RootCA (has keys and certificate associated)
 	 * @return RootCA, if the CA exists and is ready, null otherwise
@@ -57,6 +54,8 @@ public interface CaService {
 	 * @return true if the CA is ready, false if not
 	 */
 	public boolean isReady(String caName);
+	
+	public void deletePKI();
 	
 	/**
 	 * Method that validates an enrollment request.

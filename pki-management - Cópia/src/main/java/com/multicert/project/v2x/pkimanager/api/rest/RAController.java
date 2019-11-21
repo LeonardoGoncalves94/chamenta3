@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.multicert.project.v2x.pkimanager.model.CAresponse;
 import com.multicert.project.v2x.pkimanager.model.ConfigResponse;
 import com.multicert.project.v2x.pkimanager.model.Request;
 import com.multicert.project.v2x.pkimanager.model.Response;
@@ -61,42 +62,47 @@ public class RAController {
 	    public Response requestEnrollmentCert(@RequestBody Request ecRequest,
 	                                 HttpServletRequest request, HttpServletResponse response) throws Exception{
 	    	
-	    	byte[] encodedResponse = null;
+	    	CAresponse caResponse = null;
 	    	
 	    	try {
 	    		
-	    		encodedResponse = raService.verifySource(ecRequest, true, false).getEncoded();	   
+	    		caResponse = raService.verifySource(ecRequest, true);   
 	    		
 	    		
 			} catch (Exception e) { //If the CA was not able to build an enrollment response (e.g can't decrypt the shared key from the request and therefore can't encrypt a response)
 				if(e instanceof IncorrectRecipientException) {
 					e.printStackTrace();
-			    	return raService.genResponse(ecRequest, null, "Wrong recipient, that CA can't receive the request", false);
+			    	return raService.genEnrollResponseDTO(ecRequest, null, "Wrong recipient, that CA can't receive the request", false);
 
 				}
 				if(e instanceof UnknownItsException) {
 					e.printStackTrace();
-			    	 return raService.genResponse(ecRequest, null, "Vehicle is unknown to the RA, please configure the vehicle first", false);
+			    	 return raService.genEnrollResponseDTO(ecRequest, null, "Vehicle is unknown to the RA, please configure the vehicle first", false);
 
 				}	
 				if(e instanceof DecryptionException) {
 					e.printStackTrace();
-			    	 return raService.genResponse(ecRequest, null, "Could not decryt request", false);
+			    	 return raService.genEnrollResponseDTO(ecRequest, null, "Could not decryt request", false);
 
 				}
 				
 				if(e instanceof BadContentTypeException) {
 					e.printStackTrace();
-			    	 return raService.genResponse(ecRequest, null, "Request is badly formed", false);
+			    	 return raService.genEnrollResponseDTO(ecRequest, null, "Request is badly formed", false);
 
 				}
 				
 				e.printStackTrace();
-				 return raService.genResponse(ecRequest, null, "Something went wrong", false);
+				 return raService.genEnrollResponseDTO(ecRequest, null, "Something went wrong", false);
 			}
 	    	
-	    	//If the CA was able to build an enrollment response (whether it contains an enrollment certificate or not)
-	    	return raService.genResponse(ecRequest, encodedResponse, "Success", true);
+	    	//If the CA was able to build an enrollment response
+	    	if(caResponse.isSuccess()) {
+	    		//contains EC
+	    		return raService.genEnrollResponseDTO(ecRequest, caResponse.getEncodedResponse(), "Success", true);
+	    	}else {
+	    		return raService.genEnrollResponseDTO(ecRequest, caResponse.getEncodedResponse(), "Failed", false);
+	    	}
 	    	
 	    }
 	    
@@ -106,47 +112,49 @@ public class RAController {
 	            produces = {"application/json"})
 	    @ResponseStatus(HttpStatus.CREATED)
 	    @ApiOperation(value = "Request an authorization ticket.", notes = " The request should contain an encoded authorizationRequest as defined in EtsiTs 102 041.")
-	    public Response requestAuthorizationTicket(@RequestBody Request atRequest,  @RequestParam Boolean requestVerification ,
+	    public Response requestAuthorizationTicket(@RequestBody Request atRequest, 
 	                                 HttpServletRequest request, HttpServletResponse response) throws Exception{
 	    	
-	    	byte[] encodedResponse = null;
+	    	CAresponse caResponse = null;
 	    	
 	    	try {
-	    		boolean reqVerification = requestVerification.booleanValue();
-	    		//boolean reqVerification = true;
-	    		encodedResponse = raService.verifySource(atRequest, false, reqVerification).getEncoded();	   
+	    		caResponse = raService.verifySource(atRequest, false);   
 	    		
 	    		
 			} catch (Exception e) { //If the CA was not able to build an enrollment response (e.g can't decrypt the shared key from the request and therefore can't encrypt a response)
 				if(e instanceof IncorrectRecipientException) {
 					e.printStackTrace();
-			    	return raService.genResponse(atRequest, null, "Wrong recipient, that CA can't receive the request", false);
+			    	return raService.genEnrollResponseDTO(atRequest, null, "Wrong recipient, that CA can't receive the request", false);
 
 				}
 				if(e instanceof UnknownItsException) {
 					e.printStackTrace();
-			    	 return raService.genResponse(atRequest, null, "Vehicle is unknown to the RA, please configure the vehicle first", false);
+			    	 return raService.genEnrollResponseDTO(atRequest, null, "Vehicle is unknown to the RA, please configure the vehicle first", false);
 
 				}	
 				if(e instanceof DecryptionException) {
 					e.printStackTrace();
-			    	 return raService.genResponse(atRequest, null, "Could not decryt request", false);
+			    	 return raService.genEnrollResponseDTO(atRequest, null, "Could not decryt request", false);
 
 				}
 				
 				if(e instanceof BadContentTypeException) {
 					e.printStackTrace();
-			    	 return raService.genResponse(atRequest, null, "Request is badly formed", false);
+			    	 return raService.genEnrollResponseDTO(atRequest, null, "Request is badly formed", false);
 
 				}
 				
 				e.printStackTrace();
-				 return raService.genResponse(atRequest, null, "Something went wrong", false);
+				 return raService.genEnrollResponseDTO(atRequest, null, "Something went wrong", false);
 			}
 	    	
-	    	//If the CA was able to build an enrollment response (whether it contains an authorization ticket or not)
-	    	return raService.genResponse(atRequest, encodedResponse, "Encoded Response sent", true);
-	    	
+	    	//If the CA was able to build an enrollment response 
+	    	if(caResponse.isSuccess()) {
+	    		//contains AT
+	    		return raService.genAuthResponseDTO(atRequest, caResponse.getEncodedResponse(), "Success", true);
+	    	}else {
+	    		return raService.genAuthResponseDTO(atRequest, caResponse.getEncodedResponse(), "Failed", false);
+	    	}  	
 	    }
 	
 	    

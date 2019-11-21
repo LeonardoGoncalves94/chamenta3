@@ -195,7 +195,6 @@ public class Vehicle implements Runnable {
 		
 		VehiclePojo vehicle = new VehiclePojo();
 		vehicle.setPublicKey(encodeHex(PubVerKey.getEncoded())); // encoded public verification key to string
-		System.out.println(itsId+"-PK: "+encodeHex(PubVerKey.getEncoded()));
 		vehicle.setVehicleId(itsId);
 		ConfigResponse response = raApi.configureVehicleUsingPOST(vehicle);
 		this.configured = response.getIsSuccess();
@@ -206,13 +205,8 @@ public class Vehicle implements Runnable {
 			eaCert = new EtsiTs103097Certificate(decodeHex(response.getEaCert()));
 			aaCert = new EtsiTs103097Certificate(decodeHex(response.getAaCert()));
 
-			SequenceOfCertificate certSequence = new SequenceOfCertificate(decodeHex(response.getTrustedAA())); // get
-																												// the
-																												// sequence
-																												// of
-																												// trusted
-																												// AA
-																												// certificates
+			SequenceOfCertificate certSequence = new SequenceOfCertificate(decodeHex(response.getTrustedAA())); // get the sequence of trusted AA certificates
+																											
 			EtsiTs103097Certificate[] certArray = certSequence.getCerts();
 			trustStore = v2x.genTrustStore(certArray); // store the AA certificates in a trustStore
 			System.out.println();
@@ -232,7 +226,6 @@ public class Vehicle implements Runnable {
 					"vehicle enrollment request denied, only enrolled vehicles can start the enrollment process");
 			return;
 		}
-		System.out.println("[" + itsId + "] enrolling to: " + eaCert.getName());
 		enrollVerificationKey = v2x.genKeyPair(vehicleAlg); // generate a new verification key pair
 		secretKeyEA = v2x.genSecretKey(SymmAlgorithm.AES_128_CCM); // generate a new symmetric key to share with the EA
 		EtsiTs103097Data etsiRequest = v2x.genEcRequest(itsId, canonicalPair, enrollVerificationKey, vehicleAlg, eaCert,
@@ -242,9 +235,7 @@ public class Vehicle implements Runnable {
 
 		request.setRequestOrigin(itsId);
 		request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
-		
-		System.out.println(itsId+"-ER: "+encodeHex(etsiRequest.getEncoded()));
-		
+			
 		Response response = raApi.requestEnrollmentCertUsingPOST(request); // send the request and receive the response
 
 		if (!response.getIsSuccess()) // If the EA could not build an Enrollment response for this vehicle
@@ -273,7 +264,7 @@ public class Vehicle implements Runnable {
 		enrollmentCredential = innerResponse.getCertificate();
 		this.enrolled = true;
 		System.out.println();
-		System.out.println("[" + itsId + "] Vehicle enrolled with success!" + newLine + "" + enrollmentCredential);
+		System.out.println("[" + itsId + "] Vehicle enrolled with success!");
 		System.out.println();
 		System.out.println();
 
@@ -303,9 +294,7 @@ public class Vehicle implements Runnable {
 			request.setRequestDestination(aaCert.getName());
 			request.setRequestOrigin(itsId);
 			request.setRequestEncoded(encodeHex(etsiRequest.getEncoded()));
-			
-			System.out.println(itsId+"-AR: "+encodeHex(etsiRequest.getEncoded()));
-		
+					
 			Response response = raApi.requestAuthorizationTicketUsingPOST(request, verification);
 
 			if (!response.getIsSuccess()) // If the AA could not build an Authorization response for this request

@@ -48,12 +48,15 @@ public class Response {
 
   @JsonProperty("responseId")
   private Long responseId = null;
-
+  
   @JsonProperty("responseMessage")
   private String responseMessage = null;
 
   @JsonProperty("responseOrigin")
   private String responseOrigin = null;
+  
+  @JsonProperty("allowedAts")
+  private Long allowedAts = null;
 
   public Response isSuccess(Boolean isSuccess) {
     this.isSuccess = isSuccess;
@@ -234,6 +237,24 @@ public class Response {
   public void setResponseOrigin(String responseOrigin) {
     this.responseOrigin = responseOrigin;
   }
+  
+  public Response responseAllowedAts(Long allowedAts) {
+        this.allowedAts = allowedAts;
+        return this;
+  }
+  
+  /**
+   * Get responseOrigin
+   * @return responseOrigin
+  **/
+  @ApiModelProperty(value = "")
+  public Long getallowedAts() {
+    return allowedAts;
+  }
+
+  public void setallowedAts(Long allowedAts) {
+    this.allowedAts = allowedAts;
+  }
 
 
   @Override
@@ -254,12 +275,13 @@ public class Response {
         Objects.equals(this.responseEncoded, response.responseEncoded) &&
         Objects.equals(this.responseId, response.responseId) &&
         Objects.equals(this.responseMessage, response.responseMessage) &&
-        Objects.equals(this.responseOrigin, response.responseOrigin);
+        Objects.equals(this.responseOrigin, response.responseOrigin) &&
+        Objects.equals(this.allowedAts, response.allowedAts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(isSuccess, requestDestination, requestEncoded, requestId, requestOrigin, responseDestination, responseEncoded, responseId, responseMessage, responseOrigin);
+    return Objects.hash(isSuccess, requestDestination, requestEncoded, requestId, requestOrigin, responseDestination, responseEncoded, responseId, responseMessage, responseOrigin, allowedAts);
   }
 
 
@@ -278,6 +300,7 @@ public class Response {
     sb.append("    responseId: ").append(toIndentedString(responseId)).append("\n");
     sb.append("    responseMessage: ").append(toIndentedString(responseMessage)).append("\n");
     sb.append("    responseOrigin: ").append(toIndentedString(responseOrigin)).append("\n");
+    sb.append("    allowedAts: ").append(toIndentedString(allowedAts)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -4,6 +4,7 @@ import java.security.PublicKey;
 import java.util.List;
 
 import com.multicert.project.v2x.pkimanager.model.CA;
+import com.multicert.project.v2x.pkimanager.model.CAresponse;
 import com.multicert.project.v2x.pkimanager.model.Region;
 import com.multicert.project.v2x.pkimanager.model.Request;
 import com.multicert.project.v2x.pkimanager.model.Response;
@@ -19,9 +20,6 @@ public interface CaService {
 	public CA getCaByName(String caName);
 		
 	public List<CA> getAllCas();
-	
-	public void deleteCa(Long caId);
-	
 	
 	/**
 	 * Method that gets the  valid RootCA (has keys and certificate associated)
@@ -57,6 +55,8 @@ public interface CaService {
 	 */
 	public boolean isReady(String caName);
 	
+	public void deleteCa(Long caId);
+	
 	/**
 	 * Method that validates an enrollment request.
 	 *
@@ -68,7 +68,7 @@ public interface CaService {
 	 * @throws IncorrectRecipientException 
 	 * @throws Exception 
 	 */
-	EtsiTs103097Data validateEcRequest(byte[] encodedEcRequest, String profile, PublicKey canonicalKey, String caName) throws IncorrectRecipientException, Exception;
+	CAresponse validateEcRequest(byte[] encodedEcRequest, String profile, PublicKey canonicalKey, String caName) throws IncorrectRecipientException, Exception;
 	
 	/**
 	 * Method that validates an authorization request.
@@ -80,7 +80,7 @@ public interface CaService {
 	 * @throws IncorrectRecipientException 
 	 * @throws Exception 
 	 */
-	EtsiTs103097Data validateAtRequest(byte[] encodedAtRequest, String profile, String caName, boolean requestVerification) throws IncorrectRecipientException, Exception;
+	CAresponse validateAtRequest(byte[] encodedAtRequest, String profile, String caName, boolean requestVerification) throws IncorrectRecipientException, Exception;
 
 
 
