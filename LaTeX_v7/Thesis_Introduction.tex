@@ -23,28 +23,22 @@ Although this basic approach allows for message authentication, care must be tak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivation}
 \label{section:motivation}
-V2X is rapiddly developing and has been recently gaining commercial acceptance with the networking tecnologies caputing the attention of vehicle manufacturers and regulators. There are two competing V2X networking tecnologies: The original WLAN-based IEEE 802.11p/DSRC (Dedicated Short Range Communications) standard, and the more recent 3GPP-defined cellular V2X (C-V2X) technology which will eventualy evolve to 5G.
+V2X is rapidly developing and has been recently gaining commercial acceptance with the networking technologies capturing the attention of vehicle manufacturers and regulators. There are two competing V2X networking technologies: The original WLAN-based IEEE 802.11p/DSRC (Dedicated Short Range Communications) standard, and the more recent 3GPP-defined \textit{Cellular Vehicle-to-Everything} (C-V2X) technology which will eventually evolve to 5G.
 
-Motivated by road safety and fuel efficiency, Toyota and General Motors have already equipped some of their vehicles with 802.11p V2X in Japan and North America. Futhermore, the Volkswagen group plans to deploy the 802.11p V2X in volume models from 2019 onwards, claiming that this standard has been comprehensivly tested for vehicle communications \cite{Volkswagen}. 
+Motivated by road safety and fuel efficiency, Toyota and General Motors have already equipped some of their vehicles with 802.11p V2X in Japan and North America. Furthermore, the Volkswagen group plans to deploy the 802.11p V2X in volume models from 2019 onwards, claiming that this standard has been comprehensively tested for vehicle communications \cite{Volkswagen}. 
 
-On the other side of the spectrum, recent studies and analysis \cite{5gaa1} \cite{5gaa2} performed by the 5G Automotive Association (5GAA), the organization supporting and developing C-V2X tecnology, indicate that cellular-based C-V2X in direct communications is ahead of the 802.11p standard in terms of performance, range, reliability and others. In 2019 5GAA performed a live demo event in Berlin \cite{5gaa3} demonstrating some of the V2X use cases: traffic management solutions, real time emergency alerts, live data capture and transmission, combined network and direct solution and even remote-operated driving.
+On the other side of the spectrum, recent studies and analysis \cite{5gaa1} \cite{5gaa2} performed by the 5G Automotive Association (5GAA), the organization supporting and developing C-V2X technology, indicate that cellular-based C-V2X in direct communications is ahead of the 802.11p standard in terms of performance, range, reliability and others. In 2019 5GAA performed a live demo event in Berlin \cite{5gaa3} demonstrating some of the V2X use cases: traffic management solutions, real time emergency alerts, live data capture and transmission, combined network and direct solution and even remote-operated driving.
 
-There is an extensive amount of literature regarding the the WLAN versus C-V2X debate. However, we will not be going into detail on these works bcause they approach networking and other aspects of the V2X which are behond scope of this thesis.
+There is an extensive amount of literature regarding the WLAN versus C-V2X debate. However, we will not be going into detail on these works because they approach networking and other aspects of the V2X which are beyond scope of this thesis.
 
-Regardless of the ongoing debate, regulation uncertanties, and other challenges, the spending in V2X communication technlogy is expeteced to increase more than 170\% between the years of 2019 and 2022. Furthermore, this technology is expected to reduce the number of road accidents by 80\%, easy traffic congestion by 20\% and reduce fuel consumption and emissions by 10\% to 40\%. These findings are part of the are part of SNS Telecom \& IT’s latest research report on V2X communications technology \cite{Report}, which is based on large scale pilos, projects and early commercial rollouts. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Topic Overview}
-\label{contributions}
-The proposed solution consists of a vehicular PKI and a demo simulator to evaluate its correctness. Our solution will extend mPKI, a currently operating traditional PKI which is the product of Multicert. In order to extend mPKI, we will start by developing a Java package that implements the new certificate formats, V2X messages and certificate requests. The next step involves integrating such package in mPKI to allow it to issue the certificates for the end-entities (ITS-S) and CAs. The final step is to develop a simulator to communicate with the PKI. In this phase we will develop a Java project that will simulate the end-entities and the interaction between such end-entities (V2X) and the vehicular PKI. 
-
-
+Regardless of the ongoing debate, regulation uncertainties, and other challenges, the spending in V2X communication technology is expected to increase more than 170\% between the years of 2019 and 2022. Furthermore, this technology is expected to reduce the number of road accidents by 80\%, easy traffic congestion by 20\% and reduce fuel consumption and emissions by 10\% to 40\%. These findings are part of the SNS Telecom \& IT’s latest research report on V2X communications technology \cite{Report}, which is based on large scale pilots, projects and early commercial roll-outs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Objectives}
 \label{goals}
 
-This work addresses the problem of designing and implementing a vehicular PKI solution that allows for V2X message authentication while preserving the privacy of its users. This report will specify the system to produce, a vehicular PKI that supports the enrollment of new ITS-S, provisioning of valid certificates to its users and the removal of compromised stations or PKI entities. The goal of this work is to implement a PKI solution based on the most recent European standards and follows the following requirements.
+This work addresses the problem of designing and implementing a V2X system that allows the authentication of vehicular communications while preserving the privacy of its users. This thesis will specify the system to produce, a V2X ecosystem comprising a vehicular PKI and user vehicles which are able to enroll in the PKI and use valid certificates to authenticate V2X messages. The goal of this work is to implement such system based on the most recent European standards and according to the 
+following requirements.
 
 \begin{itemize}
 	\item Privacy
@@ -87,10 +81,16 @@ This work addresses the problem of designing and implementing a vehicular PKI so
 \end{itemize}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Contributions}
+\label{contributions}
+The proposed solution consists of a vehicular PKI and a demo simulator to evaluate its correctness. Our solution will extend mPKI, a currently operating traditional PKI which is the product of Multicert. In order to extend mPKI, we will start by developing a Java package that implements the new certificate formats, V2X messages and certificate requests. The next step involves integrating such package in mPKI to allow it to issue the certificates for the end-entities (ITS-S) and CAs. The final step is to develop a simulator to communicate with the PKI. In this phase we will develop a Java project that will simulate the vehicles and the interaction between such end-entities (V2X) and the vehicular PKI. The result is a prototype V2X system that allows us to create a vehicular PKI, see the client vehicles requesting certificates, and later study how the privacy of such vehicles is affected by the V2X communication secured by the certificates. We performed an evaluation to the prototype system where we focused on the performance of the vehicle to PKI interaction, the resource usage of the V2X communications, and the privacy of the vehicles. Overall, the results were satisfactory considering the complexity of the operations, and we managed to improve the vehicle certificate request process by introducing a new protocol option.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Thesis Outline}
 \label{section:outline}
 
-The remainder of this report is organized as follows: Chapter \ref{related_work} provides an overview of the state-of-the-art regarding the technologies and mechanisms used to manage the identity of vehicles during V2X communications. Chapter \ref{chapter:implementation} refers to the architecture and implementation of the solution to achieve the goals previously described. In this chapter we first invite the reader to understand from a high level what are the main system components, the goal of each individual component and how they work together to form the solution. Then we provide details about the implementation of such components, explaining the main technologies and mechanisms behind them. Chapter \ref{chapter:results} provided an experimental evaluation of the implemented system. Here we display the performance tests done to the solution and describe the security properties achieved. Finally, \ref{chapter:conclusions} concludes this document by summarizing the work, describing the achieved goals and suggesting future work to improve the solution.
-
-
+The remainder of this thesis is organized as follows: Chapter \ref{related_work} provides an overview of the state-of-the-art regarding the technologies and mechanisms used to manage the identity of vehicles during V2X communications. Chapter \ref{chapter:implementation} refers to the architecture and implementation of the solution to achieve the goals previously described. In this chapter we first invite the reader to understand from a high level what are the main system components, the goal of each individual component and how they work together to form the V2X ecosystem. Then we provide details about the implementation of such components, explaining the main technologies and mechanisms behind them. Chapter \ref{chapter:results} provides an experimental evaluation of the implemented system. Here we display the performance tests done to the solution and describe the security properties achieved. Finally, Chapter \ref{chapter:conclusions} concludes this document by summarizing the work, describing the achieved goals and suggesting future work to improve the solution.

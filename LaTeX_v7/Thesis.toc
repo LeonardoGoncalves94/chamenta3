@@ -1,13 +1,13 @@
 \babel@toc {english}{}
-\contentsline {section}{Acknowledgments}{v}{section*.1}
-\contentsline {section}{Resumo}{vii}{section*.2}
-\contentsline {section}{Abstract}{ix}{section*.3}
-\contentsline {section}{List of Tables}{xv}{section*.5}
-\contentsline {section}{List of Figures}{xvii}{section*.7}
+\contentsline {section}{Acknowledgments}{iii}{section*.1}
+\contentsline {section}{Resumo}{v}{section*.2}
+\contentsline {section}{Abstract}{vii}{section*.3}
+\contentsline {section}{List of Tables}{xiii}{section*.5}
+\contentsline {section}{List of Figures}{xv}{section*.7}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}
-\contentsline {section}{\numberline {1.2}Topic Overview}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Objectives}{3}{section.1.3}
+\contentsline {section}{\numberline {1.2}Objectives}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Contributions}{4}{section.1.3}
 \contentsline {section}{\numberline {1.4}Thesis Outline}{4}{section.1.4}
 \contentsline {chapter}{\numberline {2}State of the Art}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Overview of the European Vehicular PKI Solution}{5}{section.2.1}
@@ -25,91 +25,91 @@
 \contentsline {subsection}{\numberline {2.2.4}Misbehavior Reporting}{12}{subsection.2.2.4}
 \contentsline {subsection}{\numberline {2.2.5}Global Misbehavior Detecting and Revocation}{12}{subsection.2.2.5}
 \contentsline {section}{\numberline {2.3}Secured Message and Certificate Formats Standard}{13}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Secured Messages Formats}{14}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.1}Secured Messages Formats}{13}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Secure Messages Profiles}{14}{subsection.2.3.2}
 \contentsline {subsubsection}{Security Profile for Cooperative Awareness Messages}{15}{section*.9}
 \contentsline {subsubsection}{Security Profile for Decentralized Environmental Notification Messages}{15}{section*.10}
 \contentsline {subsection}{\numberline {2.3.3}Certificate Formats}{16}{subsection.2.3.3}
 \contentsline {subsection}{\numberline {2.3.4}Signed Message Validity Checks}{16}{subsection.2.3.4}
-\contentsline {section}{\numberline {2.4}Overview of the ITS Simulators}{16}{section.2.4}
+\contentsline {section}{\numberline {2.4}Overview of the ITS Simulators}{17}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Vehicle Mobility and Networking Simulators}{17}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Integrated ITS Simulators}{17}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.2}Integrated ITS Simulators}{18}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}Discussion}{18}{section.2.5}
-\contentsline {section}{\numberline {2.6}Summary}{18}{section.2.6}
-\contentsline {chapter}{\numberline {3}Proposed Solution}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Overview of the System Architecture}{19}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}System Components}{19}{subsection.3.1.1}
-\contentsline {paragraph}{V2X Library}{19}{section*.11}
-\contentsline {paragraph}{PKI Manager}{19}{section*.12}
-\contentsline {paragraph}{RA Service}{20}{section*.13}
-\contentsline {paragraph}{Vehicle Manager}{20}{section*.14}
-\contentsline {subsection}{\numberline {3.1.2}Communication}{21}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Protocol}{21}{subsection.3.1.3}
-\contentsline {subsubsection}{Vehicle Configuration}{21}{section*.15}
-\contentsline {subsubsection}{Vehicle Enrollment}{22}{section*.16}
-\contentsline {subsubsection}{Vehicle Authorization}{23}{section*.17}
-\contentsline {section}{\numberline {3.2}V2X Library}{25}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Detailed Architecture}{25}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}The Data Structures}{26}{subsection.3.2.2}
-\contentsline {subsubsection}{COER Structures}{26}{section*.18}
-\contentsline {paragraph}{COERSequence}{27}{section*.19}
-\contentsline {paragraph}{COERSequence Encoding}{28}{section*.20}
-\contentsline {paragraph}{COERSequence Decoding}{29}{section*.21}
-\contentsline {paragraph}{COERChoice}{29}{section*.22}
-\contentsline {paragraph}{COERChoice Encoding}{30}{section*.23}
-\contentsline {paragraph}{COERChoice Decoding}{30}{section*.24}
-\contentsline {subsubsection}{Certificate Requests}{31}{section*.25}
-\contentsline {paragraph}{Enrollment Request}{31}{section*.26}
-\contentsline {paragraph}{Enrollment Response}{32}{section*.27}
-\contentsline {paragraph}{Authorization Request}{33}{section*.28}
-\contentsline {paragraph}{Authorization Validation Request and Response}{34}{section*.29}
-\contentsline {paragraph}{Authorization Response}{35}{section*.30}
-\contentsline {subsection}{\numberline {3.2.3}The Cryptographic Tools}{35}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}PKI Manager}{36}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}The Technology}{37}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}The Database}{38}{subsection.3.3.2}
-\contentsline {paragraph}{The database technology}{38}{section*.31}
-\contentsline {paragraph}{The database design}{38}{section*.32}
-\contentsline {subsection}{\numberline {3.3.3}The Backoffice}{39}{subsection.3.3.3}
-\contentsline {paragraph}{CA Management}{40}{section*.33}
-\contentsline {paragraph}{Key Management}{41}{section*.34}
-\contentsline {paragraph}{Certificate Management}{41}{section*.35}
-\contentsline {section}{\numberline {3.4}RA Service}{42}{section.3.4}
-\contentsline {section}{\numberline {3.5}Vehicle Configuration}{43}{section.3.5}
-\contentsline {subsubsection}{The request}{43}{section*.36}
-\contentsline {subsubsection}{The end-point}{44}{section*.37}
-\contentsline {subsubsection}{The response}{44}{section*.38}
-\contentsline {subsection}{\numberline {3.5.1}Vehicle Enrollment}{45}{subsection.3.5.1}
-\contentsline {subsubsection}{The request}{45}{section*.39}
-\contentsline {subsubsection}{The end-point}{45}{section*.40}
-\contentsline {subsubsection}{The response}{47}{section*.41}
-\contentsline {subsection}{\numberline {3.5.2}Vehicle Authorization}{47}{subsection.3.5.2}
-\contentsline {subsubsection}{The request}{47}{section*.42}
-\contentsline {subsubsection}{The end-point}{48}{section*.43}
-\contentsline {subsubsection}{The response}{49}{section*.44}
-\contentsline {section}{\numberline {3.6}Vehicle Manager}{50}{section.3.6}
-\contentsline {section}{\numberline {3.7}Summary}{52}{section.3.7}
-\contentsline {chapter}{\numberline {4}Evaluation}{53}{chapter.4}
-\contentsline {section}{\numberline {4.1}Performance}{53}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}PKI Manager}{54}{subsection.4.1.1}
-\contentsline {subsubsection}{Backoffice Application}{54}{section*.45}
-\contentsline {subsubsection}{RA Service}{55}{section*.46}
-\contentsline {paragraph}{Latency}{55}{section*.47}
-\contentsline {paragraph}{Throughput}{57}{section*.48}
-\contentsline {subsection}{\numberline {4.1.2}Vehicle Manager}{58}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Security}{59}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Confidentiality}{60}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Data Authenticity}{60}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Authorization and Authentication}{60}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Privacy}{61}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}V2X Scenarios}{61}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Privacy Levels}{61}{subsection.4.3.2}
-\contentsline {subsubsection}{Low Privacy}{62}{section*.49}
-\contentsline {subsubsection}{Medium Privacy}{62}{section*.50}
-\contentsline {subsubsection}{High Privacy}{63}{section*.51}
-\contentsline {subsection}{\numberline {4.3.3}Discussion}{63}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Sumary}{64}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusions}{65}{chapter.5}
-\contentsline {section}{\numberline {5.1}Achievements}{65}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{66}{section.5.2}
-\contentsline {chapter}{Bibliography}{69}{section*.52}
+\contentsline {section}{\numberline {2.6}Summary}{19}{section.2.6}
+\contentsline {chapter}{\numberline {3}Proposed Solution}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview of the System Architecture}{21}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}System Components}{21}{subsection.3.1.1}
+\contentsline {paragraph}{V2X Library}{21}{section*.11}
+\contentsline {paragraph}{PKI Manager}{21}{section*.12}
+\contentsline {paragraph}{RA Service}{22}{section*.13}
+\contentsline {paragraph}{Vehicle Manager}{22}{section*.14}
+\contentsline {subsection}{\numberline {3.1.2}Communication}{23}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Protocol}{23}{subsection.3.1.3}
+\contentsline {subsubsection}{Vehicle Configuration}{23}{section*.15}
+\contentsline {subsubsection}{Vehicle Enrollment}{24}{section*.16}
+\contentsline {subsubsection}{Vehicle Authorization}{25}{section*.17}
+\contentsline {section}{\numberline {3.2}V2X Library}{27}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Detailed Architecture}{27}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}The Data Structures}{28}{subsection.3.2.2}
+\contentsline {subsubsection}{COER Structures}{28}{section*.18}
+\contentsline {paragraph}{COERSequence}{29}{section*.19}
+\contentsline {paragraph}{COERSequence Encoding}{30}{section*.20}
+\contentsline {paragraph}{COERSequence Decoding}{31}{section*.21}
+\contentsline {paragraph}{COERChoice}{31}{section*.22}
+\contentsline {paragraph}{COERChoice Encoding}{32}{section*.23}
+\contentsline {paragraph}{COERChoice Decoding}{32}{section*.24}
+\contentsline {subsubsection}{Certificate Requests}{33}{section*.25}
+\contentsline {paragraph}{Enrollment Request}{33}{section*.26}
+\contentsline {paragraph}{Enrollment Response}{34}{section*.27}
+\contentsline {paragraph}{Authorization Request}{35}{section*.28}
+\contentsline {paragraph}{Authorization Validation Request and Response}{36}{section*.29}
+\contentsline {paragraph}{Authorization Response}{37}{section*.30}
+\contentsline {subsection}{\numberline {3.2.3}The Cryptographic Tools}{37}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}PKI Manager}{38}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}The Technology}{39}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}The Database}{40}{subsection.3.3.2}
+\contentsline {paragraph}{The database technology}{40}{section*.31}
+\contentsline {paragraph}{The database design}{40}{section*.32}
+\contentsline {subsection}{\numberline {3.3.3}The Backoffice}{41}{subsection.3.3.3}
+\contentsline {paragraph}{CA Management}{42}{section*.33}
+\contentsline {paragraph}{Key Management}{43}{section*.34}
+\contentsline {paragraph}{Certificate Management}{43}{section*.35}
+\contentsline {section}{\numberline {3.4}RA Service}{44}{section.3.4}
+\contentsline {section}{\numberline {3.5}Vehicle Configuration}{45}{section.3.5}
+\contentsline {subsubsection}{The request}{45}{section*.36}
+\contentsline {subsubsection}{The end-point}{46}{section*.37}
+\contentsline {subsubsection}{The response}{46}{section*.38}
+\contentsline {subsection}{\numberline {3.5.1}Vehicle Enrollment}{47}{subsection.3.5.1}
+\contentsline {subsubsection}{The request}{47}{section*.39}
+\contentsline {subsubsection}{The end-point}{47}{section*.40}
+\contentsline {subsubsection}{The response}{49}{section*.41}
+\contentsline {subsection}{\numberline {3.5.2}Vehicle Authorization}{49}{subsection.3.5.2}
+\contentsline {subsubsection}{The request}{49}{section*.42}
+\contentsline {subsubsection}{The end-point}{50}{section*.43}
+\contentsline {subsubsection}{The response}{51}{section*.44}
+\contentsline {section}{\numberline {3.6}Vehicle Manager}{52}{section.3.6}
+\contentsline {section}{\numberline {3.7}Summary}{54}{section.3.7}
+\contentsline {chapter}{\numberline {4}Evaluation}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Performance}{55}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}PKI Manager}{56}{subsection.4.1.1}
+\contentsline {subsubsection}{Backoffice Application}{56}{section*.45}
+\contentsline {subsubsection}{RA Service}{57}{section*.46}
+\contentsline {paragraph}{Latency}{57}{section*.47}
+\contentsline {paragraph}{Throughput}{59}{section*.48}
+\contentsline {subsection}{\numberline {4.1.2}Vehicle Manager}{60}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Security}{61}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Confidentiality}{62}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Data Authenticity}{62}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Authorization and Authentication}{62}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Privacy}{63}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}V2X Scenarios}{63}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Privacy Levels}{63}{subsection.4.3.2}
+\contentsline {subsubsection}{Low Privacy}{64}{section*.49}
+\contentsline {subsubsection}{Medium Privacy}{64}{section*.50}
+\contentsline {subsubsection}{High Privacy}{65}{section*.51}
+\contentsline {subsection}{\numberline {4.3.3}Discussion}{65}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Sumary}{66}{section.4.4}
+\contentsline {chapter}{\numberline {5}Conclusions}{67}{chapter.5}
+\contentsline {section}{\numberline {5.1}Achievements}{67}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{68}{section.5.2}
+\contentsline {chapter}{Bibliography}{71}{section*.52}

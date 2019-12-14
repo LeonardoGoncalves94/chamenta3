@@ -3,8 +3,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Time needed to add a certificate and a key, calculated over twenty measurements.}}{55}{table.4.1}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Throughput measurements to the authorize vehicle operation with 600 threads.}}{58}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Estimated vehicle certificate storage demand}}{59}{table.4.3}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Privacy scenarios ordered by level of privacy.}}{62}{table.4.4}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Time needed to add a certificate and a key, calculated over twenty measurements.}}{57}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Throughput measurements to the authorize vehicle operation with 600 threads.}}{60}{table.4.2}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Estimated vehicle certificate storage demand}}{61}{table.4.3}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Privacy scenarios ordered by level of privacy.}}{64}{table.4.4}
 \addvspace {10\p@ }

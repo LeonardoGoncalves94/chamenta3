@@ -42,12 +42,12 @@ Because the PKI Manager tests involve client-server communication over the netwo
 
 
 \subsubsection{Backoffice Application}
-The operations performed by the administrator application are simple but essential in order to have a functional PKI to serve as the backbone of trust within V2X communications. The processing is mostly located at the V2X Library, creating a waiting period in the backoffice application. On the administrator side, it makes sense to only test the latency of the operations performed by one user only, as this application is not meant to be used concurrently by a large number of users. Next, we take a look over the operations evaluated on the backoffice: the generation of keys and certificates. 
+The operations performed by the administrator application are simple but essential in order to have a functional PKI to serve as the backbone of trust within V2X communications. The processing is mostly located at the V2X Library, creating a waiting period in the backoffice application. On the administrator side, it makes sense to only test the latency of the operations performed by one user only, as this application is not meant to be used by many users concurrently. Next, we take a look over the operations evaluated on the backoffice: the generation of keys and certificates. 
 
 The operation to add a key involves the following steps: generating a cryptographic key using the V2X Library, then storing it on a keystore and its information on the database. The operation to add a certificate is more complex than the previous, as it also involves searching for the keys which will be relevant to issue the certificate. Because of this factor, we included on the add certificate test the number of keys that exist on the system to provide a comparing factor amongst the different latency times. For each operation the timer started when the form was submitted (POST) and stopped when the page finished loading (GET). The reasoning behind not considering the generation of CAs in the test suit comes from the fact that, unlike the tested operations, generating a CA consists only in creating a simple database object and storing it. 
 
 
-In Table \ref{tab:table1} we can observe the time necessary to complete the operations involving our backoffice application, which preclude user interaction. Overall from the perspective of an administrator the results are reasonable and will not negatively affect the usability of the application. Regarding the operation to add a certificate, the operations for adding a single key or certificate are fast, taking on average 71.6 and 73.7 milliseconds. There is a linear relation between the time that the system takes to add a certificate and the number of keys that exist on storage. This happens due to the nature of the operation, in which the server has to query the database and the KeyStore in order to find the cryptographic keys of the subject and issuer before calling the V2X Library to issue the certificate, and finally storing it on the database. This increase in delay is not critical, as considering a realistic number of keys (i.e., in the order of a few dozen keys) it does not affect the user experience to a point that it is noticeable.
+In Table \ref{tab:table1} we can observe the time necessary to complete the operations involving our backoffice application, which preclude user interaction. Overall from the perspective of an administrator the results are reasonable and will not negatively affect the usability of the application. Regarding the operation to add a certificate, the operations for adding a single key or certificate are fast, taking on average 71.6 and 73.7 milliseconds. There is a linear relation between the time that the system takes to add a certificate and the number of keys that exist on storage. This happens due to the nature of the operation, in which the server has to query the database and the keystore in order to find the cryptographic keys of the subject and issuer before calling the V2X Library to issue the certificate, and finally storing it on the database. This increase in delay is not critical, as considering a realistic number of keys (i.e., in the order of a few dozen keys) it does not affect the user experience to a point that it is noticeable.
 
 \begin{table}
 	\renewcommand{\arraystretch}{1.2} % more space between rows
@@ -56,11 +56,11 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 		\toprule
 		Operation           & $Time$ & $Keys$& $StandardDeviation$ $$\\
 		\midrule
-		Add key          & 71.6ms & 1 & 14ms   \\
-		Add certificate  & 73.7ms &4& 10ms     \\
-		Add certificate  & 81ms &20& 13.5ms     \\
-		Add certificate  & 103ms &30& 14ms     \\
-		Add certificate  & 128.6ms &40& 16ms     \\
+		Add key          & 71.6ms & 1 & 14.0ms   \\
+		Add certificate  & 73.7ms &4& 10.0ms     \\
+		Add certificate  & 81.0ms &20& 13.5ms     \\
+		Add certificate  & 103.0ms &30& 14.0ms     \\
+		Add certificate  & 128.6ms &40& 16.0ms     \\
 		Add certificate  & 178.7ms &60& 19.5ms \\
 		\bottomrule
 		\end{tabular}
@@ -79,10 +79,10 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 	
 	\begin{figure}
 		\begin{subfigmatrix}{2}
-			\subfigure[Vehicle Configuration]{\includegraphics[width=0.49\linewidth]{Figures/conf_graph.png}}
-			\subfigure[Vehicle Enrollment]{\includegraphics[width=0.49\linewidth]{Figures/enroll_graph.png}}
-			\subfigure[Vehicle Authorization w/o enrollment validation]{\includegraphics[width=0.49\linewidth]{Figures/new_auth_graph.png}}
-			\subfigure[Vehicle Authorization]{\includegraphics[width=0.49\linewidth]{Figures/auth_graph.png}}
+			\subfigure[Vehicle Configuration]{\includegraphics[width=0.49\linewidth]{Figures/conf_graph2.png}}
+			\subfigure[Vehicle Enrollment]{\includegraphics[width=0.49\linewidth]{Figures/enrol_graph2.png}}
+			\subfigure[Vehicle Authorization w/o enrollment validation]{\includegraphics[width=0.49\linewidth]{Figures/new_auth_graph2.png}}
+			\subfigure[Vehicle Authorization]{\includegraphics[width=0.49\linewidth]{Figures/auth_graph2.png}}
 		\end{subfigmatrix}
 		\caption{Latency measurements for the RA Service operations}
 		\label{fig:graphs2}
@@ -102,7 +102,7 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 	
 	\paragraph{Throughput}
 	
-	To test the throughput of the PKI Manager we used \textit{Jmeter} to generate requests to the vehicle authorization end-point since it is the most complex operation. This tool allowed us to configure five tests each with different ramp-up times. Each test was configured to 600 threads (users). The ramp-up period for each test was 60, 40, 30, 10 and 5 seconds respectively. Ramp-up period indicates the time duration that \textit{Jmeter} takes to start all the threads for that test. For example, if the ramp-up time is 10 seconds in a test with 10 threads it means that each thread will start after (10/10) 1 second. Having this mechanism in mind we reduced the ramp-up time in each test while maintaining the same number of users to increase of concurrency and work load on the server, providing a comparing factor between the resulting throughput measurements. It is important to note that, as explained in the documentation of \textit{Jmeter} \cite{throughput}, the throughput is calculated as (number of requests) / (total time) where time is calculated from the start of the first thread to the end of the last. For our tests the number of requests is constantly 600 and the total time is the period of time which took the test to fully execute. Specifically, starting with the first request (thread 1) and ending when the response to the last request is received (thread 600).
+	To test the throughput of the PKI Manager we used \textit{Jmeter} to generate requests to the vehicle authorization end-point since it is the most complex operation. This tool allowed us to configure five tests each with different ramp-up times. Each test was configured to 600 threads (users). The ramp-up period for each test was 60, 40, 30, 10 and 5 seconds respectively. Ramp-up period indicates the time duration that \textit{Jmeter} takes to start all the threads for that test. For example, if the ramp-up time is 10 seconds in a test with 10 threads it means that each thread will start after (10/10) 1 second. Having this mechanism in mind we reduced the ramp-up time in each test while maintaining the same number of users to increase of concurrency and work load on the server, providing a comparing factor between the resulting throughput measurements. It is important to note that, as explained in the documentation of \textit{Jmeter} \cite{throughput}, the throughput is calculated as (number of requests) / (total time) where time is calculated from the start of the first thread to the end of the last. For our tests the number of requests is constantly 600 and the total time is the period which took the test to fully execute. Specifically, starting with the first request (thread 1) and ending when the response to the last request is received (thread 600).
 	
 	Table \ref{tab:table2} relates the throughput measurements for each test done to the authorization of vehicles. In this table we can see the average latency of the 600 requests, the standard deviation of the latency, the throughput value, the percentage of failed requests and the test execution time. As we can see from the results, for the first three tests the server responded very well to the increase in the work load. We can see in the first test that for a ramp-up time of 60s the throughput was 10 requests per second. As the test was running for approximately 60 seconds, we can conclude that all the 600 requests were completed in approximately the same time as the ramp-up period meaning that the server was not delaying requests. This factor along with the low average request latency of 29ms, low standard deviation of 7.2ms and request error rate of 0\% allows us to conclude that this test was not able to reach the full capacity of the server. Therefore, the throughput was not higher because of the high ramp-up time that took to create the 600 requests. The same trend was maintained for two more tests, in the test with 30s ramp-up we can see that for twice the initial work load, the server responded with double throughput of 20 requests per second. This, along with the request latency still being low and no request errors is a further indicator the server was not yet saturated.
 	
@@ -115,11 +115,11 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 			\toprule
 			Ramp-up           & $Latency$& $Latency Standard Deviation$ & $throughput$& $TestTime$ $$\\
 			\midrule
-			60s          & 29ms & 7.2ms & 10/sec & ~60s  \\
+			60s          & 29ms & 7.2ms & 10.0/sec & ~60s  \\
 			40s          & 28ms & 5.9ms & 14.9/sec & ~40s  \\
-			30s          & 34ms & 5.6ms & 20/sec & ~30s \\
+			30s          & 34ms & 5.6ms & 20.0/sec & ~30s \\
 			10s          & 592ms & 496.6ms & 52.8/sec & ~11s \\
-			5s           & 2659ms & 1480.69ms & 62.5/sec & ~9s \\
+			5s           & 2659ms & 1480.6ms & 62.5/sec & ~9s \\
 			\bottomrule
 			\end{tabular}
 			
@@ -147,7 +147,7 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 				Authorization CA  & 288 bytes&100&28.1KB\\
 				Enrollment Credential  & 208 bytes &1 & 0.2 KB\\
 				Authorization Ticket  & 200 bytes &1825 & 356.4KB\\
-				AT private key & 32 bytes & 1825 & 57KB\\
+				AT private key & 32 bytes & 1825 & 57.0KB\\
 				\midrule
 				\null  & \null & \null & 475.1KB\\
 				\bottomrule
@@ -186,7 +186,7 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 		
 		
 		\section{Privacy}
-		In our system preserving the privacy of users is one of the most important concerns. Losing privacy might mean that an attacker is able to track vehicles using the V2X communications, which is undesired. The main system variables that might affect the privacy of its users are the number of pseudonym certificates, and the usage pattern. The more pseudonym certificates a vehicle has available, the better is the privacy because the vehicle will have more choices when changing pseudonym. However, as described in the previous sections the increase of privacy comes with the overhead of the increase in certificate storage demand, number of individual certificate requests, and consequently processing at the vehicle. In this section we analyse different V2X scenarios, where we relate a vehicle's movement pattern, the pseudonym usage, possible types of attackers and the resulting level of privacy.
+		In our system preserving the privacy of users is one of the most important concerns. Losing privacy might mean that an attacker is able to track vehicles using the V2X communications, which is undesired. The main system variables that might affect the privacy of its users are the number of pseudonym certificates, and the usage pattern. The more pseudonym certificates a vehicle has available, the better is the privacy because the vehicle will have more choices when changing pseudonym. However, as described in the previous sections the increase of privacy comes with the overhead of the increase in certificate storage demand, number of individual certificate requests, and consequently processing at the vehicle. In this section we analyze different V2X scenarios, where we relate a vehicle's movement pattern, the pseudonym usage, possible types of attackers and the resulting level of privacy.
 		
 		\subsection{V2X Scenarios}		
 		Regarding the types of vehicle trips, we wanted to choose real life cases where V2X communications could be involved. For the privacy scenarios we considered the following cases:
@@ -206,7 +206,7 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 		\begin{itemize}
 			\item \textbf{Attacker A:} Controls a single section on the road while being able to visualize the victim vehicle and capture all messages.
 			\item \textbf{Attacker B:} Controls two distant sections on the road where the victim vehicle will pass.
-			\item \textbf{Attacker C:} Attacker is moving for a limited period of time following the victim vehicle. 
+			\item \textbf{Attacker C:} Attacker is moving for a limited period following the victim vehicle. 
 		\end{itemize}
 		
 		
@@ -260,7 +260,7 @@ In Table \ref{tab:table1} we can observe the time necessary to complete the oper
 			\section{Sumary}
 			In this chapter we presented the evaluation results of the developed V2X system. We started by evaluating the performance of the PKI Manager, then looked at the resource usage of the Vehicle Manager and finished by discussing the security properties and privacy of the system.
 			
-			The performance of the PKI Manager was measured at two different variants: the backoffice application and the RA Service. In the evaluation of the backoffice we measured the latency of the most complex PKI operations, the generation of keys and CA certificates. We concluded from the results that the measurements were reasonable, considering the complexity of the operations, and would not negatively affect the usability of the application by an administrator. From the results it was possible to conclude that the most expensive operations in terms of latency are the full authorization and enrollment of vehicles. The new authorization of vehicles introduced by our RA Service was fastar than the standard full process. 
+			The performance of the PKI Manager was measured at two different variants: the backoffice application and the RA Service. In the evaluation of the backoffice we measured the latency of the most complex PKI operations, the generation of keys and CA certificates. We concluded from the results that the measurements were reasonable, considering the complexity of the operations, and would not negatively affect the usability of the application by an administrator. From the results it was possible to conclude that the most expensive operations in terms of latency are the full authorization and enrollment of vehicles. The new authorization of vehicles introduced by our RA Service was faster than the standard full process. 
 			
 			Lastly we presented how our system provides the security properties of confidentiality, data authenticity and authorization in both vehicle to PKI and V2X Communications. We concluded this chapter by analyzing how the privacy of the vehicles is maintained in V2X communications, discussing the different levels of privacy achieved by different vehicle types and pseudonym usage patterns.
 			
